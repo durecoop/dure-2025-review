@@ -1,0 +1,8 @@
+*.hwp
+*.bin
+hwp_preview.txt
+hwp_fulltext.txt
+hwp_image_*.png
+section*.bin
+drive-download-*/
+Thumbs.db

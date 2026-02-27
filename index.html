@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2025년을 돌아보며 - 두레생협연합회</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #0a0a1a;
+  color: #e8e8e8;
+  overflow: hidden;
+}
+
+/* ===== FIXED LOGO ===== */
+.fixed-logo {
+  position: fixed;
+  top: 32px;
+  left: 40px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0.92;
+  pointer-events: none;
+}
+.logo-icon {
+  width: 52px;
+  height: 52px;
+}
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+.logo-text .logo-main {
+  font-size: 20px;
+  font-weight: 800;
+  color: #4CAF50;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+.logo-text .logo-sub {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 1px;
+}
+
+/* ===== GLOBAL ===== */
+.section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0; left: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  padding: 80px 100px;
+  z-index: 0;
+}
+.section.active {
+  opacity: 1;
+  z-index: 10;
+}
+
+/* ===== BACKGROUNDS ===== */
+.bg-gradient-1 { background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0d1b2a 100%); }
+.bg-gradient-2 { background: linear-gradient(135deg, #0d1b2a 0%, #1b2a4a 50%, #0a1628 100%); }
+.bg-gradient-3 { background: linear-gradient(135deg, #0a1628 0%, #162a3e 50%, #0d1b2a 100%); }
+.bg-gradient-4 { background: linear-gradient(135deg, #0d2818 0%, #1a3a2a 50%, #0a2015 100%); }
+.bg-dark { background: #080808; }
+
+/* ===== PARTICLES ===== */
+.particles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+.particle {
+  position: absolute;
+  width: 3px; height: 3px;
+  background: rgba(76, 175, 80, 0.25);
+  border-radius: 50%;
+  animation: float-particle linear infinite;
+}
+@keyframes float-particle {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* ===== INTRO ===== */
+#intro .intro-year {
+  font-size: 260px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #4CAF50, #81C784, #A5D6A7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: intro-year-in 2s ease-out 0.5s forwards;
+  line-height: 1;
+}
+#intro .intro-title {
+  font-size: 68px;
+  font-weight: 300;
+  letter-spacing: 18px;
+  margin-top: 10px;
+  opacity: 0;
+  animation: fade-up 1.5s ease-out 1.8s forwards;
+}
+#intro .intro-sub {
+  font-size: 28px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.45);
+  margin-top: 35px;
+  letter-spacing: 6px;
+  opacity: 0;
+  animation: fade-up 1.5s ease-out 2.8s forwards;
+}
+#intro .intro-line {
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4CAF50, transparent);
+  margin-top: 50px;
+  animation: line-expand 2s ease-out 3.5s forwards;
+}
+
+@keyframes intro-year-in {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes fade-up {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes line-expand {
+  0% { width: 0; }
+  100% { width: 350px; }
+}
+
+/* ===== PART TITLE ===== */
+.part-title {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 10px;
+  color: #4CAF50;
+  margin-bottom: 20px;
+  opacity: 0;
+}
+.part-title.show { animation: fade-up 1s ease-out forwards; }
+
+.section-headline {
+  font-size: 64px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.35;
+  opacity: 0;
+}
+.section-headline.show { animation: fade-up 1s ease-out forwards; }
+.section-headline .highlight { color: #4CAF50; }
+.section-headline .highlight-red { color: #ef5350; }
+
+/* ===== SCENE 1: CHALLENGES ===== */
+.challenge-keywords {
+  display: flex;
+  gap: 40px;
+  margin-top: 55px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.challenge-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 45px 50px;
+  text-align: center;
+  min-width: 300px;
+  opacity: 0;
+  transform: translateY(40px);
+}
+.challenge-card.show { animation: fade-up 0.8s ease-out forwards; }
+.challenge-card .label {
+  font-size: 22px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 15px;
+}
+.challenge-card .value {
+  font-size: 48px;
+  font-weight: 800;
+  color: #ef5350;
+}
+.challenge-card .arrow { font-size: 28px; color: rgba(255,255,255,0.3); margin: 0 8px; }
+.challenge-card .detail {
+  font-size: 18px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 10px;
+}
+
+/* ===== SCENE 2: GROWTH REBOUND ===== */
+.growth-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 40px;
+  height: 280px;
+  margin-top: 50px;
+}
+.bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.bar-group.show { animation: fade-up 0.6s ease-out forwards; }
+.bar-label {
+  font-size: 22px;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.bar-value {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.bar-value.negative { color: #ef5350; }
+.bar-value.positive { color: #4CAF50; }
+.bar {
+  width: 100px;
+  border-radius: 10px 10px 0 0;
+  transition: height 1.5s ease-out;
+}
+.bar.negative { background: linear-gradient(180deg, #ef5350, #c62828); }
+.bar.positive {
+  background: linear-gradient(180deg, #4CAF50, #2E7D32);
+  box-shadow: 0 0 40px rgba(76,175,80,0.4);
+}
+
+.counter-row {
+  display: flex;
+  gap: 80px;
+  margin-top: 55px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.counter-item {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+}
+.counter-item.show { animation: fade-up 0.8s ease-out forwards; }
+.counter-label {
+  font-size: 22px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 12px;
+}
+.counter-number {
+  font-size: 72px;
+  font-weight: 900;
+  color: #fff;
+}
+.counter-unit {
+  font-size: 30px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.55);
+}
+.counter-change {
+  font-size: 24px;
+  color: #4CAF50;
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+/* ===== SCENE 3: CHANNELS ===== */
+.channel-cards {
+  display: flex;
+  gap: 45px;
+  margin-top: 55px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.channel-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(76,175,80,0.2);
+  border-radius: 24px;
+  padding: 50px 55px;
+  text-align: center;
+  min-width: 300px;
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+}
+.channel-card.show { animation: card-in 0.8s ease-out forwards; }
+@keyframes card-in {
+  0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.channel-icon { font-size: 56px; margin-bottom: 20px; }
+.channel-name {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: rgba(255,255,255,0.8);
+}
+.channel-amount {
+  font-size: 52px;
+  font-weight: 900;
+  color: #fff;
+}
+.channel-growth {
+  font-size: 28px;
+  color: #4CAF50;
+  margin-top: 10px;
+  font-weight: 700;
+}
+.channel-detail {
+  font-size: 18px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 5px;
+}
+
+/* ===== SCENE 4: LOGISTICS ===== */
+.logistics-content {
+  display: flex;
+  gap: 100px;
+  align-items: center;
+  margin-top: 55px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.progress-ring-container {
+  text-align: center;
+  opacity: 0;
+}
+.progress-ring-container.show { animation: fade-up 1s ease-out forwards; }
+.progress-ring {
+  width: 260px;
+  height: 260px;
+  position: relative;
+}
+.progress-ring svg { transform: rotate(-90deg); }
+.progress-ring circle { fill: none; stroke-width: 14; }
+.progress-ring .bg { stroke: rgba(255,255,255,0.08); }
+.progress-ring .fg {
+  stroke: #4CAF50;
+  stroke-linecap: round;
+  stroke-dasharray: 728;
+  stroke-dashoffset: 728;
+  transition: stroke-dashoffset 2s ease-out;
+}
+.progress-ring .center-text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.progress-ring .percent {
+  font-size: 58px;
+  font-weight: 900;
+  color: #4CAF50;
+}
+.progress-ring .percent-label {
+  font-size: 18px;
+  color: rgba(255,255,255,0.5);
+}
+.logistics-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  opacity: 0;
+}
+.logistics-stats.show { animation: fade-up 1s ease-out 0.5s forwards; }
+.logistics-stat {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.stat-icon {
+  width: 60px; height: 60px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: rgba(76,175,80,0.12);
+}
+.stat-info .stat-label {
+  font-size: 18px;
+  color: rgba(255,255,255,0.5);
+}
+.stat-info .stat-value {
+  font-size: 36px;
+  font-weight: 800;
+  color: #4CAF50;
+}
+
+/* ===== SCENE 5: INNOVATION ===== */
+.innovation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px;
+  margin-top: 55px;
+  max-width: 1000px;
+}
+.innovation-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(76,175,80,0.15);
+  border-radius: 20px;
+  padding: 45px;
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.innovation-item.show { animation: slide-in 0.7s ease-out forwards; }
+@keyframes slide-in {
+  0% { opacity: 0; transform: translateX(-30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+.innovation-number {
+  font-size: 62px;
+  font-weight: 900;
+  color: #4CAF50;
+  line-height: 1;
+}
+.innovation-number span { font-size: 28px; }
+.innovation-text {
+  font-size: 24px;
+  color: rgba(255,255,255,0.65);
+  margin-top: 10px;
+}
+
+/* ===== SCENE 6: MEMBER COOPS ===== */
+.coop-total {
+  display: flex;
+  gap: 80px;
+  margin-top: 30px;
+  justify-content: center;
+  opacity: 0;
+}
+.coop-total.show { animation: fade-up 1s ease-out forwards; }
+.coop-total-label {
+  font-size: 22px;
+  color: rgba(255,255,255,0.5);
+}
+.coop-total-value {
+  font-size: 56px;
+  font-weight: 900;
+  color: #fff;
+}
+.coop-grid-wrapper {
+  width: 100%;
+  max-width: 1300px;
+  max-height: 55vh;
+  overflow: hidden;
+  margin-top: 25px;
+}
+.coop-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  animation: scroll-up-coops 25s linear infinite;
+}
+@keyframes scroll-up-coops {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.coop-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 20px 24px;
+  text-align: center;
+}
+.coop-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #81C784;
+  margin-bottom: 6px;
+}
+.coop-members {
+  font-size: 16px;
+  color: rgba(255,255,255,0.5);
+}
+.coop-members span {
+  color: #fff;
+  font-weight: 800;
+  font-size: 22px;
+}
+
+/* ===== SCENE 7: CHALLENGES ===== */
+.challenge-section {
+  max-width: 1000px;
+  margin-top: 50px;
+}
+.trend-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 30px;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.trend-row.show { animation: slide-in 0.6s ease-out forwards; }
+.trend-icon {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+.trend-icon.down { background: rgba(239,83,80,0.15); }
+.trend-icon.warning { background: rgba(255,183,77,0.15); }
+.trend-desc .trend-label {
+  font-size: 22px;
+  color: rgba(255,255,255,0.55);
+}
+.trend-desc .trend-value {
+  font-size: 34px;
+  font-weight: 800;
+}
+.trend-value.red { color: #ef5350; }
+.trend-value.orange { color: #FFB74D; }
+
+.hope-message {
+  text-align: center;
+  margin-top: 55px;
+  opacity: 0;
+}
+.hope-message.show { animation: fade-up 1.2s ease-out forwards; }
+.hope-message .msg {
+  font-size: 46px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #FFB74D, #FF8A65);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== PART 2 TRANSITION ===== */
+#part2-transition .transition-text {
+  font-size: 56px;
+  font-weight: 300;
+  letter-spacing: 10px;
+  text-align: center;
+  line-height: 1.4;
+  opacity: 0;
+}
+#part2-transition .transition-text.show { animation: fade-up 1.5s ease-out forwards; }
+#part2-transition .transition-line {
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #4CAF50, transparent);
+  margin-top: 35px;
+}
+#part2-transition .transition-line.show { animation: line-expand 2s ease-out forwards; }
+
+/* ===== PHOTO SLIDESHOW ===== */
+#slideshow { background: #000; }
+.slideshow-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+.slide.active { opacity: 1; }
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: ken-burns 8s ease-out forwards;
+}
+@keyframes ken-burns {
+  0% { transform: scale(1.05); }
+  100% { transform: scale(1.15); }
+}
+.slide-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 80px 100px 60px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.88));
+}
+.slide-coop {
+  font-size: 24px;
+  color: #81C784;
+  font-weight: 600;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+}
+.slide-title {
+  font-size: 44px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.6);
+}
+.slide-counter {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  font-size: 20px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 3px;
+}
+.slide-progress {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 4px;
+  background: #4CAF50;
+  animation: slide-progress-bar 6s linear forwards;
+}
+@keyframes slide-progress-bar {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+/* ===== ENDING ===== */
+#ending {
+  background: linear-gradient(135deg, #0a1a0a 0%, #1a2e1a 50%, #0a1a0a 100%);
+}
+#ending .ending-year {
+  font-size: 160px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #4CAF50, #81C784);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+}
+#ending .ending-year.show { animation: fade-up 1.5s ease-out forwards; }
+#ending .ending-msg {
+  font-size: 56px;
+  font-weight: 300;
+  letter-spacing: 12px;
+  margin-top: 10px;
+  opacity: 0;
+}
+#ending .ending-msg.show { animation: fade-up 1.5s ease-out 0.5s forwards; }
+#ending .ending-org {
+  font-size: 30px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.4);
+  margin-top: 45px;
+  letter-spacing: 10px;
+  opacity: 0;
+}
+#ending .ending-org.show { animation: fade-up 1.5s ease-out 1s forwards; }
+#ending .ending-line {
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4CAF50, transparent);
+  margin-top: 35px;
+}
+#ending .ending-line.show { animation: line-expand 2s ease-out 1.5s forwards; }
+
+/* ===== CONTROLS ===== */
+.controls {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+body:hover .controls { opacity: 1; }
+.control-btn {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+}
+.control-btn:hover {
+  background: rgba(76,175,80,0.3);
+  border-color: #4CAF50;
+}
+
+.progress-indicator {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4CAF50, #81C784);
+  z-index: 9999;
+  transition: width 0.8s ease;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .section { padding: 50px 50px; }
+  #intro .intro-year { font-size: 160px; }
+  #intro .intro-title { font-size: 44px; }
+  .section-headline { font-size: 48px; }
+  .counter-number { font-size: 52px; }
+  .channel-amount { font-size: 40px; }
+  .innovation-number { font-size: 48px; }
+  .innovation-grid { grid-template-columns: 1fr 1fr; }
+  .coop-grid { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- Progress Indicator -->
+<div class="progress-indicator" id="progressBar"></div>
+
+<!-- Fixed Logo (Always Visible) -->
+<div class="fixed-logo">
+  <svg class="logo-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="26" cy="26" r="25" stroke="#4CAF50" stroke-width="2" fill="rgba(76,175,80,0.08)"/>
+    <path d="M26 10 C20 10, 12 16, 12 24 C12 32, 18 40, 26 42 C34 40, 40 32, 40 24 C40 16, 32 10, 26 10Z" fill="#4CAF50" opacity="0.15"/>
+    <path d="M26 14 C26 14, 20 20, 20 26 C20 32, 23 36, 26 38" stroke="#4CAF50" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M26 14 C26 14, 32 20, 32 26 C32 32, 29 36, 26 38" stroke="#81C784" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M16 24 C20 22, 24 24, 26 26 C28 24, 32 22, 36 24" stroke="#A5D6A7" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <circle cx="26" cy="20" r="3" fill="#4CAF50"/>
+  </svg>
+  <div class="logo-text">
+    <span class="logo-main">두레생협</span>
+    <span class="logo-sub">DURE COOP</span>
+  </div>
+</div>
+
+<!-- Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- ========== INTRO ========== -->
+<div class="section bg-gradient-1 active" id="intro">
+  <div class="intro-year">2025</div>
+  <div class="intro-title">년을 돌아보며</div>
+  <div class="intro-sub">두레생협연합회 제26기 정기총회</div>
+  <div class="intro-line"></div>
+</div>
+
+<!-- ========== PART 1 TITLE ========== -->
+<div class="section bg-gradient-1" id="part1-title">
+  <div class="part-title">PART 1</div>
+  <div class="section-headline">
+    <span class="highlight">사업결과</span>로 본 2025년
+  </div>
+</div>
+
+<!-- ========== SCENE 1 ========== -->
+<div class="section bg-gradient-2" id="scene1">
+  <div class="section-headline">
+    도전과 위기의 한 해
+  </div>
+  <div class="challenge-keywords">
+    <div class="challenge-card">
+      <div class="label">한국 경제성장률</div>
+      <div class="value">2.4% <span class="arrow">&rarr;</span> 1.0%</div>
+      <div class="detail">저성장 고착화</div>
+    </div>
+    <div class="challenge-card">
+      <div class="label">온라인 매출 비중</div>
+      <div class="value">53% 돌파</div>
+      <div class="detail">오프라인 유통의 전환점</div>
+    </div>
+    <div class="challenge-card">
+      <div class="label">사과/양파 가격</div>
+      <div class="value">90%↑</div>
+      <div class="detail">기후플레이션 현실화</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SCENE 2 ========== -->
+<div class="section bg-gradient-1" id="scene2">
+  <div class="section-headline">
+    4년간의 역성장,<br><span class="highlight">2025년에 멈추다</span>
+  </div>
+  <div class="growth-chart" id="growthChart">
+    <div class="bar-group">
+      <div class="bar-value negative">-8.0%</div>
+      <div class="bar negative" data-height="160" style="height:0"></div>
+      <div class="bar-label">'22년</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-value negative">-8.8%</div>
+      <div class="bar negative" data-height="176" style="height:0"></div>
+      <div class="bar-label">'23년</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-value negative">-3.4%</div>
+      <div class="bar negative" data-height="68" style="height:0"></div>
+      <div class="bar-label">'24년</div>
+    </div>
+    <div class="bar-group">
+      <div class="bar-value positive">+2.1%</div>
+      <div class="bar positive" data-height="80" style="height:0"></div>
+      <div class="bar-label">'25년</div>
+    </div>
+  </div>
+  <div class="counter-row">
+    <div class="counter-item">
+      <div class="counter-label">총 공급고</div>
+      <div class="counter-number"><span class="count" data-target="894.7">0</span><span class="counter-unit">억원</span></div>
+      <div class="counter-change">+2.1%</div>
+    </div>
+    <div class="counter-item">
+      <div class="counter-label">조합원 이용액</div>
+      <div class="counter-number"><span class="count" data-target="1264.4">0</span><span class="counter-unit">억원</span></div>
+      <div class="counter-change">+2.1%</div>
+    </div>
+    <div class="counter-item">
+      <div class="counter-label">조합원 가구 수</div>
+      <div class="counter-number"><span class="count" data-target="258121" data-format="int">0</span><span class="counter-unit">가구</span></div>
+      <div class="counter-change">+8.9%</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SCENE 3 ========== -->
+<div class="section bg-gradient-3" id="scene3">
+  <div class="section-headline">
+    채널별 <span class="highlight">성과</span>
+  </div>
+  <div class="channel-cards">
+    <div class="channel-card">
+      <div class="channel-icon">🏪</div>
+      <div class="channel-name">매장사업</div>
+      <div class="channel-detail">전국 112점</div>
+      <div class="channel-amount">651.7<span class="counter-unit">억</span></div>
+      <div class="channel-growth">+1.5%</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-icon">💻</div>
+      <div class="channel-name">온라인사업</div>
+      <div class="channel-detail">개인/급식/택배</div>
+      <div class="channel-amount">159.2<span class="counter-unit">억</span></div>
+      <div class="channel-growth">+3.0%</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-icon">🤝</div>
+      <div class="channel-name">공공사업</div>
+      <div class="channel-detail">임산부/건강과일</div>
+      <div class="channel-amount">78.2<span class="counter-unit">억</span></div>
+      <div class="channel-growth">+5.3%</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SCENE 4 ========== -->
+<div class="section bg-gradient-4" id="scene4">
+  <div class="section-headline">
+    <span class="highlight">화성물류센터</span><br>새로운 시작
+  </div>
+  <div class="logistics-content">
+    <div class="progress-ring-container">
+      <div class="progress-ring">
+        <svg width="260" height="260">
+          <circle class="bg" cx="130" cy="130" r="116"/>
+          <circle class="fg" id="piProgress" cx="130" cy="130" r="116"/>
+        </svg>
+        <div class="center-text">
+          <div class="percent">70.7%</div>
+          <div class="percent-label">PI 과제 달성</div>
+        </div>
+      </div>
+      <div style="margin-top:15px; color:rgba(255,255,255,0.5); font-size:20px; font-weight:500;">41개 중 29개 완수</div>
+    </div>
+    <div class="logistics-stats">
+      <div class="logistics-stat">
+        <div class="stat-icon">📦</div>
+        <div class="stat-info">
+          <div class="stat-label">결품률 감소</div>
+          <div class="stat-value">-32.0%</div>
+        </div>
+      </div>
+      <div class="logistics-stat">
+        <div class="stat-icon">🔄</div>
+        <div class="stat-info">
+          <div class="stat-label">반품률 감소</div>
+          <div class="stat-value">-38.0%</div>
+        </div>
+      </div>
+      <div class="logistics-stat">
+        <div class="stat-icon">📅</div>
+        <div class="stat-info">
+          <div class="stat-label">이전 완료</div>
+          <div class="stat-value">2025.3월</div>
+        </div>
+      </div>
+      <div class="logistics-stat">
+        <div class="stat-icon">⚡</div>
+        <div class="stat-info">
+          <div class="stat-label">재고 회전</div>
+          <div class="stat-value">32.2회/년</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SCENE 5 ========== -->
+<div class="section bg-gradient-2" id="scene5">
+  <div class="section-headline">
+    <span class="highlight">상품 혁신</span>의 성과
+  </div>
+  <div class="innovation-grid">
+    <div class="innovation-item">
+      <div class="innovation-number">287<span>개</span></div>
+      <div class="innovation-text">신규 품목 개발</div>
+    </div>
+    <div class="innovation-item">
+      <div class="innovation-number">100만<span>팩</span></div>
+      <div class="innovation-text">귀리유 판매 달성</div>
+    </div>
+    <div class="innovation-item">
+      <div class="innovation-number">32<span>품목</span></div>
+      <div class="innovation-text">두레맛찬 신선반찬 론칭</div>
+    </div>
+    <div class="innovation-item">
+      <div class="innovation-number">+12%</div>
+      <div class="innovation-text">공정무역(민중교역) 매출 성장</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SCENE 6 ========== -->
+<div class="section bg-gradient-1" id="scene6">
+  <div class="section-headline" style="font-size:48px;">
+    <span class="highlight">22개</span> 회원생협의 한 해
+  </div>
+  <div class="coop-total">
+    <div class="coop-total-item">
+      <div class="coop-total-label">전체 조합원</div>
+      <div class="coop-total-value">257,231<span class="counter-unit">가구</span></div>
+    </div>
+    <div class="coop-total-item">
+      <div class="coop-total-label">총 이용액</div>
+      <div class="coop-total-value">1,264.4<span class="counter-unit">억원</span></div>
+    </div>
+  </div>
+  <div class="coop-grid-wrapper">
+    <div class="coop-grid" id="coopGrid"></div>
+  </div>
+</div>
+
+<!-- ========== SCENE 7 ========== -->
+<div class="section bg-gradient-2" id="scene7">
+  <div class="section-headline">
+    <span class="highlight-red">과제</span>를 직시하며
+  </div>
+  <div class="challenge-section">
+    <div class="trend-row">
+      <div class="trend-icon down">📉</div>
+      <div class="trend-desc">
+        <div class="trend-label">신규가입 3년 연속 감소</div>
+        <div class="trend-value red">17,485 → 16,114 → 14,999</div>
+      </div>
+    </div>
+    <div class="trend-row">
+      <div class="trend-icon down">⚠️</div>
+      <div class="trend-desc">
+        <div class="trend-label">탈퇴 조합원 급증</div>
+        <div class="trend-value red">11,598가구</div>
+      </div>
+    </div>
+    <div class="trend-row">
+      <div class="trend-icon warning">💰</div>
+      <div class="trend-desc">
+        <div class="trend-label">영업이익</div>
+        <div class="trend-value orange">-7.5억원 (영업외수익으로 보전)</div>
+      </div>
+    </div>
+    <div class="trend-row">
+      <div class="trend-icon warning">🏬</div>
+      <div class="trend-desc">
+        <div class="trend-label">매장 변동</div>
+        <div class="trend-value orange">3개점 순감소 (112점)</div>
+      </div>
+    </div>
+  </div>
+  <div class="hope-message">
+    <div class="msg">"위기를 기회로, 함께 만들어가는 내일"</div>
+  </div>
+</div>
+
+<!-- ========== PART 2 TRANSITION ========== -->
+<div class="section bg-dark" id="part2-transition">
+  <div class="part-title">PART 2</div>
+  <div class="transition-text">함께 만들어간<br>2025년의 순간들</div>
+  <div class="transition-line"></div>
+</div>
+
+<!-- ========== PHOTO SLIDESHOW ========== -->
+<div class="section" id="slideshow" style="padding:0;">
+  <div class="slideshow-container" id="slideshowContainer"></div>
+</div>
+
+<!-- ========== ENDING ========== -->
+<div class="section" id="ending">
+  <div class="ending-year">2026</div>
+  <div class="ending-msg">함께 더 멀리</div>
+  <div class="ending-org">두레생협연합회</div>
+  <div class="ending-line"></div>
+</div>
+
+<!-- Controls -->
+<div class="controls">
+  <button class="control-btn" id="btnPrev" title="이전">◀</button>
+  <button class="control-btn" id="btnPause" title="일시정지">⏸</button>
+  <button class="control-btn" id="btnNext" title="다음">▶</button>
+  <button class="control-btn" id="btnRestart" title="처음부터">↺</button>
+</div>
+
+<script>
+// ===== DATA =====
+const coopData = [
+  { name: '경기두레', members: '32,436', amount: '209.8억' },
+  { name: '푸른두레', members: '29,117', amount: '148.8억' },
+  { name: '참좋은두레', members: '22,501', amount: '101.0억' },
+  { name: '경기남부', members: '21,844', amount: '99.8억' },
+  { name: '바른두레', members: '18,396', amount: '79.3억' },
+  { name: '에코생협', members: '16,298', amount: '75.1억' },
+  { name: '주민두레', members: '15,925', amount: '68.8억' },
+  { name: '팔당생명살림', members: '13,412', amount: '66.5억' },
+  { name: '서울남부두레', members: '13,024', amount: '74.9억' },
+  { name: '울림두레', members: '12,952', amount: '63.7억' },
+  { name: '고양파주두레', members: '11,841', amount: '51.0억' },
+  { name: '은평두레', members: '11,811', amount: '57.7억' },
+  { name: '안성두레', members: '8,106', amount: '15.0억' },
+  { name: '평택두레', members: '7,144', amount: '30.6억' },
+  { name: '원주생협', members: '5,805', amount: '22.4억' },
+  { name: '서울북부두레', members: '3,522', amount: '18.6억' },
+  { name: '춘천두레', members: '3,310', amount: '15.6억' },
+  { name: '안양Y등대', members: '2,226', amount: '11.3억' },
+  { name: '시흥Y', members: '2,109', amount: '7.2억' },
+  { name: '성동두레', members: '1,786', amount: '6.6억' },
+  { name: '생태유아공동체', members: '1,383', amount: '35.7억' },
+  { name: '아름다운', members: '818', amount: '3.2억' },
+  { name: '한울안', members: '1,465', amount: '1.8억' },
+];
+
+const photoData = [
+  { file: 'photos/01.jpg', coop: '경기남부', title: '기후감수성 활동가 양성과정' },
+  { file: 'photos/02.jpg', coop: '경기두레', title: '시흥지역 화학농약 항공방제반대운동 10주년' },
+  { file: 'photos/03.jpg', coop: '고양파주', title: '수도권 단협 활동가 역량강화교육' },
+  { file: 'photos/04.jpg', coop: '바른두레', title: '40주년 기념 기억나무 심기' },
+  { file: 'photos/05.jpg', coop: '서울남부두레', title: '종이다시쓰임 캠페인' },
+  { file: 'photos/06.jpg', coop: '서울북부', title: '발효학교 수업 진행' },
+  { file: 'photos/07.jpg', coop: '성동두레', title: '고치Go살리Go 환경보호캠페인' },
+  { file: 'photos/08.jpg', coop: '시흥Y', title: '유치원 건강한먹거리교육' },
+  { file: 'photos/09.jpg', coop: '아름다운생협', title: '꿈꾸는 요리교실' },
+  { file: 'photos/10.jpg', coop: '안성', title: '먹거리학당 식생활강사양성' },
+  { file: 'photos/11.jpg', coop: '안양Y', title: '내 손으로 장 만들기' },
+  { file: 'photos/12.jpg', coop: '에코', title: '김장김치 & 종합비타민 나눔행사' },
+  { file: 'photos/13.jpg', coop: '울림', title: '어린이농촌체험캠프' },
+  { file: 'photos/14.jpg', coop: '원주', title: '우리가족 마음식탁워크샵' },
+  { file: 'photos/15.jpg', coop: '은평', title: '매장지원단 녹번역점 지원 활동' },
+  { file: 'photos/16.jpg', coop: '주민', title: '종이팩수거함 설치 캠페인' },
+  { file: 'photos/17.png', coop: '참좋은', title: '공정무역홍보캠페인' },
+  { file: 'photos/18.jpg', coop: '춘천', title: '생산자와 함께하는 도시시농제' },
+  { file: 'photos/19.jpg', coop: '팔당', title: '팔레스타인 생산자님과 함께' },
+  { file: 'photos/20.jpg', coop: '평택', title: '식생활강사단 요리클래스' },
+  { file: 'photos/21.jpg', coop: '푸른', title: '평화를 위한 한일청소년교류캠프' },
+  { file: 'photos/22.jpg', coop: '한울안', title: '동작구지역 이웃돕기사업' },
+];
+
+// ===== SECTIONS =====
+const sections = [
+  { id: 'intro', duration: 8000 },
+  { id: 'part1-title', duration: 4000 },
+  { id: 'scene1', duration: 10000 },
+  { id: 'scene2', duration: 12000 },
+  { id: 'scene3', duration: 10000 },
+  { id: 'scene4', duration: 10000 },
+  { id: 'scene5', duration: 10000 },
+  { id: 'scene6', duration: 12000 },
+  { id: 'scene7', duration: 12000 },
+  { id: 'part2-transition', duration: 5000 },
+  { id: 'slideshow', duration: photoData.length * 6000 },
+  { id: 'ending', duration: 10000 },
+];
+
+let currentSection = 0;
+let autoTimer = null;
+let isPaused = false;
+let currentSlide = 0;
+let slideTimer = null;
+
+function init() {
+  createParticles();
+  buildCoopGrid();
+  buildSlideshow();
+  activateSection(0);
+  startAutoPlay();
+}
+
+function createParticles() {
+  const c = document.getElementById('particles');
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (8 + Math.random() * 12) + 's';
+    p.style.animationDelay = Math.random() * 10 + 's';
+    p.style.width = (2 + Math.random() * 3) + 'px';
+    p.style.height = p.style.width;
+    c.appendChild(p);
+  }
+}
+
+function buildCoopGrid() {
+  const grid = document.getElementById('coopGrid');
+  [...coopData, ...coopData].forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'coop-card';
+    card.innerHTML = `
+      <div class="coop-name">${c.name}</div>
+      <div class="coop-members"><span>${c.members}</span> 가구</div>
+      <div style="font-size:14px;color:rgba(255,255,255,0.35);margin-top:4px;">${c.amount}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function buildSlideshow() {
+  const container = document.getElementById('slideshowContainer');
+  photoData.forEach((photo, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'slide';
+    slide.id = 'slide-' + i;
+    slide.innerHTML = `
+      <img src="${photo.file}" alt="${photo.title}" loading="lazy">
+      <div class="slide-overlay">
+        <div class="slide-coop">${photo.coop}</div>
+        <div class="slide-title">${photo.title}</div>
+      </div>
+      <div class="slide-counter">${i + 1} / ${photoData.length}</div>
+      <div class="slide-progress"></div>
+    `;
+    container.appendChild(slide);
+  });
+}
+
+function activateSection(index) {
+  if (index < 0 || index >= sections.length) return;
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(sections[index].id);
+  el.classList.add('active');
+  currentSection = index;
+  document.getElementById('progressBar').style.width = ((index + 1) / sections.length * 100) + '%';
+  setTimeout(() => triggerAnimations(sections[index].id), 300);
+  if (sections[index].id === 'slideshow') startSlideshow();
+  else stopSlideshow();
+}
+
+function triggerAnimations(sectionId) {
+  const section = document.getElementById(sectionId);
+  const els = section.querySelectorAll('.part-title, .section-headline, .challenge-card, .bar-group, .counter-item, .channel-card, .progress-ring-container, .logistics-stats, .innovation-item, .coop-total, .trend-row, .hope-message, .transition-text, .transition-line, .ending-year, .ending-msg, .ending-org, .ending-line');
+  els.forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 200));
+
+  if (sectionId === 'scene2') {
+    setTimeout(() => {
+      document.querySelectorAll('#growthChart .bar').forEach(bar => bar.style.height = bar.dataset.height + 'px');
+      document.querySelectorAll('#scene2 .count').forEach(startCounter);
+    }, 800);
+  }
+
+  if (sectionId === 'scene4') {
+    setTimeout(() => {
+      const c = document.getElementById('piProgress');
+      const circ = 2 * Math.PI * 116;
+      c.style.strokeDasharray = circ;
+      c.style.strokeDashoffset = circ * (1 - 0.707);
+    }, 500);
+  }
+}
+
+function startCounter(el) {
+  const target = parseFloat(el.dataset.target);
+  const isInt = el.dataset.format === 'int';
+  const duration = 2000;
+  const start = performance.now();
+  function update(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    const v = target * e;
+    el.textContent = isInt ? Math.floor(v).toLocaleString() : v.toFixed(1);
+    if (p < 1) requestAnimationFrame(update);
+    else el.textContent = isInt ? target.toLocaleString() : target.toFixed(1);
+  }
+  requestAnimationFrame(update);
+}
+
+function startSlideshow() {
+  currentSlide = 0;
+  showSlide(0);
+  slideTimer = setInterval(() => {
+    currentSlide++;
+    if (currentSlide >= photoData.length) { clearInterval(slideTimer); return; }
+    showSlide(currentSlide);
+  }, 6000);
+}
+
+function showSlide(i) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  const slide = document.getElementById('slide-' + i);
+  if (!slide) return;
+  slide.classList.add('active');
+  const img = slide.querySelector('img');
+  img.style.animation = 'none'; void img.offsetHeight; img.style.animation = 'ken-burns 8s ease-out forwards';
+  const prog = slide.querySelector('.slide-progress');
+  prog.style.animation = 'none'; void prog.offsetHeight; prog.style.animation = 'slide-progress-bar 6s linear forwards';
+}
+
+function stopSlideshow() { if (slideTimer) { clearInterval(slideTimer); slideTimer = null; } }
+
+function startAutoPlay() {
+  if (isPaused) return;
+  clearTimeout(autoTimer);
+  autoTimer = setTimeout(() => {
+    if (currentSection < sections.length - 1) { activateSection(currentSection + 1); startAutoPlay(); }
+  }, sections[currentSection].duration);
+}
+
+document.getElementById('btnPrev').addEventListener('click', () => {
+  if (currentSection > 0) { clearTimeout(autoTimer); activateSection(currentSection - 1); if (!isPaused) startAutoPlay(); }
+});
+document.getElementById('btnNext').addEventListener('click', () => {
+  if (currentSection < sections.length - 1) { clearTimeout(autoTimer); activateSection(currentSection + 1); if (!isPaused) startAutoPlay(); }
+});
+document.getElementById('btnPause').addEventListener('click', () => {
+  if (isPaused) { isPaused = false; document.getElementById('btnPause').textContent = '⏸'; startAutoPlay(); }
+  else { isPaused = true; clearTimeout(autoTimer); document.getElementById('btnPause').textContent = '▶'; }
+});
+document.getElementById('btnRestart').addEventListener('click', () => {
+  clearTimeout(autoTimer); stopSlideshow();
+  document.querySelectorAll('.show').forEach(el => el.classList.remove('show'));
+  document.querySelectorAll('#growthChart .bar').forEach(bar => bar.style.height = '0');
+  const c = document.getElementById('piProgress');
+  c.style.strokeDashoffset = 2 * Math.PI * 116;
+  activateSection(0); isPaused = false;
+  document.getElementById('btnPause').textContent = '⏸'; startAutoPlay();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') {
+    e.preventDefault();
+    if (currentSection < sections.length - 1) { clearTimeout(autoTimer); activateSection(currentSection + 1); if (!isPaused) startAutoPlay(); }
+  } else if (e.key === 'ArrowLeft') {
+    if (currentSection > 0) { clearTimeout(autoTimer); activateSection(currentSection - 1); if (!isPaused) startAutoPlay(); }
+  } else if (e.key === 'p' || e.key === 'P') {
+    document.getElementById('btnPause').click();
+  } else if (e.key === 'r' || e.key === 'R') {
+    document.getElementById('btnRestart').click();
+  }
+});
+
+window.addEventListener('load', init);
+</script>
+</body>
+</html>
