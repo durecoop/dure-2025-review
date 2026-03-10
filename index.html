@@ -298,6 +298,31 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 .slide-progress { position: absolute; bottom:0; left:0; height: 4px; background: #1B5E20; animation: sp 6s linear forwards; }
 @keyframes sp { 0%{width:0} 100%{width:100%} }
 
+/* ===== PHOTO GRID (editorial) ===== */
+.photo-strip {
+  display: grid; gap: 12px; margin-top: 40px; width: 100%; max-width: 1200px;
+  opacity: 0;
+}
+.photo-strip.show { animation: e-in 0.8s ease-out 0.3s forwards; }
+.photo-strip-4 { grid-template-columns: repeat(4, 1fr); }
+.photo-strip-3 { grid-template-columns: repeat(3, 1fr); }
+.photo-strip-2 { grid-template-columns: repeat(2, 1fr); }
+.photo-item {
+  position: relative; border-radius: 10px; overflow: hidden;
+  aspect-ratio: 16/10;
+}
+.photo-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.photo-item:hover img { transform: scale(1.05); }
+.photo-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 24px 16px 12px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.75));
+  font-size: 13px; font-weight: 600; color: #fff; letter-spacing: 1px;
+}
+
 /* ===== ENDING ===== */
 .end-year {
   font-size: 180px; font-weight: 900; letter-spacing: -8px; line-height: 1; opacity: 0;
@@ -740,6 +765,49 @@ body:hover .controls { opacity: 1; }
   </div>
 </div>
 
+<!-- ========== EDU PHOTOS ========== -->
+<div class="section bg-dark" id="edu-photos">
+  <div class="e-label white">FIELD REPORT</div>
+  <div class="e-title" style="color:#fff;font-size:48px;">교육 활동 <span class="white-indigo">현장</span></div>
+  <div class="e-divider white"></div>
+  <div class="photo-strip photo-strip-4">
+    <div class="photo-item">
+      <img src="photos/edu/01-silmu.png" alt="실무책임자교육" loading="lazy">
+      <div class="photo-caption">실무책임자교육</div>
+    </div>
+    <div class="photo-item">
+      <img src="photos/edu/02-imwon.png" alt="임원교육" loading="lazy">
+      <div class="photo-caption">임원교육</div>
+    </div>
+    <div class="photo-item">
+      <img src="photos/edu/03-gihoek.png" alt="조합원 기획강좌" loading="lazy">
+      <div class="photo-caption">조합원 기획강좌</div>
+    </div>
+    <div class="photo-item">
+      <img src="photos/edu/06-jojik.png" alt="조직담당자 실무교육" loading="lazy">
+      <div class="photo-caption">조직담당자 실무교육</div>
+    </div>
+  </div>
+  <div class="photo-strip photo-strip-4" style="margin-top:12px;">
+    <div class="photo-item">
+      <img src="photos/edu/15-workshop1.jpg" alt="실무책임자교육" loading="lazy">
+      <div class="photo-caption">이사장 워크숍</div>
+    </div>
+    <div class="photo-item">
+      <img src="photos/edu/16-workshop2.jpg" alt="교육현장" loading="lazy">
+      <div class="photo-caption">신임임원 활동교육</div>
+    </div>
+    <div class="photo-item">
+      <img src="photos/edu/05-jang.png" alt="두레 장학교" loading="lazy">
+      <div class="photo-caption">두레 장학교 4기</div>
+    </div>
+    <div class="photo-item">
+      <img src="photos/edu/04-saengsan.png" alt="생산지견학" loading="lazy">
+      <div class="photo-caption">생산지 견학</div>
+    </div>
+  </div>
+</div>
+
 <!-- ========== FAIR TRADE ========== -->
 <div class="section bg-dark" id="fair-trade">
   <div class="e-label orange">FAIR TRADE</div>
@@ -760,6 +828,20 @@ body:hover .controls { opacity: 1; }
       <div class="ft-name c-light-orange">필리핀 생산지 방문<br>바르크 점검 & 교류</div>
       <div class="ft-num c-light-orange">22<span class="ft-unit c-white-50">명</span></div>
       <div class="ft-desc c-white-30">8곳 방문 · 바르크 5명+연수 17명</div>
+    </div>
+  </div>
+  <div class="photo-strip photo-strip-3" style="margin-top:30px;">
+    <div class="photo-item">
+      <img src="photos/edu/11-palestine-talk.png" alt="팔레스타인 연대강연" loading="lazy">
+      <div class="photo-caption">팔레스타인 연대강연</div>
+    </div>
+    <div class="photo-item">
+      <img src="photos/edu/07-palestine.png" alt="팔레스타인 생산자 방문" loading="lazy">
+      <div class="photo-caption">팔레스타인 생산자 방문</div>
+    </div>
+    <div class="photo-item">
+      <img src="photos/edu/08-philippines.png" alt="필리핀 생산지 교류" loading="lazy">
+      <div class="photo-caption">필리핀 생산지 교류연수</div>
     </div>
   </div>
 </div>
@@ -789,6 +871,24 @@ body:hover .controls { opacity: 1; }
       <div class="cl-name c-orange">1004 기금</div>
       <div class="cl-num c-orange">3,800만원</div>
       <div class="cl-desc c-dark-gray">산불피해(4월) · 폭우피해(8월) 복구 지원</div>
+    </div>
+  </div>
+  <div class="photo-strip photo-strip-4" style="margin-top:30px;">
+    <div class="photo-item">
+      <img src="photos/edu/13-paper-campaign.png" alt="종이팩 캠페인" loading="lazy">
+      <div class="photo-caption">종이팩 모으기 캠페인</div>
+    </div>
+    <div class="photo-item">
+      <img src="photos/edu/09-climate.png" alt="기후정의행진" loading="lazy">
+      <div class="photo-caption">927 기후정의행진</div>
+    </div>
+    <div class="photo-item">
+      <img src="photos/edu/10-sanmyeong.png" alt="생명나눔한마당" loading="lazy">
+      <div class="photo-caption">생명나눔한마당</div>
+    </div>
+    <div class="photo-item">
+      <img src="photos/edu/14-flood-support.png" alt="폭우피해복구" loading="lazy">
+      <div class="photo-caption">폭우피해복구 지원금 전달</div>
     </div>
   </div>
 </div>
@@ -897,6 +997,7 @@ const sections = [
   { id: 'part2-title', duration: 5000 },
   { id: 'edu-stats', duration: 10000 },
   { id: 'edu-programs', duration: 12000 },
+  { id: 'edu-photos', duration: 8000 },
   { id: 'fair-trade', duration: 12000 },
   { id: 'climate-solidarity', duration: 12000 },
   { id: 'part3-transition', duration: 5000 },
@@ -955,7 +1056,7 @@ function activateSection(index) {
 
 function triggerAnimations(sid) {
   const sec = document.getElementById(sid);
-  const els = sec.querySelectorAll('.e-label, .e-title, .e-divider, .e-cell, .e-color-bar, .e-subtitle, .bar-chart, .ring-container, .inno-item, .coop-summary, .trend-row, .hope-msg, .policy-cell, .producer-cell, .edu-cell, .ft-cell, .cl-cell, .end-year, .end-msg, .end-org, .end-logo');
+  const els = sec.querySelectorAll('.e-label, .e-title, .e-divider, .e-cell, .e-color-bar, .e-subtitle, .bar-chart, .ring-container, .inno-item, .coop-summary, .trend-row, .hope-msg, .policy-cell, .producer-cell, .edu-cell, .ft-cell, .cl-cell, .photo-strip, .end-year, .end-msg, .end-org, .end-logo');
   els.forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 120));
 
   if (sid === 'scene2') {
