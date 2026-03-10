@@ -313,14 +313,58 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 }
 .photo-item img {
   width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1.1);
   transition: transform 0.5s ease;
 }
-.photo-item:hover img { transform: scale(1.05); }
+/* Photo animation types */
+.photo-item.anim-zoom img { animation: ph-zoom 1.2s ease-out forwards; }
+.photo-item.anim-pan-left img { animation: ph-pan-left 1.4s ease-out forwards; }
+.photo-item.anim-pan-right img { animation: ph-pan-right 1.4s ease-out forwards; }
+.photo-item.anim-fade-up img { animation: ph-fade-up 1s ease-out forwards; }
+.photo-item.anim-reveal img { animation: ph-reveal 1.2s cubic-bezier(0.16,1,0.3,1) forwards; }
+.photo-item.anim-slide-in img { animation: ph-slide-in 1s ease-out forwards; }
+
+@keyframes ph-zoom {
+  0% { opacity:0; transform:scale(1.3); }
+  100% { opacity:1; transform:scale(1); }
+}
+@keyframes ph-pan-left {
+  0% { opacity:0; transform:scale(1.15) translateX(5%); }
+  100% { opacity:1; transform:scale(1.02) translateX(-1%); }
+}
+@keyframes ph-pan-right {
+  0% { opacity:0; transform:scale(1.15) translateX(-5%); }
+  100% { opacity:1; transform:scale(1.02) translateX(1%); }
+}
+@keyframes ph-fade-up {
+  0% { opacity:0; transform:scale(1.05) translateY(8%); }
+  100% { opacity:1; transform:scale(1) translateY(0); }
+}
+@keyframes ph-reveal {
+  0% { opacity:0; transform:scale(1.2); filter:blur(8px); }
+  100% { opacity:1; transform:scale(1); filter:blur(0); }
+}
+@keyframes ph-slide-in {
+  0% { opacity:0; transform:scale(1) translateX(-10%); }
+  100% { opacity:1; transform:scale(1) translateX(0); }
+}
+
+.photo-item:hover img { transform: scale(1.05) !important; }
 .photo-caption {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 24px 16px 12px;
   background: linear-gradient(transparent, rgba(0,0,0,0.75));
   font-size: 13px; font-weight: 600; color: #fff; letter-spacing: 1px;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+.photo-item.anim-zoom .photo-caption,
+.photo-item.anim-pan-left .photo-caption,
+.photo-item.anim-pan-right .photo-caption,
+.photo-item.anim-fade-up .photo-caption,
+.photo-item.anim-reveal .photo-caption,
+.photo-item.anim-slide-in .photo-caption {
+  opacity: 1; transform: translateY(0); transition-delay: 0.6s;
 }
 
 /* ===== ENDING ===== */
@@ -771,37 +815,37 @@ body:hover .controls { opacity: 1; }
   <div class="e-title" style="color:#fff;font-size:48px;">교육 활동 <span class="white-indigo">현장</span></div>
   <div class="e-divider white"></div>
   <div class="photo-strip photo-strip-4">
-    <div class="photo-item">
+    <div class="photo-item" data-anim="anim-fade-up">
       <img src="photos/edu/01-silmu.png" alt="실무책임자교육" loading="lazy">
       <div class="photo-caption">실무책임자교육</div>
     </div>
-    <div class="photo-item">
+    <div class="photo-item" data-anim="anim-reveal">
       <img src="photos/edu/02-imwon.png" alt="임원교육" loading="lazy">
       <div class="photo-caption">임원교육</div>
     </div>
-    <div class="photo-item">
+    <div class="photo-item" data-anim="anim-zoom">
       <img src="photos/edu/03-gihoek.png" alt="조합원 기획강좌" loading="lazy">
       <div class="photo-caption">조합원 기획강좌</div>
     </div>
-    <div class="photo-item">
+    <div class="photo-item" data-anim="anim-pan-right">
       <img src="photos/edu/06-jojik.png" alt="조직담당자 실무교육" loading="lazy">
       <div class="photo-caption">조직담당자 실무교육</div>
     </div>
   </div>
   <div class="photo-strip photo-strip-4" style="margin-top:12px;">
-    <div class="photo-item">
-      <img src="photos/edu/15-workshop1.jpg" alt="실무책임자교육" loading="lazy">
+    <div class="photo-item" data-anim="anim-pan-left">
+      <img src="photos/edu/15-workshop1.jpg" alt="이사장 워크숍" loading="lazy">
       <div class="photo-caption">이사장 워크숍</div>
     </div>
-    <div class="photo-item">
-      <img src="photos/edu/16-workshop2.jpg" alt="교육현장" loading="lazy">
+    <div class="photo-item" data-anim="anim-slide-in">
+      <img src="photos/edu/16-workshop2.jpg" alt="신임임원 활동교육" loading="lazy">
       <div class="photo-caption">신임임원 활동교육</div>
     </div>
-    <div class="photo-item">
+    <div class="photo-item" data-anim="anim-reveal">
       <img src="photos/edu/05-jang.png" alt="두레 장학교" loading="lazy">
       <div class="photo-caption">두레 장학교 4기</div>
     </div>
-    <div class="photo-item">
+    <div class="photo-item" data-anim="anim-zoom">
       <img src="photos/edu/04-saengsan.png" alt="생산지견학" loading="lazy">
       <div class="photo-caption">생산지 견학</div>
     </div>
@@ -831,15 +875,15 @@ body:hover .controls { opacity: 1; }
     </div>
   </div>
   <div class="photo-strip photo-strip-3" style="margin-top:30px;">
-    <div class="photo-item">
+    <div class="photo-item" data-anim="anim-fade-up">
       <img src="photos/edu/11-palestine-talk.png" alt="팔레스타인 연대강연" loading="lazy">
       <div class="photo-caption">팔레스타인 연대강연</div>
     </div>
-    <div class="photo-item">
+    <div class="photo-item" data-anim="anim-slide-in">
       <img src="photos/edu/07-palestine.png" alt="팔레스타인 생산자 방문" loading="lazy">
       <div class="photo-caption">팔레스타인 생산자 방문</div>
     </div>
-    <div class="photo-item">
+    <div class="photo-item" data-anim="anim-reveal">
       <img src="photos/edu/08-philippines.png" alt="필리핀 생산지 교류" loading="lazy">
       <div class="photo-caption">필리핀 생산지 교류연수</div>
     </div>
@@ -874,19 +918,19 @@ body:hover .controls { opacity: 1; }
     </div>
   </div>
   <div class="photo-strip photo-strip-4" style="margin-top:30px;">
-    <div class="photo-item">
+    <div class="photo-item" data-anim="anim-zoom">
       <img src="photos/edu/13-paper-campaign.png" alt="종이팩 캠페인" loading="lazy">
       <div class="photo-caption">종이팩 모으기 캠페인</div>
     </div>
-    <div class="photo-item">
+    <div class="photo-item" data-anim="anim-pan-left">
       <img src="photos/edu/09-climate.png" alt="기후정의행진" loading="lazy">
       <div class="photo-caption">927 기후정의행진</div>
     </div>
-    <div class="photo-item">
+    <div class="photo-item" data-anim="anim-fade-up">
       <img src="photos/edu/10-sanmyeong.png" alt="생명나눔한마당" loading="lazy">
       <div class="photo-caption">생명나눔한마당</div>
     </div>
-    <div class="photo-item">
+    <div class="photo-item" data-anim="anim-slide-in">
       <img src="photos/edu/14-flood-support.png" alt="폭우피해복구" loading="lazy">
       <div class="photo-caption">폭우피해복구 지원금 전달</div>
     </div>
@@ -921,11 +965,16 @@ body:hover .controls { opacity: 1; }
 
 <!-- Controls -->
 <div class="controls">
+  <button class="ctrl-btn" id="btnBgm" title="배경음악" style="font-size:16px;">♪</button>
+  <button class="ctrl-btn" id="btnFull" title="전체화면" style="font-size:16px;">⛶</button>
   <button class="ctrl-btn" id="btnPrev" title="이전">◀</button>
   <button class="ctrl-btn" id="btnPause" title="일시정지">⏸</button>
   <button class="ctrl-btn" id="btnNext" title="다음">▶</button>
   <button class="ctrl-btn" id="btnRestart" title="처음부터">↺</button>
 </div>
+
+<!-- BGM: synthesized ambient pad via Web Audio API -->
+<!-- Transition sound (short whoosh) synthesized via Web Audio API -->
 
 <script>
 const coopData = [
@@ -1130,6 +1179,116 @@ document.addEventListener('keydown', e => {
   else if(e.key==='p'||e.key==='P'){document.getElementById('btnPause').click();}
   else if(e.key==='r'||e.key==='R'){document.getElementById('btnRestart').click();}
 });
+
+// ===== PHOTO ANIMATIONS =====
+const photoAnimations = ['anim-zoom','anim-pan-left','anim-pan-right','anim-fade-up','anim-reveal','anim-slide-in'];
+
+function animatePhotos(sectionEl) {
+  const items = sectionEl.querySelectorAll('.photo-item');
+  items.forEach((item, i) => {
+    // Remove old anim classes
+    photoAnimations.forEach(a => item.classList.remove(a));
+    // Assign animation based on data-anim or cycle through types
+    const anim = item.dataset.anim || photoAnimations[i % photoAnimations.length];
+    setTimeout(() => item.classList.add(anim), i * 200);
+  });
+}
+
+// ===== TRANSITION SOUND (Web Audio API) =====
+let audioCtx = null;
+function playTransitionSound() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  // Soft whoosh
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  const filter = audioCtx.createBiquadFilter();
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+  osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.3);
+  filter.type = 'lowpass';
+  filter.frequency.setValueAtTime(2000, audioCtx.currentTime);
+  filter.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.3);
+  gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+  osc.connect(filter);
+  filter.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start(audioCtx.currentTime);
+  osc.stop(audioCtx.currentTime + 0.4);
+}
+
+// ===== BGM: Synthesized Ambient Pad =====
+let bgmCtx = null, bgmGain = null, bgmOscs = [], bgmPlaying = false;
+function startBGM() {
+  if (!bgmCtx) bgmCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (bgmCtx.state === 'suspended') bgmCtx.resume();
+  bgmGain = bgmCtx.createGain();
+  bgmGain.gain.setValueAtTime(0, bgmCtx.currentTime);
+  bgmGain.gain.linearRampToValueAtTime(0.06, bgmCtx.currentTime + 2);
+  bgmGain.connect(bgmCtx.destination);
+  // Warm chord: C3, E3, G3, B3 (gentle pad)
+  const freqs = [130.81, 164.81, 196.00, 246.94];
+  freqs.forEach(f => {
+    const osc = bgmCtx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(f, bgmCtx.currentTime);
+    // Slow LFO-like detuning for warmth
+    osc.detune.setValueAtTime(-5, bgmCtx.currentTime);
+    osc.detune.linearRampToValueAtTime(5, bgmCtx.currentTime + 8);
+    const oscGain = bgmCtx.createGain();
+    oscGain.gain.setValueAtTime(0.25, bgmCtx.currentTime);
+    const filter = bgmCtx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(400, bgmCtx.currentTime);
+    osc.connect(oscGain);
+    oscGain.connect(filter);
+    filter.connect(bgmGain);
+    osc.start();
+    bgmOscs.push(osc);
+  });
+  bgmPlaying = true;
+}
+function stopBGM() {
+  if (bgmGain) {
+    bgmGain.gain.linearRampToValueAtTime(0, bgmCtx.currentTime + 1);
+    setTimeout(() => { bgmOscs.forEach(o => { try { o.stop(); } catch(e){} }); bgmOscs = []; }, 1200);
+  }
+  bgmPlaying = false;
+}
+document.getElementById('btnBgm').addEventListener('click', () => {
+  if (bgmPlaying) {
+    stopBGM();
+    document.getElementById('btnBgm').style.opacity = '0.4';
+  } else {
+    startBGM();
+    document.getElementById('btnBgm').style.opacity = '1';
+  }
+});
+document.getElementById('btnBgm').style.opacity = '0.4';
+
+// ===== FULLSCREEN =====
+document.getElementById('btnFull').addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen();
+  }
+});
+
+// ===== PATCH activateSection to add sound + photo anim =====
+const _origActivate = activateSection;
+activateSection = function(index) {
+  const prevSection = currentSection;
+  _origActivate(index);
+  // Play transition sound (skip on first load)
+  if (prevSection !== index) playTransitionSound();
+  // Animate photos in the new section
+  const sec = document.getElementById(sections[index].id);
+  if (sec.querySelectorAll('.photo-item').length > 0) {
+    setTimeout(() => animatePhotos(sec), 400);
+  }
+};
 
 window.addEventListener('load', init);
 </script>
