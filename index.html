@@ -83,6 +83,14 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 .e-divider.red { background: #C62828; }
 .e-divider.orange { background: #E65100; }
 
+/* Emotional sub-message */
+.e-emotion {
+  font-size: clamp(13px, 1.4vw, 18px); font-weight: 300; font-style: italic;
+  letter-spacing: clamp(1px, 0.3vw, 3px); margin-top: clamp(8px, 1.5vh, 16px);
+  opacity: 0; line-height: 1.6;
+}
+.e-emotion.show { animation: e-in 1s cubic-bezier(0.16,1,0.3,1) 0.4s forwards; }
+
 /* --- Core Animations --- */
 @keyframes e-in {
   0% { opacity: 0; transform: translateY(24px); }
@@ -653,6 +661,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label white">PART 1</div>
   <div class="e-title" style="color:#fff;"><span class="white-green">사업결과</span>로 본 2025년</div>
   <div class="e-divider white"></div>
+  <div class="e-emotion c-white-50">흔들림 속에서도 함께 걸어온 한 해의 발자취</div>
 </div>
 
 <!-- ========== SCENE 1: 위기 ========== -->
@@ -660,6 +669,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label" style="color:rgba(255,255,255,0.3);">CHALLENGES</div>
   <div class="e-title" style="color:#fff;">도전과 <span class="white-red">위기</span>의 한 해</div>
   <div class="e-divider red"></div>
+  <div class="e-emotion c-white-30">그럼에도, 우리는 멈추지 않았습니다</div>
   <div class="e-grid e-grid-3" style="border:2px solid rgba(255,255,255,0.08);">
     <div class="e-cell e-cell-on-dark">
       <div class="e-cell-num c-light-red">1.0%</div>
@@ -684,6 +694,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label" style="color:rgba(255,255,255,0.5);">TURNING POINT</div>
   <div class="e-title" style="color:#fff;">4년간의 역성장,<br>2025년에 멈추다</div>
   <div class="e-divider white"></div>
+  <div class="e-emotion c-white-50">조합원의 신뢰가 만들어낸 반전의 한 해</div>
   <div class="bar-chart" id="growthChart">
     <div class="bar-col">
       <div class="bar-num c-light-red">-8.0%</div>
@@ -730,6 +741,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label green">CHANNELS</div>
   <div class="e-title" style="color:#1a1a1a;">채널별 <span class="green">성과</span></div>
   <div class="e-divider green"></div>
+  <div class="e-emotion c-gray">매장에서, 온라인에서, 지역 곳곳에서 이어진 만남</div>
   <div class="e-grid e-grid-3" style="border:2px solid #1B5E20;">
     <div class="e-cell e-cell-on-white">
       <div class="e-cell-num c-green">651.7<span style="font-size:22px;" class="c-gray">억</span></div>
@@ -754,6 +766,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label green">LOGISTICS</div>
   <div class="e-title" style="color:#1a1a1a;"><span class="green">화성물류센터</span> 새로운 시작</div>
   <div class="e-divider green"></div>
+  <div class="e-emotion c-gray">좋은 먹거리를 더 빠르고 안전하게 식탁까지</div>
   <div style="display:flex;gap:60px;align-items:center;margin-top:40px;flex-wrap:wrap;justify-content:center;">
     <div class="ring-container">
       <div class="ring-wrap">
@@ -795,6 +808,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label white">INNOVATION</div>
   <div class="e-title" style="color:#fff;"><span class="white-green">생활재 혁신</span>의 성과</div>
   <div class="e-divider white"></div>
+  <div class="e-emotion c-white-30">건강한 한 끼를 위한 끊임없는 노력</div>
   <div class="inno-list">
     <div class="inno-item">
       <div class="inno-num c-light-green">287<span style="font-size:22px;">개</span></div>
@@ -820,6 +834,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label" style="color:#1565C0;">POLICY</div>
   <div class="e-title" style="color:#1a1a1a;"><span style="color:#1565C0;">제도 개선</span>과 정책사업</div>
   <div class="e-divider" style="background:#1565C0;"></div>
+  <div class="e-emotion c-dark-gray">더 나은 내일을 위한 제도의 씨앗</div>
   <div class="policy-grid" style="border:2px solid rgba(21,101,192,0.2);">
     <div class="policy-cell">
       <div class="policy-num" style="color:#1565C0;">01</div>
@@ -859,6 +874,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label green">PRODUCER</div>
   <div class="e-title" style="color:#1a1a1a;"><span class="green">생산자와 함께</span>, 소비자를 위한 생활재</div>
   <div class="e-divider green"></div>
+  <div class="e-emotion c-gray">얼굴이 보이는 관계, 신뢰로 잇는 밥상</div>
   <div class="producer-grid">
     <div class="producer-cell">
       <div class="policy-num c-green">01</div>
@@ -888,6 +904,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label white">22 MEMBER COOPS</div>
   <div class="e-title" style="color:#fff;font-size:clamp(28px,3.8vw,52px);"><span class="white-green">22개</span> 회원생협의 한 해</div>
   <div class="e-divider white"></div>
+  <div class="e-emotion c-white-30">각자의 자리에서, 하나의 두레로</div>
   <div style="display:flex;gap:60px;margin-top:20px;opacity:0;" class="coop-summary">
     <div style="text-align:center;">
       <div style="font-size:14px;letter-spacing:3px;" class="c-white-50">전체 조합원</div>
@@ -906,6 +923,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label red">CHALLENGES AHEAD</div>
   <div class="e-title" style="color:#fff;"><span class="white-red">과제</span>를 직시하며</div>
   <div class="e-divider red"></div>
+  <div class="e-emotion c-white-30">아픔을 외면하지 않는 것이 성장의 시작입니다</div>
   <div class="trend-list">
     <div class="trend-row">
       <div class="trend-marker red-bg">1</div>
@@ -946,6 +964,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label" style="color:rgba(255,255,255,0.5);">PART 2</div>
   <div class="e-title" style="color:#fff;">두레교육활동센터<br>2025년 활동보고</div>
   <div class="e-divider white"></div>
+  <div class="e-emotion c-white-50">배움으로 연결되고, 실천으로 성장하는 사람들</div>
 </div>
 
 <!-- ========== EDU STATS ========== -->
@@ -953,6 +972,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label indigo">EDUCATION REPORT</div>
   <div class="e-title" style="color:#1a1a1a;">교육 <span class="indigo">핵심 성과</span></div>
   <div class="e-divider indigo"></div>
+  <div class="e-emotion c-dark-gray">한 사람의 배움이 열 사람의 변화를 만듭니다</div>
   <div class="e-grid e-grid-3" style="border:2px solid #3949AB;">
     <div class="e-cell e-cell-on-white">
       <div class="e-cell-num c-indigo">175<span style="font-size:22px;" class="c-gray">H</span></div>
@@ -1016,6 +1036,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label white">FIELD REPORT</div>
   <div class="e-title" style="color:#fff;font-size:clamp(26px,3.5vw,48px);">교육 활동 <span class="white-indigo">현장</span></div>
   <div class="e-divider white"></div>
+  <div class="e-emotion c-white-30">함께 모여, 나누고, 배우고, 다시 돌아가는 자리</div>
   <div class="photo-strip photo-strip-4">
     <div class="photo-item" data-anim="anim-fade-up">
       <img src="photos/edu/01-silmu.png" alt="실무책임자교육" loading="lazy">
@@ -1059,6 +1080,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label orange">FAIR TRADE</div>
   <div class="e-title" style="color:#fff;">2025년 <span class="white-orange">민중교역</span> 활동</div>
   <div class="e-divider orange"></div>
+  <div class="e-emotion c-white-30">국경을 넘어, 생산자의 삶과 연대합니다</div>
   <div class="ft-grid">
     <div class="ft-cell">
       <div class="ft-name c-light-orange">민중교역포럼<br>팔레스타인연대강연회</div>
@@ -1097,6 +1119,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label green">CLIMATE & SOLIDARITY</div>
   <div class="e-title" style="color:#1a1a1a;font-size:clamp(28px,3.8vw,52px);"><span class="green">기후위기 대응</span> & <span class="orange">생산자 연대</span></div>
   <div class="e-divider green"></div>
+  <div class="e-emotion c-dark-gray">지구와 이웃을 함께 돌보는 것이 생협의 길입니다</div>
   <div class="cl-grid">
     <div class="cl-cell">
       <div class="cl-name c-green">종이팩재활용 집중 캠페인</div>
@@ -1144,6 +1167,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label" style="color:rgba(255,255,255,0.5);">PART 3</div>
   <div class="e-title" style="color:#fff;">함께 만들어간<br>2025년의 순간들</div>
   <div class="e-divider white"></div>
+  <div class="e-emotion c-white-50">스물두 개의 이야기, 하나의 두레</div>
 </div>
 
 <!-- ========== SLIDESHOW ========== -->
@@ -1420,7 +1444,7 @@ function activateSection(index) {
 
 function triggerAnimations(sid) {
   const sec = document.getElementById(sid);
-  const els = sec.querySelectorAll('.e-label, .e-title, .e-divider, .e-cell, .e-color-bar, .e-subtitle, .bar-chart, .ring-container, .inno-item, .coop-summary, .bubble-chart, .trend-row, .hope-msg, .policy-cell, .producer-cell, .edu-cell, .ft-cell, .cl-cell, .photo-strip, .end-year, .end-msg, .end-org, .end-logo');
+  const els = sec.querySelectorAll('.e-label, .e-title, .e-divider, .e-emotion, .e-cell, .e-color-bar, .e-subtitle, .bar-chart, .ring-container, .inno-item, .coop-summary, .bubble-chart, .trend-row, .hope-msg, .policy-cell, .producer-cell, .edu-cell, .ft-cell, .cl-cell, .photo-strip, .end-year, .end-msg, .end-org, .end-logo');
   els.forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 150));
 
   if (sid === 'scene2') {
