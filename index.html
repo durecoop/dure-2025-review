@@ -1310,63 +1310,65 @@ function init() {
 function buildBubbleChart() {
   const container = document.getElementById('bubbleChart');
   container.innerHTML = '';
-  // Parse amounts to numbers
+
+  // Use viewport-based dimensions (container may not be visible yet)
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const cw = Math.min(vw * 0.85, 1100);
+  const ch = Math.min(vh * 0.48, 480);
+
   const data = coopData.map(c => {
     const amt = parseFloat(c.amount.replace('억',''));
     return { ...c, amtNum: amt };
   }).sort((a, b) => b.amtNum - a.amtNum);
 
   const maxAmt = data[0].amtNum;
-  const minR = Math.min(window.innerWidth, window.innerHeight) * 0.025;
-  const maxR = Math.min(window.innerWidth, window.innerHeight) * 0.1;
+  const scale = Math.min(vw, vh);
+  const minR = scale * 0.018;
+  const maxR = scale * 0.075;
+  const gap = 6;
 
-  // Simple circle packing: place largest first, find non-overlapping positions
   const placed = [];
-  const cw = container.offsetWidth;
-  const ch = container.offsetHeight;
 
   data.forEach((c, idx) => {
     const ratio = c.amtNum / maxAmt;
     const r = minR + (maxR - minR) * Math.sqrt(ratio);
-    // Find position - try to pack tightly
-    let bestX = cw / 2, bestY = ch / 2, bestDist = Infinity;
-    const attempts = 200;
-    for (let a = 0; a < attempts; a++) {
-      // Spiral outward from center
-      const angle = a * 2.4; // golden angle
-      const spread = Math.sqrt(a) * Math.min(cw, ch) * 0.04;
-      const tx = cw / 2 + Math.cos(angle) * spread;
-      const ty = ch / 2 + Math.sin(angle) * spread;
-      // Check bounds
+
+    let px = cw / 2, py = ch / 2;
+    let found = false;
+
+    // Spiral outward - larger step size for better spread
+    for (let ring = 0; ring < 600; ring++) {
+      const angle = ring * 0.618033988 * Math.PI * 2; // golden ratio
+      const dist = (ring === 0) ? 0 : (r + 10) + Math.sqrt(ring) * scale * 0.028;
+      const tx = cw / 2 + Math.cos(angle) * dist;
+      const ty = ch / 2 + Math.sin(angle) * dist;
+
       if (tx - r < 0 || tx + r > cw || ty - r < 0 || ty + r > ch) continue;
-      // Check overlap
-      let overlap = false;
+
+      let ok = true;
       for (const p of placed) {
         const dx = tx - p.x, dy = ty - p.y;
-        if (Math.sqrt(dx*dx + dy*dy) < r + p.r + 4) { overlap = true; break; }
+        if (Math.sqrt(dx * dx + dy * dy) < r + p.r + gap) { ok = false; break; }
       }
-      if (!overlap) {
-        const dist = Math.sqrt((tx - cw/2)**2 + (ty - ch/2)**2);
-        if (dist < bestDist) { bestDist = dist; bestX = tx; bestY = ty; }
-        if (a < 50) continue; // try more positions for better packing
-        break;
-      }
+      if (ok) { px = tx; py = ty; found = true; break; }
     }
-    placed.push({ x: bestX, y: bestY, r });
 
-    // Color based on rank
-    const colors = ['#2E7D32','#388E3C','#43A047','#4CAF50','#66BB6A','#81C784','#A5D6A7','#C8E6C9'];
-    const colorIdx = Math.min(Math.floor(idx / 3), colors.length - 1);
-    const bg = colors[colorIdx];
+    placed.push({ x: px, y: py, r });
+
+    const colors = ['#1B5E20','#2E7D32','#388E3C','#43A047','#4CAF50','#66BB6A','#81C784','#A5D6A7'];
+    const ci = Math.min(Math.floor(idx / 3), colors.length - 1);
 
     const el = document.createElement('div');
     el.className = 'bubble';
-    el.style.cssText = `width:${r*2}px;height:${r*2}px;left:${bestX-r}px;top:${bestY-r}px;background:${bg};transition-delay:${idx*80}ms;`;
-    // Only show name+amount for bubbles big enough
-    if (r > 30) {
-      el.innerHTML = `<div class="bubble-name">${c.name}</div><div class="bubble-amount">${c.amount}</div>` + (r > 45 ? `<div class="bubble-members">${c.members}가구</div>` : '');
+    el.style.cssText = `width:${r*2}px;height:${r*2}px;left:${px-r}px;top:${py-r}px;background:${colors[ci]};transition-delay:${idx*80}ms;`;
+
+    if (r > 40) {
+      el.innerHTML = `<div class="bubble-name">${c.name}</div><div class="bubble-amount">${c.amount}</div><div class="bubble-members">${c.members}가구</div>`;
+    } else if (r > 24) {
+      el.innerHTML = `<div class="bubble-name">${c.name}</div><div class="bubble-amount">${c.amount}</div>`;
     } else {
-      el.innerHTML = `<div class="bubble-name" style="font-size:${Math.max(7,r*0.35)}px;">${c.name}</div>`;
+      el.innerHTML = `<div class="bubble-name" style="font-size:${Math.max(7, r*0.4)}px">${c.name}</div>`;
     }
     el.title = `${c.name}\n이용액: ${c.amount}\n조합원: ${c.members}가구`;
     container.appendChild(el);
