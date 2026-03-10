@@ -18,7 +18,7 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
   position: absolute; top: 0; left: 0;
   opacity: 0; transform: scale(1.02); filter: blur(4px);
   transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 1.2s cubic-bezier(0.22,1,0.36,1), filter 0.8s ease;
-  padding: 70px 80px; z-index: 0;
+  padding: clamp(30px, 6vh, 70px) clamp(24px, 5vw, 80px); z-index: 0;
 }
 .section.active { opacity: 1; z-index: 10; transform: scale(1); filter: blur(0); }
 .section.leaving { opacity: 0; transform: scale(0.97); filter: blur(2px); z-index: 5; }
@@ -38,14 +38,14 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
   display: flex; align-items: center; gap: 10px;
   pointer-events: none; transition: opacity 0.5s;
 }
-.fixed-logo img { height: 40px; width: auto; }
+.fixed-logo img { height: clamp(28px, 3.5vw, 40px); width: auto; }
 .fixed-logo.on-light img { filter: none; }
 .fixed-logo.on-dark img { filter: brightness(0) invert(1); }
 
 /* ===== TYPOGRAPHY ===== */
 .e-label {
-  font-size: 13px; font-weight: 700; letter-spacing: 6px;
-  text-transform: uppercase; margin-bottom: 24px;
+  font-size: clamp(10px, 1.2vw, 13px); font-weight: 700; letter-spacing: clamp(3px, 0.5vw, 6px);
+  text-transform: uppercase; margin-bottom: clamp(12px, 2vh, 24px);
   opacity: 0; clip-path: inset(0 100% 0 0);
 }
 .e-label.show { animation: clip-wipe 0.7s cubic-bezier(0.25,1,0.5,1) forwards; }
@@ -57,8 +57,8 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 .e-label.orange { color: #E65100; }
 
 .e-title {
-  font-size: 72px; font-weight: 900; text-align: center; line-height: 1.2;
-  letter-spacing: -3px; opacity: 0;
+  font-size: clamp(32px, 5vw, 72px); font-weight: 900; text-align: center; line-height: 1.2;
+  letter-spacing: clamp(-1px, -0.2vw, -3px); opacity: 0;
   transform: translateY(30px);
 }
 .e-title.show { animation: title-reveal 1s cubic-bezier(0.16,1,0.3,1) 0.15s forwards; }
@@ -72,7 +72,7 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 .e-title .white-orange { color: #FFAB91; }
 
 .e-divider {
-  width: 60px; height: 4px; margin: 28px 0; opacity: 0;
+  width: clamp(40px, 4vw, 60px); height: clamp(3px, 0.4vh, 4px); margin: clamp(14px, 2.5vh, 28px) 0; opacity: 0;
   transform: scaleX(0); transform-origin: left;
 }
 .e-divider.show { animation: divider-grow 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s forwards; }
@@ -137,15 +137,15 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 
 /* ===== DATA GRID ===== */
 .e-grid {
-  display: grid; margin-top: 45px; width: 100%; max-width: 1100px;
-  overflow: hidden; border-radius: 12px;
+  display: grid; margin-top: clamp(20px, 4vh, 45px); width: 100%; max-width: 1100px;
+  overflow: hidden; border-radius: clamp(8px, 1vw, 12px);
 }
 .e-grid-2 { grid-template-columns: repeat(2, 1fr); }
 .e-grid-3 { grid-template-columns: repeat(3, 1fr); }
 .e-grid-4 { grid-template-columns: repeat(4, 1fr); }
 
 .e-cell {
-  padding: 48px 32px; text-align: center; opacity: 0;
+  padding: clamp(20px, 4vh, 48px) clamp(16px, 2.5vw, 32px); text-align: center; opacity: 0;
   transform: translateY(32px) scale(0.95);
 }
 .e-cell.show { animation: cell-up 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
@@ -154,12 +154,12 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 .e-cell-on-green { border: 1px solid rgba(255,255,255,0.12); }
 
 .e-cell-num {
-  font-size: 60px; font-weight: 900; letter-spacing: -3px; line-height: 1;
+  font-size: clamp(28px, 4.2vw, 60px); font-weight: 900; letter-spacing: -3px; line-height: 1;
 }
 .e-cell-label {
-  font-size: 15px; font-weight: 500; letter-spacing: 2px; margin-top: 14px;
+  font-size: clamp(11px, 1.2vw, 15px); font-weight: 500; letter-spacing: clamp(1px, 0.2vw, 2px); margin-top: clamp(8px, 1.2vh, 14px);
 }
-.e-cell-sub { font-size: 15px; margin-top: 8px; font-weight: 700; }
+.e-cell-sub { font-size: clamp(11px, 1.2vw, 15px); margin-top: clamp(4px, 0.8vh, 8px); font-weight: 700; }
 
 /* ===== COLORS ===== */
 .c-green { color: #1B5E20; }
@@ -188,7 +188,7 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 /* ===== PROGRESS RING (scene4) ===== */
 .ring-container { text-align: center; opacity: 0; }
 .ring-container.show { animation: fade-scale 1s cubic-bezier(0.16,1,0.3,1) forwards; }
-.ring-wrap { width: 220px; height: 220px; position: relative; margin: 0 auto; }
+.ring-wrap { width: clamp(150px, 18vw, 220px); height: clamp(150px, 18vw, 220px); position: relative; margin: 0 auto; }
 .ring-wrap svg { transform: rotate(-90deg); }
 .ring-wrap circle { fill: none; stroke-width: 12; }
 .ring-center {
@@ -198,38 +198,38 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 
 /* ===== BAR CHART ===== */
 .bar-chart {
-  display: flex; align-items: flex-end; gap: 28px; height: 260px; margin-top: 45px;
+  display: flex; align-items: flex-end; gap: clamp(12px, 2vw, 28px); height: clamp(140px, 26vh, 260px); margin-top: clamp(20px, 4vh, 45px);
   opacity: 0;
 }
 .bar-chart.show { animation: fade-scale 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
-.bar-col { display: flex; flex-direction: column; align-items: center; width: 110px; }
-.bar-num { font-size: 26px; font-weight: 900; letter-spacing: -1px; margin-bottom: 10px; }
+.bar-col { display: flex; flex-direction: column; align-items: center; width: clamp(60px, 8vw, 110px); }
+.bar-num { font-size: clamp(16px, 2vw, 26px); font-weight: 900; letter-spacing: -1px; margin-bottom: clamp(4px, 1vh, 10px); }
 .bar-fill {
   width: 100%; border-radius: 6px 6px 0 0;
   transition: height 1.8s cubic-bezier(0.34,1.56,0.64,1);
 }
 .bar-fill.red { background: #C62828; }
 .bar-fill.green { background: #1B5E20; box-shadow: 0 -4px 20px rgba(27,94,32,0.3); }
-.bar-year { font-size: 16px; margin-top: 12px; font-weight: 500; }
+.bar-year { font-size: clamp(12px, 1.3vw, 16px); margin-top: clamp(6px, 1vh, 12px); font-weight: 500; }
 
 /* ===== INNOVATION LIST ===== */
 .inno-list {
   display: grid; grid-template-columns: repeat(2,1fr); gap: 0;
-  max-width: 900px; margin-top: 45px; border: 2px solid rgba(255,255,255,0.1);
-  border-radius: 12px; overflow: hidden;
+  max-width: 900px; margin-top: clamp(20px, 4vh, 45px); border: 2px solid rgba(255,255,255,0.1);
+  border-radius: clamp(8px, 1vw, 12px); overflow: hidden;
 }
 .inno-item {
-  padding: 40px; border: 1px solid rgba(255,255,255,0.06); opacity: 0;
+  padding: clamp(20px, 3.5vw, 40px); border: 1px solid rgba(255,255,255,0.06); opacity: 0;
 }
 .inno-item.show { animation: card-rise 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
-.inno-num { font-size: 52px; font-weight: 900; letter-spacing: -2px; }
+.inno-num { font-size: clamp(28px, 3.8vw, 52px); font-weight: 900; letter-spacing: -2px; }
 .inno-item.show .inno-num { animation: num-pop 0.6s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
-.inno-text { font-size: 18px; margin-top: 8px; letter-spacing: 1px; }
+.inno-text { font-size: clamp(13px, 1.4vw, 18px); margin-top: clamp(4px, 0.8vh, 8px); letter-spacing: 1px; }
 
 /* ===== COOP SCROLL ===== */
 .coop-wrapper {
-  width: 100%; max-width: 1200px; max-height: 52vh;
-  overflow: hidden; margin-top: 30px;
+  width: 100%; max-width: 1200px; max-height: clamp(35vh, 48vh, 52vh);
+  overflow: hidden; margin-top: clamp(14px, 2.5vh, 30px);
 }
 .coop-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
@@ -240,99 +240,99 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
   100% { transform: translateY(-50%); }
 }
 .coop-item {
-  padding: 18px 20px; text-align: center;
+  padding: clamp(10px, 1.5vh, 18px) clamp(10px, 1.5vw, 20px); text-align: center;
   border: 1px solid rgba(255,255,255,0.06);
 }
-.coop-name { font-size: 17px; font-weight: 700; }
-.coop-num { font-size: 14px; margin-top: 4px; }
+.coop-name { font-size: clamp(13px, 1.4vw, 17px); font-weight: 700; }
+.coop-num { font-size: clamp(11px, 1.1vw, 14px); margin-top: 4px; }
 
 /* ===== TREND ROWS ===== */
-.trend-list { max-width: 900px; margin-top: 45px; }
+.trend-list { max-width: 900px; margin-top: clamp(20px, 4vh, 45px); }
 .trend-row {
-  display: flex; align-items: center; gap: 20px;
-  padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; gap: clamp(10px, 1.5vw, 20px);
+  padding: clamp(12px, 2vh, 22px) 0; border-bottom: 1px solid rgba(255,255,255,0.06);
   opacity: 0;
 }
 .trend-row.show { animation: cell-left 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
 .trend-marker {
-  width: 48px; height: 48px; border-radius: 50%;
+  width: clamp(36px, 4vw, 48px); height: clamp(36px, 4vw, 48px); border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 20px; font-weight: 900; flex-shrink: 0;
+  font-size: clamp(14px, 1.6vw, 20px); font-weight: 900; flex-shrink: 0;
 }
 .trend-marker.red-bg { background: rgba(198,40,40,0.12); color: #EF9A9A; }
 .trend-marker.orange-bg { background: rgba(230,81,0,0.12); color: #FFAB91; }
-.trend-label { font-size: 16px; }
-.trend-value { font-size: 28px; font-weight: 900; letter-spacing: -1px; }
+.trend-label { font-size: clamp(12px, 1.3vw, 16px); }
+.trend-value { font-size: clamp(18px, 2.2vw, 28px); font-weight: 900; letter-spacing: -1px; }
 
 /* ===== POLICY/PRODUCER ===== */
 .policy-grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 0;
-  max-width: 1100px; margin-top: 45px; border-radius: 12px;
+  max-width: 1100px; margin-top: clamp(20px, 4vh, 45px); border-radius: clamp(8px, 1vw, 12px);
   overflow: hidden;
 }
 .policy-cell {
-  padding: 40px 30px; border: 1px solid rgba(0,0,0,0.06); opacity: 0;
+  padding: clamp(18px, 3.5vh, 40px) clamp(14px, 2vw, 30px); border: 1px solid rgba(0,0,0,0.06); opacity: 0;
 }
 .policy-cell.show { animation: card-rise 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
-.policy-num { font-size: 32px; font-weight: 900; margin-bottom: 8px; }
-.policy-name { font-size: 19px; font-weight: 700; margin-bottom: 8px; }
-.policy-desc { font-size: 15px; line-height: 1.6; }
+.policy-num { font-size: clamp(20px, 2.5vw, 32px); font-weight: 900; margin-bottom: clamp(4px, 0.6vh, 8px); }
+.policy-name { font-size: clamp(14px, 1.5vw, 19px); font-weight: 700; margin-bottom: clamp(4px, 0.6vh, 8px); }
+.policy-desc { font-size: clamp(12px, 1.2vw, 15px); line-height: 1.6; }
 
 .producer-grid {
   display: grid; grid-template-columns: repeat(2,1fr); gap: 0;
-  max-width: 1000px; margin-top: 45px; border: 2px solid #1B5E20;
-  border-radius: 12px; overflow: hidden;
+  max-width: 1000px; margin-top: clamp(20px, 4vh, 45px); border: 2px solid #1B5E20;
+  border-radius: clamp(8px, 1vw, 12px); overflow: hidden;
 }
 .producer-cell {
-  padding: 40px 35px; border: 1px solid rgba(27,94,32,0.15); opacity: 0;
+  padding: clamp(18px, 3.5vh, 40px) clamp(16px, 2.5vw, 35px); border: 1px solid rgba(27,94,32,0.15); opacity: 0;
 }
 .producer-cell.show { animation: card-rise 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
 
 /* ===== EDU PROGRAMS ===== */
 .edu-grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 0;
-  max-width: 1100px; margin-top: 45px;
-  border: 2px solid rgba(0,0,0,0.08); border-radius: 12px; overflow: hidden;
+  max-width: 1100px; margin-top: clamp(20px, 4vh, 45px);
+  border: 2px solid rgba(0,0,0,0.08); border-radius: clamp(8px, 1vw, 12px); overflow: hidden;
 }
 .edu-cell {
-  padding: 35px 28px; border: 1px solid rgba(0,0,0,0.05); opacity: 0;
+  padding: clamp(16px, 3vh, 35px) clamp(12px, 2vw, 28px); border: 1px solid rgba(0,0,0,0.05); opacity: 0;
 }
 .edu-cell.show { animation: card-rise 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
-.edu-cat { font-size: 12px; font-weight: 700; letter-spacing: 3px; margin-bottom: 10px; }
-.edu-name { font-size: 18px; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
-.edu-stat { font-size: 14px; display: inline-block; padding: 3px 10px; border-radius: 6px; margin-right: 6px; }
+.edu-cat { font-size: clamp(10px, 1vw, 12px); font-weight: 700; letter-spacing: clamp(1px, 0.3vw, 3px); margin-bottom: clamp(5px, 1vh, 10px); }
+.edu-name { font-size: clamp(13px, 1.4vw, 18px); font-weight: 700; margin-bottom: clamp(5px, 1vh, 10px); line-height: 1.3; }
+.edu-stat { font-size: clamp(11px, 1.1vw, 14px); display: inline-block; padding: 3px clamp(6px, 0.8vw, 10px); border-radius: 6px; margin-right: 4px; }
 
 /* ===== FAIRTRADE ===== */
 .ft-grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 0;
-  max-width: 1100px; margin-top: 45px;
-  border: 2px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden;
+  max-width: 1100px; margin-top: clamp(20px, 4vh, 45px);
+  border: 2px solid rgba(255,255,255,0.1); border-radius: clamp(8px, 1vw, 12px); overflow: hidden;
 }
 .ft-cell {
-  padding: 45px 30px; text-align: center;
+  padding: clamp(20px, 4vh, 45px) clamp(14px, 2vw, 30px); text-align: center;
   border: 1px solid rgba(255,255,255,0.06); opacity: 0;
 }
 .ft-cell.show { animation: cell-up 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
 .ft-cell.show .ft-num { animation: num-pop 0.5s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
-.ft-num { font-size: 52px; font-weight: 900; letter-spacing: -2px; }
-.ft-unit { font-size: 20px; font-weight: 400; }
-.ft-name { font-size: 18px; font-weight: 700; margin-bottom: 12px; line-height: 1.4; }
-.ft-desc { font-size: 14px; line-height: 1.5; margin-top: 10px; }
+.ft-num { font-size: clamp(28px, 3.8vw, 52px); font-weight: 900; letter-spacing: -2px; }
+.ft-unit { font-size: clamp(14px, 1.5vw, 20px); font-weight: 400; }
+.ft-name { font-size: clamp(13px, 1.4vw, 18px); font-weight: 700; margin-bottom: clamp(6px, 1vh, 12px); line-height: 1.4; }
+.ft-desc { font-size: clamp(11px, 1.1vw, 14px); line-height: 1.5; margin-top: clamp(5px, 0.8vh, 10px); }
 
 /* ===== CLIMATE GRID ===== */
 .cl-grid {
   display: grid; grid-template-columns: repeat(2,1fr); gap: 0;
-  max-width: 1000px; margin-top: 45px;
-  border: 2px solid rgba(0,0,0,0.08); border-radius: 12px; overflow: hidden;
+  max-width: 1000px; margin-top: clamp(20px, 4vh, 45px);
+  border: 2px solid rgba(0,0,0,0.08); border-radius: clamp(8px, 1vw, 12px); overflow: hidden;
 }
 .cl-cell {
-  padding: 40px 35px; border: 1px solid rgba(0,0,0,0.05); opacity: 0;
+  padding: clamp(18px, 3.5vh, 40px) clamp(16px, 2.5vw, 35px); border: 1px solid rgba(0,0,0,0.05); opacity: 0;
 }
 .cl-cell.show { animation: cell-up 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
 .cl-cell.show .cl-num { animation: num-pop 0.5s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
-.cl-num { font-size: 36px; font-weight: 900; letter-spacing: -1px; }
-.cl-name { font-size: 19px; font-weight: 700; margin-bottom: 6px; }
-.cl-desc { font-size: 14px; line-height: 1.5; margin-top: 8px; }
+.cl-num { font-size: clamp(22px, 2.8vw, 36px); font-weight: 900; letter-spacing: -1px; }
+.cl-name { font-size: clamp(14px, 1.5vw, 19px); font-weight: 700; margin-bottom: clamp(3px, 0.5vh, 6px); }
+.cl-desc { font-size: clamp(11px, 1.1vw, 14px); line-height: 1.5; margin-top: clamp(4px, 0.6vh, 8px); }
 
 /* ===== SLIDESHOW ===== */
 .slideshow-container { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
@@ -345,18 +345,18 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 @keyframes kb { 0%{transform:scale(1.05)} 100%{transform:scale(1.15)} }
 .slide-overlay {
   position: absolute; bottom:0; left:0; right:0;
-  padding: 60px 80px 50px;
+  padding: clamp(30px, 5vh, 60px) clamp(30px, 5vw, 80px) clamp(25px, 4vh, 50px);
   background: linear-gradient(transparent, rgba(0,0,0,0.85));
 }
-.slide-coop { font-size: 15px; font-weight: 700; letter-spacing: 5px; color: #A5D6A7; margin-bottom: 8px; }
-.slide-title { font-size: 38px; font-weight: 700; color: #fff; }
-.slide-counter { position: absolute; top: 30px; right: 50px; font-size: 16px; color: rgba(255,255,255,0.35); letter-spacing: 3px; }
+.slide-coop { font-size: clamp(11px, 1.2vw, 15px); font-weight: 700; letter-spacing: clamp(2px, 0.4vw, 5px); color: #A5D6A7; margin-bottom: 8px; }
+.slide-title { font-size: clamp(22px, 3vw, 38px); font-weight: 700; color: #fff; }
+.slide-counter { position: absolute; top: clamp(15px, 2.5vh, 30px); right: clamp(20px, 3.5vw, 50px); font-size: clamp(12px, 1.3vw, 16px); color: rgba(255,255,255,0.35); letter-spacing: 3px; }
 .slide-progress { position: absolute; bottom:0; left:0; height: 4px; background: #1B5E20; animation: sp 6s linear forwards; }
 @keyframes sp { 0%{width:0} 100%{width:100%} }
 
 /* ===== PHOTO GRID (editorial) ===== */
 .photo-strip {
-  display: grid; gap: 12px; margin-top: 40px; width: 100%; max-width: 1200px;
+  display: grid; gap: clamp(6px, 1vw, 12px); margin-top: clamp(16px, 3.5vh, 40px); width: 100%; max-width: 1200px;
   opacity: 0;
 }
 .photo-strip.show { animation: fade-scale 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s forwards; }
@@ -419,9 +419,9 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 .photo-item:hover img { transform: scale(1.05) !important; }
 .photo-caption {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 24px 16px 12px;
+  padding: clamp(12px, 2vh, 24px) clamp(8px, 1.2vw, 16px) clamp(6px, 1vh, 12px);
   background: linear-gradient(transparent, rgba(0,0,0,0.75));
-  font-size: 13px; font-weight: 600; color: #fff; letter-spacing: 1px;
+  font-size: clamp(10px, 1.1vw, 13px); font-weight: 600; color: #fff; letter-spacing: 1px;
   opacity: 0; transform: translateY(8px);
   transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
 }
@@ -431,15 +431,15 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 
 /* ===== ENDING ===== */
 .end-year {
-  font-size: 180px; font-weight: 900; letter-spacing: -8px; line-height: 1; opacity: 0;
+  font-size: clamp(80px, 13vw, 180px); font-weight: 900; letter-spacing: clamp(-4px, -0.6vw, -8px); line-height: 1; opacity: 0;
 }
 .end-year.show { animation: end-zoom 1.8s cubic-bezier(0.16,1,0.3,1) forwards; }
 .end-msg {
-  font-size: 48px; font-weight: 200; letter-spacing: 16px; margin-top: 10px; opacity: 0;
+  font-size: clamp(24px, 3.5vw, 48px); font-weight: 200; letter-spacing: clamp(6px, 1.2vw, 16px); margin-top: 10px; opacity: 0;
 }
 .end-msg.show { animation: title-reveal 1.2s cubic-bezier(0.16,1,0.3,1) 0.6s forwards; }
 .end-org {
-  font-size: 20px; letter-spacing: 10px; margin-top: 30px; opacity: 0;
+  font-size: clamp(14px, 1.6vw, 20px); letter-spacing: clamp(4px, 0.8vw, 10px); margin-top: clamp(14px, 2.5vh, 30px); opacity: 0;
 }
 .end-org.show { animation: clip-wipe 1s cubic-bezier(0.16,1,0.3,1) 1.2s forwards; }
 
@@ -463,30 +463,78 @@ body:hover .controls { opacity: 1; }
   background: #1B5E20; transition: width 0.8s ease;
 }
 
+/* Section timer bar */
+.section-timer {
+  position: fixed; top: 3px; left: 0; height: 2px; z-index: 9999;
+  background: rgba(27,94,32,0.4); width: 0%;
+  transition: none;
+}
+.section-timer.running {
+  transition: width linear;
+}
+
+/* Section indicator */
+.section-indicator {
+  position: fixed; top: clamp(8px, 1.5vh, 14px); right: clamp(60px, 8vw, 120px); z-index: 9999;
+  font-size: clamp(10px, 1vw, 13px); font-weight: 500; letter-spacing: 2px;
+  color: rgba(128,128,128,0.5); opacity: 0; transition: opacity 0.3s;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+body:hover .section-indicator { opacity: 1; }
+
 /* ===== HOPE MESSAGE ===== */
-.hope-msg { margin-top: 40px; text-align: center; opacity: 0; }
+.hope-msg { margin-top: clamp(16px, 3.5vh, 40px); text-align: center; opacity: 0; }
 .hope-msg.show { animation: hope-glow 1.5s cubic-bezier(0.16,1,0.3,1) forwards; }
 .hope-text {
-  font-size: 38px; font-weight: 300; font-style: italic; letter-spacing: 2px;
+  font-size: clamp(20px, 3vw, 38px); font-weight: 300; font-style: italic; letter-spacing: clamp(1px, 0.2vw, 2px);
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1200px) {
-  .section { padding: 50px 40px; }
-  .e-title { font-size: 52px; }
-  .e-cell-num { font-size: 44px; }
-  .e-grid-3 { grid-template-columns: repeat(2, 1fr); }
+/* -- 1280px 이하: WXGA 빔프로젝터 -- */
+@media (max-width: 1280px) {
   .e-grid-4 { grid-template-columns: repeat(2, 1fr); }
   .policy-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-strip-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* -- 1024px 이하: XGA 빔프로젝터 -- */
+@media (max-width: 1024px) {
+  .e-grid-3 { grid-template-columns: repeat(2, 1fr); }
   .edu-grid { grid-template-columns: repeat(2, 1fr); }
   .ft-grid { grid-template-columns: repeat(2, 1fr); }
   .coop-grid { grid-template-columns: repeat(3, 1fr); }
+  .photo-strip-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* -- 800px 이하: SVGA / 소형 -- */
+@media (max-width: 800px) {
+  .e-grid-3, .e-grid-2 { grid-template-columns: 1fr; }
+  .policy-grid { grid-template-columns: 1fr; }
+  .producer-grid { grid-template-columns: 1fr; }
+  .edu-grid { grid-template-columns: 1fr; }
+  .ft-grid { grid-template-columns: 1fr; }
+  .cl-grid { grid-template-columns: 1fr; }
+  .inno-list { grid-template-columns: 1fr; }
+  .coop-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-strip-4, .photo-strip-3, .photo-strip-2 { grid-template-columns: repeat(2, 1fr); }
+  .fixed-logo { top: 12px; left: 16px; }
+  .controls { bottom: 12px; right: 12px; }
+  .ctrl-btn { width: 36px; height: 36px; font-size: 14px; }
+}
+
+/* -- 4:3 비율 (768px 높이) 세로 공간 확보 -- */
+@media (max-height: 800px) {
+  .bar-chart { height: clamp(100px, 20vh, 180px); }
+  .coop-wrapper { max-height: 40vh; }
+  .ring-wrap { width: clamp(120px, 15vw, 180px); height: clamp(120px, 15vw, 180px); }
 }
 </style>
 </head>
 <body>
 
 <div class="progress-bar" id="progressBar"></div>
+<div class="section-timer" id="sectionTimer"></div>
+<div class="section-indicator" id="sectionIndicator"></div>
 
 <div class="fixed-logo on-light" id="fixedLogo">
   <img src="logos/logo-color-horizontal.png" alt="두레생협">
@@ -495,9 +543,9 @@ body:hover .controls { opacity: 1; }
 <!-- ========== INTRO ========== -->
 <div class="section bg-white active" id="intro">
   <div class="e-label green">제26기 정기총회</div>
-  <div class="e-title" style="font-size:200px; letter-spacing:-8px; color:#1a1a1a;">2025</div>
+  <div class="e-title" style="font-size:clamp(80px,14vw,200px); letter-spacing:clamp(-4px,-0.6vw,-8px); color:#1a1a1a;">2025</div>
   <div class="e-divider green"></div>
-  <div style="font-size:42px; font-weight:200; color:#444; letter-spacing:12px; opacity:0;" class="e-subtitle">년을 돌아보며</div>
+  <div style="font-size:clamp(20px,3.2vw,42px); font-weight:200; color:#444; letter-spacing:clamp(4px,1vw,12px); opacity:0;" class="e-subtitle">년을 돌아보며</div>
   <div class="e-color-bar">
     <div style="background:#1B5E20;"></div>
     <div style="background:#4CAF50;"></div>
@@ -559,7 +607,7 @@ body:hover .controls { opacity: 1; }
       <div class="bar-year c-white-50">'24</div>
     </div>
     <div class="bar-col">
-      <div class="bar-num" style="color:#fff;font-size:32px;">+2.1%</div>
+      <div class="bar-num" style="color:#fff;font-size:clamp(20px,2.5vw,32px);">+2.1%</div>
       <div class="bar-fill green" data-height="90" style="height:0;background:#fff;box-shadow:0 -4px 30px rgba(255,255,255,0.3);"></div>
       <div class="bar-year" style="color:#fff;font-weight:700;">'25</div>
     </div>
@@ -621,37 +669,37 @@ body:hover .controls { opacity: 1; }
             stroke-linecap="round" stroke-dasharray="603" stroke-dashoffset="603" style="transition:stroke-dashoffset 2s ease-out;transform:rotate(-90deg);transform-origin:center;"/>
         </svg>
         <div class="ring-center">
-          <div style="font-size:48px;font-weight:900;color:#1B5E20;">70.7%</div>
-          <div style="font-size:14px;color:#888;letter-spacing:2px;">PI 과제 달성</div>
+          <div style="font-size:clamp(28px,3.5vw,48px);font-weight:900;color:#1B5E20;">70.7%</div>
+          <div style="font-size:clamp(11px,1.1vw,14px);color:#888;letter-spacing:2px;">PI 과제 달성</div>
         </div>
       </div>
-      <div style="margin-top:12px;font-size:16px;color:#888;">41개 중 29개 완수</div>
+      <div style="margin-top:12px;font-size:clamp(12px,1.3vw,16px);color:#888;">41개 중 29개 완수</div>
     </div>
     <div class="e-grid e-grid-2" style="max-width:500px;border:2px solid #1B5E20;margin-top:0;">
       <div class="e-cell e-cell-on-white" style="padding:30px 24px;">
-        <div class="e-cell-num c-green" style="font-size:40px;">-32.0%</div>
+        <div class="e-cell-num c-green" style="font-size:clamp(24px,3vw,40px);">-32.0%</div>
         <div class="e-cell-label c-gray">결품률 감소</div>
       </div>
       <div class="e-cell e-cell-on-white" style="padding:30px 24px;">
-        <div class="e-cell-num c-green" style="font-size:40px;">-38.0%</div>
+        <div class="e-cell-num c-green" style="font-size:clamp(24px,3vw,40px);">-38.0%</div>
         <div class="e-cell-label c-gray">반품률 감소</div>
       </div>
       <div class="e-cell e-cell-on-white" style="padding:30px 24px;">
-        <div class="e-cell-num c-green" style="font-size:40px;">2025.3</div>
+        <div class="e-cell-num c-green" style="font-size:clamp(24px,3vw,40px);">2025.3</div>
         <div class="e-cell-label c-gray">이전 완료</div>
       </div>
       <div class="e-cell e-cell-on-white" style="padding:30px 24px;">
-        <div class="e-cell-num c-green" style="font-size:40px;">32.2<span style="font-size:18px;">회</span></div>
+        <div class="e-cell-num c-green" style="font-size:clamp(24px,3vw,40px);">32.2<span style="font-size:18px;">회</span></div>
         <div class="e-cell-label c-gray">재고 회전/년</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ========== SCENE 5: 상품혁신 ========== -->
+<!-- ========== SCENE 5: 생활재혁신 ========== -->
 <div class="section bg-dark" id="scene5">
   <div class="e-label white">INNOVATION</div>
-  <div class="e-title" style="color:#fff;"><span class="white-green">상품 혁신</span>의 성과</div>
+  <div class="e-title" style="color:#fff;"><span class="white-green">생활재 혁신</span>의 성과</div>
   <div class="e-divider white"></div>
   <div class="inno-list">
     <div class="inno-item">
@@ -744,16 +792,16 @@ body:hover .controls { opacity: 1; }
 <!-- ========== SCENE 6: 회원생협 ========== -->
 <div class="section bg-deep" id="scene6">
   <div class="e-label white">22 MEMBER COOPS</div>
-  <div class="e-title" style="color:#fff;font-size:52px;"><span class="white-green">22개</span> 회원생협의 한 해</div>
+  <div class="e-title" style="color:#fff;font-size:clamp(28px,3.8vw,52px);"><span class="white-green">22개</span> 회원생협의 한 해</div>
   <div class="e-divider white"></div>
   <div style="display:flex;gap:60px;margin-top:20px;opacity:0;" class="coop-summary">
     <div style="text-align:center;">
       <div style="font-size:14px;letter-spacing:3px;" class="c-white-50">전체 조합원</div>
-      <div style="font-size:48px;font-weight:900;color:#fff;">237,801<span style="font-size:20px;" class="c-white-50">가구</span></div>
+      <div style="font-size:clamp(28px,3.5vw,48px);font-weight:900;color:#fff;">237,801<span style="font-size:20px;" class="c-white-50">가구</span></div>
     </div>
     <div style="text-align:center;">
       <div style="font-size:14px;letter-spacing:3px;" class="c-white-50">총 이용액</div>
-      <div style="font-size:48px;font-weight:900;color:#fff;">1,265.1<span style="font-size:20px;" class="c-white-50">억원</span></div>
+      <div style="font-size:clamp(28px,3.5vw,48px);font-weight:900;color:#fff;">1,265.1<span style="font-size:20px;" class="c-white-50">억원</span></div>
     </div>
   </div>
   <div class="coop-wrapper">
@@ -835,7 +883,7 @@ body:hover .controls { opacity: 1; }
 <!-- ========== EDU PROGRAMS ========== -->
 <div class="section bg-white" id="edu-programs">
   <div class="e-label indigo">PROGRAMS</div>
-  <div class="e-title" style="color:#1a1a1a;font-size:52px;">주요 <span class="indigo">교육 프로그램</span></div>
+  <div class="e-title" style="color:#1a1a1a;font-size:clamp(28px,3.8vw,52px);">주요 <span class="indigo">교육 프로그램</span></div>
   <div class="e-divider indigo"></div>
   <div class="edu-grid">
     <div class="edu-cell">
@@ -874,7 +922,7 @@ body:hover .controls { opacity: 1; }
 <!-- ========== EDU PHOTOS ========== -->
 <div class="section bg-dark" id="edu-photos">
   <div class="e-label white">FIELD REPORT</div>
-  <div class="e-title" style="color:#fff;font-size:48px;">교육 활동 <span class="white-indigo">현장</span></div>
+  <div class="e-title" style="color:#fff;font-size:clamp(26px,3.5vw,48px);">교육 활동 <span class="white-indigo">현장</span></div>
   <div class="e-divider white"></div>
   <div class="photo-strip photo-strip-4">
     <div class="photo-item" data-anim="anim-fade-up">
@@ -955,7 +1003,7 @@ body:hover .controls { opacity: 1; }
 <!-- ========== CLIMATE & SOLIDARITY ========== -->
 <div class="section bg-white" id="climate-solidarity">
   <div class="e-label green">CLIMATE & SOLIDARITY</div>
-  <div class="e-title" style="color:#1a1a1a;font-size:52px;"><span class="green">기후위기 대응</span> & <span class="orange">생산자 연대</span></div>
+  <div class="e-title" style="color:#1a1a1a;font-size:clamp(28px,3.8vw,52px);"><span class="green">기후위기 대응</span> & <span class="orange">생산자 연대</span></div>
   <div class="e-divider green"></div>
   <div class="cl-grid">
     <div class="cl-cell">
@@ -1157,6 +1205,18 @@ function activateSection(index) {
   document.getElementById(sections[index].id).classList.add('active');
   currentSection = index;
   document.getElementById('progressBar').style.width = ((index+1)/sections.length*100)+'%';
+
+  // Section timer
+  const timer = document.getElementById('sectionTimer');
+  const indicator = document.getElementById('sectionIndicator');
+  timer.classList.remove('running');
+  timer.style.width = '0%';
+  void timer.offsetHeight; // force reflow
+  const dur = sections[index].duration;
+  timer.style.transitionDuration = dur + 'ms';
+  timer.classList.add('running');
+  timer.style.width = '100%';
+  indicator.textContent = (index+1) + ' / ' + sections.length;
 
   // Logo color switch
   const logo = document.getElementById('fixedLogo');
