@@ -267,23 +267,54 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
   margin-top: 1px;
 }
 
-/* ===== TREND ROWS ===== */
-.trend-list { max-width: 900px; margin-top: clamp(20px, 4vh, 45px); }
-.trend-row {
-  display: flex; align-items: center; gap: clamp(10px, 1.5vw, 20px);
-  padding: clamp(12px, 2vh, 22px) 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+/* ===== CHALLENGE CARDS ===== */
+.challenge-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(10px, 1.2vw, 16px);
+  max-width: 1000px; margin-top: clamp(16px, 3vh, 36px); width: 100%;
+}
+.challenge-card {
+  position: relative; overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: clamp(8px, 1vw, 14px);
+  padding: clamp(20px, 3vh, 36px) clamp(16px, 2vw, 28px) clamp(20px, 3vh, 36px) clamp(24px, 2.5vw, 36px);
   opacity: 0;
 }
-.trend-row.show { animation: cell-left 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
-.trend-marker {
-  width: clamp(36px, 4vw, 48px); height: clamp(36px, 4vw, 48px); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: clamp(14px, 1.6vw, 20px); font-weight: 900; flex-shrink: 0;
+.challenge-card.show { animation: card-rise 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+.challenge-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+  border-radius: 4px 0 0 4px;
 }
-.trend-marker.red-bg { background: rgba(198,40,40,0.12); color: #EF9A9A; }
-.trend-marker.orange-bg { background: rgba(230,81,0,0.12); color: #FFAB91; }
-.trend-label { font-size: clamp(12px, 1.3vw, 16px); }
-.trend-value { font-size: clamp(18px, 2.2vw, 28px); font-weight: 900; letter-spacing: -1px; }
+.challenge-card.severity-high::before { background: linear-gradient(180deg, #EF5350, #C62828); }
+.challenge-card.severity-mid::before { background: linear-gradient(180deg, #FFA726, #E65100); }
+.challenge-card:hover { background: rgba(255,255,255,0.05); transition: background 0.3s; }
+.challenge-tag {
+  display: inline-block; font-size: clamp(9px, 0.8vw, 11px); font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 3px clamp(8px, 0.8vw, 12px); border-radius: 4px;
+  margin-bottom: clamp(8px, 1.2vh, 14px);
+}
+.challenge-tag.red { background: rgba(198,40,40,0.15); color: #EF9A9A; }
+.challenge-tag.orange { background: rgba(230,81,0,0.15); color: #FFAB91; }
+.challenge-num {
+  font-size: clamp(32px, 3.5vw, 52px); font-weight: 900; letter-spacing: -2px;
+  line-height: 1; margin-bottom: clamp(4px, 0.8vh, 8px);
+}
+.challenge-title {
+  font-size: clamp(14px, 1.4vw, 18px); font-weight: 700;
+  margin-bottom: clamp(4px, 0.6vh, 6px);
+}
+.challenge-desc {
+  font-size: clamp(11px, 1vw, 14px); line-height: 1.5;
+}
+/* Divider line between challenges and hope */
+.challenge-divider {
+  width: clamp(40px, 4vw, 60px); height: 1px;
+  background: rgba(255,255,255,0.1);
+  margin: clamp(16px, 3vh, 32px) auto;
+  opacity: 0;
+}
+.challenge-divider.show { animation: divider-grow 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s forwards; }
 
 /* ===== POLICY/PRODUCER ===== */
 .policy-grid {
@@ -581,6 +612,7 @@ body:hover .section-indicator { opacity: 1; }
 
 /* -- 800px 이하: SVGA / 소형 -- */
 @media (max-width: 800px) {
+  .challenge-grid { grid-template-columns: 1fr; }
   .e-grid-3, .e-grid-2 { grid-template-columns: 1fr; }
   .policy-grid { grid-template-columns: 1fr; }
   .producer-grid { grid-template-columns: 1fr; }
@@ -924,38 +956,35 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-title" style="color:#fff;"><span class="white-red">과제</span>를 직시하며</div>
   <div class="e-divider red"></div>
   <div class="e-emotion c-white-30">아픔을 외면하지 않는 것이 성장의 시작입니다</div>
-  <div class="trend-list">
-    <div class="trend-row">
-      <div class="trend-marker red-bg">1</div>
-      <div>
-        <div class="trend-label c-white-50">신규가입 3년 연속 감소</div>
-        <div class="trend-value c-light-red">17,485 → 16,114 → 14,999</div>
-      </div>
+  <div class="challenge-grid">
+    <div class="challenge-card severity-high">
+      <div class="challenge-tag red">긴급</div>
+      <div class="challenge-num c-light-red">14,999</div>
+      <div class="challenge-title c-white">신규가입 3년 연속 감소</div>
+      <div class="challenge-desc c-white-30">17,485 → 16,114 → 14,999<br>조합원 유입 둔화 지속</div>
     </div>
-    <div class="trend-row">
-      <div class="trend-marker red-bg">2</div>
-      <div>
-        <div class="trend-label c-white-50">탈퇴 조합원 급증</div>
-        <div class="trend-value c-light-red">11,598가구</div>
-      </div>
+    <div class="challenge-card severity-high">
+      <div class="challenge-tag red">긴급</div>
+      <div class="challenge-num c-light-red">11,598<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">가구</span></div>
+      <div class="challenge-title c-white">탈퇴 조합원 급증</div>
+      <div class="challenge-desc c-white-30">순증 3,401가구에 그침<br>이탈 방지 대책 시급</div>
     </div>
-    <div class="trend-row">
-      <div class="trend-marker orange-bg">3</div>
-      <div>
-        <div class="trend-label c-white-50">영업이익</div>
-        <div class="trend-value c-light-orange">-7.5억원 <span style="font-size:18px;font-weight:400;">영업외수익 보전</span></div>
-      </div>
+    <div class="challenge-card severity-mid">
+      <div class="challenge-tag orange">주의</div>
+      <div class="challenge-num c-light-orange">-7.5<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">억원</span></div>
+      <div class="challenge-title c-white">영업이익 적자</div>
+      <div class="challenge-desc c-white-30">영업외수익으로 보전<br>본업 수익성 개선 필요</div>
     </div>
-    <div class="trend-row">
-      <div class="trend-marker orange-bg">4</div>
-      <div>
-        <div class="trend-label c-white-50">매장 변동</div>
-        <div class="trend-value c-light-orange">3개점 순감소 (112점)</div>
-      </div>
+    <div class="challenge-card severity-mid">
+      <div class="challenge-tag orange">주의</div>
+      <div class="challenge-num c-light-orange">-3<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">개점</span></div>
+      <div class="challenge-title c-white">매장 순감소</div>
+      <div class="challenge-desc c-white-30">현재 112점 운영<br>지역 거점 유지 전략 필요</div>
     </div>
   </div>
+  <div class="challenge-divider"></div>
   <div class="hope-msg">
-    <div class="hope-text c-light-orange">"위기를 기회로, 함께 만들어가는 내일"</div>
+    <div class="hope-text" style="color:rgba(255,255,255,0.6);">"위기를 기회로, 함께 만들어가는 내일"</div>
   </div>
 </div>
 
@@ -1444,7 +1473,7 @@ function activateSection(index) {
 
 function triggerAnimations(sid) {
   const sec = document.getElementById(sid);
-  const els = sec.querySelectorAll('.e-label, .e-title, .e-divider, .e-emotion, .e-cell, .e-color-bar, .e-subtitle, .bar-chart, .ring-container, .inno-item, .coop-summary, .bubble-chart, .trend-row, .hope-msg, .policy-cell, .producer-cell, .edu-cell, .ft-cell, .cl-cell, .photo-strip, .end-year, .end-msg, .end-org, .end-logo');
+  const els = sec.querySelectorAll('.e-label, .e-title, .e-divider, .e-emotion, .e-cell, .e-color-bar, .e-subtitle, .bar-chart, .ring-container, .inno-item, .coop-summary, .bubble-chart, .challenge-card, .challenge-divider, .hope-msg, .policy-cell, .producer-cell, .edu-cell, .ft-cell, .cl-cell, .photo-strip, .end-year, .end-msg, .end-org, .end-logo');
   els.forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 150));
 
   if (sid === 'scene2') {
