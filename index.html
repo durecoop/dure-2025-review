@@ -316,6 +316,69 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 }
 .challenge-divider.show { animation: divider-grow 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s forwards; }
 
+/* ===== ENHANCED CARDS (shared) ===== */
+.accent-card {
+  position: relative; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: clamp(8px, 1vw, 12px);
+  padding: clamp(20px, 3vh, 36px) clamp(16px, 2vw, 28px) clamp(20px, 3vh, 36px) clamp(24px, 2.5vw, 32px);
+  opacity: 0; transition: background 0.3s;
+}
+.accent-card.on-light {
+  border-color: rgba(0,0,0,0.06); background: rgba(0,0,0,0.015);
+}
+.accent-card.on-light:hover { background: rgba(0,0,0,0.03); }
+.accent-card.on-dark { background: rgba(255,255,255,0.03); }
+.accent-card.on-dark:hover { background: rgba(255,255,255,0.06); }
+.accent-card.show { animation: card-rise 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
+.accent-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%; border-radius: 4px 0 0 4px;
+}
+.accent-bar-green::before { background: linear-gradient(180deg, #66BB6A, #1B5E20); }
+.accent-bar-blue::before { background: linear-gradient(180deg, #64B5F6, #1565C0); }
+.accent-bar-indigo::before { background: linear-gradient(180deg, #9FA8DA, #283593); }
+.accent-bar-orange::before { background: linear-gradient(180deg, #FFB74D, #E65100); }
+.accent-bar-red::before { background: linear-gradient(180deg, #EF9A9A, #C62828); }
+
+/* Mini tag badges */
+.mini-tag {
+  display: inline-block; font-size: clamp(8px, 0.7vw, 10px); font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 2px clamp(6px, 0.7vw, 10px); border-radius: 3px;
+  margin-bottom: clamp(6px, 1vh, 12px);
+}
+.mini-tag.green { background: rgba(27,94,32,0.12); color: #66BB6A; }
+.mini-tag.blue { background: rgba(21,101,192,0.12); color: #64B5F6; }
+.mini-tag.indigo { background: rgba(57,73,171,0.12); color: #9FA8DA; }
+.mini-tag.orange { background: rgba(230,81,0,0.12); color: #FFAB91; }
+.mini-tag.green-dark { background: rgba(27,94,32,0.1); color: #1B5E20; }
+.mini-tag.blue-dark { background: rgba(21,101,192,0.1); color: #1565C0; }
+.mini-tag.indigo-dark { background: rgba(57,73,171,0.1); color: #3949AB; }
+
+/* Progress bar inline */
+.progress-inline {
+  width: 100%; height: clamp(4px, 0.5vh, 6px); border-radius: 3px;
+  background: rgba(128,128,128,0.15); margin-top: clamp(8px, 1vh, 12px);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%; border-radius: 3px;
+  width: 0; transition: width 1.5s cubic-bezier(0.16,1,0.3,1);
+}
+
+/* Rating dots */
+.rating-bar {
+  display: flex; gap: 3px; margin-top: clamp(4px, 0.6vh, 8px); align-items: center;
+}
+.rating-dot {
+  width: clamp(6px, 0.6vw, 8px); height: clamp(6px, 0.6vw, 8px);
+  border-radius: 50%;
+}
+.rating-score {
+  font-size: clamp(10px, 0.9vw, 13px); font-weight: 700; margin-left: 6px;
+}
+
 /* ===== POLICY/PRODUCER ===== */
 .policy-grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 0;
@@ -605,6 +668,7 @@ body:hover .section-indicator { opacity: 1; }
 /* -- 1024px 이하: XGA 빔프로젝터 -- */
 @media (max-width: 1024px) {
   .e-grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .challenge-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .edu-grid { grid-template-columns: repeat(2, 1fr); }
   .ft-grid { grid-template-columns: repeat(2, 1fr); }
   .photo-strip-3 { grid-template-columns: repeat(2, 1fr); }
@@ -654,9 +718,19 @@ body:hover .section-indicator { opacity: 1; }
       <div class="settings-label">전체 슬라이드</div>
       <div class="settings-value" id="settingSlideCount">20장</div>
     </div>
-    <div class="settings-row" style="border:none;">
+    <div class="settings-row">
       <div class="settings-label">슬라이드쇼 사진</div>
       <div class="settings-value" id="settingPhotoCount">21장</div>
+    </div>
+    <div class="settings-row" style="border:none;">
+      <div class="settings-label">배경음악</div>
+      <div class="speed-controls" id="bgmControls">
+        <button class="speed-btn bgm-opt active" data-bgm="0">🎹 피아노</button>
+        <button class="speed-btn bgm-opt" data-bgm="1">🌿 영감</button>
+        <button class="speed-btn bgm-opt" data-bgm="2">🌅 희망</button>
+        <button class="speed-btn bgm-opt" data-bgm="3">🏡 감성</button>
+        <button class="speed-btn bgm-opt" data-bgm="4">🚀 도약</button>
+      </div>
     </div>
     <div class="total-time">
       예상 총 상영시간<br>
@@ -774,21 +848,27 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-title" style="color:#1a1a1a;">채널별 <span class="green">성과</span></div>
   <div class="e-divider green"></div>
   <div class="e-emotion c-gray">매장에서, 온라인에서, 지역 곳곳에서 이어진 만남</div>
-  <div class="e-grid e-grid-3" style="border:2px solid #1B5E20;">
-    <div class="e-cell e-cell-on-white">
-      <div class="e-cell-num c-green">651.7<span style="font-size:22px;" class="c-gray">억</span></div>
-      <div class="e-cell-label c-gray">매장 · 112점</div>
-      <div class="e-cell-sub c-green">+1.5%</div>
+  <div class="challenge-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="accent-card on-light accent-bar-green">
+      <div class="mini-tag green-dark">STORE · 112점</div>
+      <div class="challenge-num c-green">651.7<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">억</span></div>
+      <div class="challenge-title" style="color:#1a1a1a;">매장 공급고</div>
+      <div class="challenge-desc c-gray">전체의 73% · 전년 대비 <strong class="c-green">+1.5%</strong></div>
+      <div class="progress-inline"><div class="progress-fill" data-width="73" style="background:#1B5E20;"></div></div>
     </div>
-    <div class="e-cell e-cell-on-white">
-      <div class="e-cell-num c-green">159.2<span style="font-size:22px;" class="c-gray">억</span></div>
-      <div class="e-cell-label c-gray">온라인</div>
-      <div class="e-cell-sub c-green">+3.0%</div>
+    <div class="accent-card on-light accent-bar-blue">
+      <div class="mini-tag blue-dark">ONLINE</div>
+      <div class="challenge-num" style="color:#1565C0;">159.2<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">억</span></div>
+      <div class="challenge-title" style="color:#1a1a1a;">온라인 공급고</div>
+      <div class="challenge-desc c-gray">전체의 18% · 전년 대비 <strong style="color:#1565C0;">+3.0%</strong></div>
+      <div class="progress-inline"><div class="progress-fill" data-width="18" style="background:#1565C0;"></div></div>
     </div>
-    <div class="e-cell e-cell-on-white">
-      <div class="e-cell-num c-green">78.2<span style="font-size:22px;" class="c-gray">억</span></div>
-      <div class="e-cell-label c-gray">공공사업</div>
-      <div class="e-cell-sub c-green">+5.3%</div>
+    <div class="accent-card on-light accent-bar-orange">
+      <div class="mini-tag" style="background:rgba(230,81,0,0.1);color:#E65100;">PUBLIC</div>
+      <div class="challenge-num c-orange">78.2<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">억</span></div>
+      <div class="challenge-title" style="color:#1a1a1a;">공공사업 공급고</div>
+      <div class="challenge-desc c-gray">전체의 9% · 전년 대비 <strong class="c-orange">+5.3%</strong></div>
+      <div class="progress-inline"><div class="progress-fill" data-width="9" style="background:#E65100;"></div></div>
     </div>
   </div>
 </div>
@@ -841,22 +921,31 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-title" style="color:#fff;"><span class="white-green">생활재 혁신</span>의 성과</div>
   <div class="e-divider white"></div>
   <div class="e-emotion c-white-30">건강한 한 끼를 위한 끊임없는 노력</div>
-  <div class="inno-list">
-    <div class="inno-item">
-      <div class="inno-num c-light-green">287<span style="font-size:22px;">개</span></div>
-      <div class="inno-text c-white-50">신규 품목 개발</div>
+  <div class="challenge-grid" style="grid-template-columns:repeat(2,1fr);">
+    <div class="accent-card on-dark accent-bar-green">
+      <div class="mini-tag green">개발 · 신규</div>
+      <div class="challenge-title" style="color:#fff;font-weight:700;">신규 품목 개발</div>
+      <div class="challenge-num" style="color:#A5D6A7;">287<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">개</span></div>
+      <div class="challenge-desc c-white-30">건강한 식탁을 위한 새로운 선택지</div>
     </div>
-    <div class="inno-item">
-      <div class="inno-num c-light-green">100만<span style="font-size:22px;">팩</span></div>
-      <div class="inno-text c-white-50">귀리유 판매 달성</div>
+    <div class="accent-card on-dark accent-bar-green">
+      <div class="mini-tag green">히트 · 달성</div>
+      <div class="challenge-title" style="color:#fff;font-weight:700;">귀리유 판매 달성</div>
+      <div class="challenge-num" style="color:#A5D6A7;">100만<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">팩</span></div>
+      <div class="challenge-desc c-white-30">조합원이 선택한 올해의 생활재</div>
+      <div class="progress-inline"><div class="progress-fill" data-width="100" style="background:linear-gradient(90deg,#1B5E20,#A5D6A7);"></div></div>
     </div>
-    <div class="inno-item">
-      <div class="inno-num c-light-green">32<span style="font-size:22px;">품목</span></div>
-      <div class="inno-text c-white-50">두레맛찬 신선반찬</div>
+    <div class="accent-card on-dark accent-bar-green">
+      <div class="mini-tag green">간편식 · 확대</div>
+      <div class="challenge-title" style="color:#fff;font-weight:700;">두레맛찬 신선반찬</div>
+      <div class="challenge-num" style="color:#A5D6A7;">32<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">품목</span></div>
+      <div class="challenge-desc c-white-30">바쁜 일상 속 건강한 한 끼 솔루션</div>
     </div>
-    <div class="inno-item">
-      <div class="inno-num c-light-green">+12%</div>
-      <div class="inno-text c-white-50">공정무역 매출 성장</div>
+    <div class="accent-card on-dark accent-bar-green">
+      <div class="mini-tag green">성장 · 공정무역</div>
+      <div class="challenge-title" style="color:#fff;font-weight:700;">공정무역 매출 성장</div>
+      <div class="challenge-num" style="color:#A5D6A7;">+12<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">%</span></div>
+      <div class="challenge-desc c-white-30">윤리적 소비의 가치를 더하다</div>
     </div>
   </div>
 </div>
@@ -867,36 +956,36 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-title" style="color:#1a1a1a;"><span style="color:#1565C0;">제도 개선</span>과 정책사업</div>
   <div class="e-divider" style="background:#1565C0;"></div>
   <div class="e-emotion c-dark-gray">더 나은 내일을 위한 제도의 씨앗</div>
-  <div class="policy-grid" style="border:2px solid rgba(21,101,192,0.2);">
-    <div class="policy-cell">
-      <div class="policy-num" style="color:#1565C0;">01</div>
-      <div class="policy-name" style="color:#1a1a1a;">농식품 바우처사업</div>
-      <div class="policy-desc c-dark-gray">건강한 먹거리 접근성 확대</div>
+  <div class="challenge-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="accent-card on-light accent-bar-blue">
+      <div class="mini-tag blue-dark">복지</div>
+      <div class="challenge-title" style="color:#1a1a1a;">농식품 바우처사업</div>
+      <div class="challenge-desc c-dark-gray">건강한 먹거리 접근성 확대</div>
     </div>
-    <div class="policy-cell">
-      <div class="policy-num" style="color:#1565C0;">02</div>
-      <div class="policy-name" style="color:#1a1a1a;">임산부 친환경농산물</div>
-      <div class="policy-desc c-dark-gray">경기·동작구·중구 지원사업 확대</div>
+    <div class="accent-card on-light accent-bar-blue">
+      <div class="mini-tag blue-dark">복지</div>
+      <div class="challenge-title" style="color:#1a1a1a;">임산부 친환경농산물</div>
+      <div class="challenge-desc c-dark-gray">경기·동작구·중구 지원사업 확대</div>
     </div>
-    <div class="policy-cell">
-      <div class="policy-num" style="color:#1565C0;">03</div>
-      <div class="policy-name" style="color:#1a1a1a;">농축산물 할인 지원</div>
-      <div class="policy-desc c-dark-gray">조합원 실질 혜택 강화</div>
+    <div class="accent-card on-light accent-bar-green">
+      <div class="mini-tag green-dark">혜택</div>
+      <div class="challenge-title" style="color:#1a1a1a;">농축산물 할인 지원</div>
+      <div class="challenge-desc c-dark-gray">조합원 실질 혜택 강화</div>
     </div>
-    <div class="policy-cell">
-      <div class="policy-num" style="color:#1565C0;">04</div>
-      <div class="policy-name" style="color:#1a1a1a;">생협법 개정 연대</div>
-      <div class="policy-desc c-dark-gray">주무부처 변경 추진</div>
+    <div class="accent-card on-light accent-bar-orange" style="border-left-color:rgba(230,81,0,0.08);">
+      <div class="mini-tag" style="background:rgba(230,81,0,0.08);color:#E65100;">제도</div>
+      <div class="challenge-title" style="color:#1a1a1a;">생협법 개정 연대</div>
+      <div class="challenge-desc c-dark-gray">주무부처 변경 추진</div>
     </div>
-    <div class="policy-cell">
-      <div class="policy-num" style="color:#1565C0;">05</div>
-      <div class="policy-name" style="color:#1a1a1a;">지역화폐 등록 확대</div>
-      <div class="policy-desc c-dark-gray">민생회복 소비쿠폰 사용처</div>
+    <div class="accent-card on-light accent-bar-green">
+      <div class="mini-tag green-dark">혜택</div>
+      <div class="challenge-title" style="color:#1a1a1a;">지역화폐 등록 확대</div>
+      <div class="challenge-desc c-dark-gray">민생회복 소비쿠폰 사용처</div>
     </div>
-    <div class="policy-cell">
-      <div class="policy-num" style="color:#1565C0;">06</div>
-      <div class="policy-name" style="color:#1a1a1a;">기반 안정화</div>
-      <div class="policy-desc c-dark-gray">제도적 지속가능 성장 기반</div>
+    <div class="accent-card on-light accent-bar-blue">
+      <div class="mini-tag blue-dark">기반</div>
+      <div class="challenge-title" style="color:#1a1a1a;">기반 안정화</div>
+      <div class="challenge-desc c-dark-gray">제도적 지속가능 성장 기반</div>
     </div>
   </div>
 </div>
@@ -907,26 +996,26 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-title" style="color:#1a1a1a;"><span class="green">생산자와 함께</span>, 소비자를 위한 생활재</div>
   <div class="e-divider green"></div>
   <div class="e-emotion c-gray">얼굴이 보이는 관계, 신뢰로 잇는 밥상</div>
-  <div class="producer-grid">
-    <div class="producer-cell">
-      <div class="policy-num c-green">01</div>
-      <div class="policy-name" style="color:#1a1a1a;">생산자의 얼굴이 보이는 생활재</div>
-      <div class="policy-desc c-dark-gray">생산자 브랜드를 통한 신뢰와 투명성, 직접적 연결 강화</div>
+  <div class="challenge-grid">
+    <div class="accent-card on-light accent-bar-green">
+      <div class="mini-tag green-dark">신뢰</div>
+      <div class="challenge-title" style="color:#1a1a1a;">생산자의 얼굴이 보이는 생활재</div>
+      <div class="challenge-desc c-dark-gray">생산자 브랜드를 통한 신뢰와 투명성, 직접적 연결 강화</div>
     </div>
-    <div class="producer-cell">
-      <div class="policy-num c-green">02</div>
-      <div class="policy-name" style="color:#1a1a1a;">제철 농산물 산지 점검</div>
-      <div class="policy-desc c-dark-gray">현장 품질 관리와 안전한 먹거리 공급 체계 확립</div>
+    <div class="accent-card on-light accent-bar-green">
+      <div class="mini-tag green-dark">품질</div>
+      <div class="challenge-title" style="color:#1a1a1a;">제철 농산물 산지 점검</div>
+      <div class="challenge-desc c-dark-gray">현장 품질 관리와 안전한 먹거리 공급 체계 확립</div>
     </div>
-    <div class="producer-cell">
-      <div class="policy-num c-green">03</div>
-      <div class="policy-name" style="color:#1a1a1a;">생산자-소비자 상생</div>
-      <div class="policy-desc c-dark-gray">공정 거래와 지속가능한 농업을 위한 신뢰 기반 협력</div>
+    <div class="accent-card on-light accent-bar-green">
+      <div class="mini-tag green-dark">상생</div>
+      <div class="challenge-title" style="color:#1a1a1a;">생산자-소비자 상생</div>
+      <div class="challenge-desc c-dark-gray">공정 거래와 지속가능한 농업을 위한 신뢰 기반 협력</div>
     </div>
-    <div class="producer-cell">
-      <div class="policy-num c-green">04</div>
-      <div class="policy-name" style="color:#1a1a1a;">안전한 생활재 공급</div>
-      <div class="policy-desc c-dark-gray">엄격한 품질 기준과 투명한 생산으로 건강한 식탁 지원</div>
+    <div class="accent-card on-light accent-bar-green">
+      <div class="mini-tag green-dark">안전</div>
+      <div class="challenge-title" style="color:#1a1a1a;">안전한 생활재 공급</div>
+      <div class="challenge-desc c-dark-gray">엄격한 품질 기준과 투명한 생산으로 건강한 식탁 지원</div>
     </div>
   </div>
 </div>
@@ -1002,21 +1091,33 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-title" style="color:#1a1a1a;">교육 <span class="indigo">핵심 성과</span></div>
   <div class="e-divider indigo"></div>
   <div class="e-emotion c-dark-gray">한 사람의 배움이 열 사람의 변화를 만듭니다</div>
-  <div class="e-grid e-grid-3" style="border:2px solid #3949AB;">
-    <div class="e-cell e-cell-on-white">
-      <div class="e-cell-num c-indigo">175<span style="font-size:22px;" class="c-gray">H</span></div>
-      <div class="e-cell-label c-gray">총 교육 시간</div>
-      <div class="e-cell-sub c-indigo">목표 100% 달성</div>
+  <div class="challenge-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="accent-card on-light accent-bar-indigo">
+      <div class="mini-tag indigo-dark">달성</div>
+      <div class="challenge-num c-indigo">175<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">H</span></div>
+      <div class="challenge-title" style="color:#1a1a1a;">총 교육 시간</div>
+      <div class="challenge-desc c-gray">연간 목표 100% 달성</div>
+      <div class="progress-inline"><div class="progress-fill" data-width="100" style="background:#3949AB;"></div></div>
     </div>
-    <div class="e-cell e-cell-on-white">
-      <div class="e-cell-num c-indigo"><span class="count2" data-target="601" data-format="int">0</span><span style="font-size:22px;" class="c-gray">명</span></div>
-      <div class="e-cell-label c-gray">총 참여 인원</div>
-      <div class="e-cell-sub c-indigo">전년 대비 +28.4%</div>
+    <div class="accent-card on-light accent-bar-indigo">
+      <div class="mini-tag indigo-dark">성장</div>
+      <div class="challenge-num c-indigo"><span class="count2" data-target="601" data-format="int">0</span><span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">명</span></div>
+      <div class="challenge-title" style="color:#1a1a1a;">총 참여 인원</div>
+      <div class="challenge-desc c-gray">전년 대비 <strong class="c-indigo">+28.4%</strong> 성장</div>
+      <div class="progress-inline"><div class="progress-fill" data-width="78" style="background:#3949AB;"></div></div>
     </div>
-    <div class="e-cell e-cell-on-white">
-      <div class="e-cell-num c-indigo">4.43</div>
-      <div class="e-cell-label c-gray">효과성 점수 /5.0</div>
-      <div class="e-cell-sub c-indigo">Very Good</div>
+    <div class="accent-card on-light accent-bar-indigo">
+      <div class="mini-tag indigo-dark">우수</div>
+      <div class="challenge-num c-indigo">4.43<span style="font-size:clamp(12px,1.1vw,16px);font-weight:400;color:#888;"> / 5.0</span></div>
+      <div class="challenge-title" style="color:#1a1a1a;">효과성 점수</div>
+      <div class="rating-bar">
+        <div class="rating-dot" style="background:#3949AB;"></div>
+        <div class="rating-dot" style="background:#3949AB;"></div>
+        <div class="rating-dot" style="background:#3949AB;"></div>
+        <div class="rating-dot" style="background:#3949AB;"></div>
+        <div class="rating-dot" style="background:rgba(57,73,171,0.25);"></div>
+        <span class="rating-score c-indigo">Very Good</span>
+      </div>
     </div>
   </div>
 </div>
@@ -1026,36 +1127,60 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label indigo">PROGRAMS</div>
   <div class="e-title" style="color:#1a1a1a;font-size:clamp(28px,3.8vw,52px);">주요 <span class="indigo">교육 프로그램</span></div>
   <div class="e-divider indigo"></div>
-  <div class="edu-grid">
-    <div class="edu-cell">
-      <div class="edu-cat c-indigo">임원 & 활동가</div>
-      <div class="edu-name">신임임원교육 & 임원교육</div>
-      <div><span class="edu-stat" style="background:rgba(57,73,171,0.08);color:#3949AB;"><strong>57명</strong></span><span class="edu-stat" style="background:rgba(57,73,171,0.08);color:#3949AB;">효과성 <strong>4.6</strong></span></div>
+  <div class="challenge-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="accent-card on-light accent-bar-indigo">
+      <div class="mini-tag indigo-dark">임원 & 활동가</div>
+      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">신임임원교육 & 임원교육</div>
+      <div class="challenge-num c-indigo" style="font-size:clamp(24px,2.8vw,40px);">57<span style="font-size:clamp(12px,1.1vw,16px);font-weight:400;">명</span></div>
+      <div class="rating-bar">
+        <div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:rgba(57,73,171,0.25);"></div>
+        <span class="rating-score c-indigo">4.6</span>
+      </div>
     </div>
-    <div class="edu-cell">
-      <div class="edu-cat c-indigo">임원 & 활동가</div>
-      <div class="edu-name">이사장워크숍 & 실무책임자교육</div>
-      <div><span class="edu-stat" style="background:rgba(57,73,171,0.08);color:#3949AB;"><strong>40명</strong></span><span class="edu-stat" style="background:rgba(57,73,171,0.08);color:#3949AB;">효과성 <strong>4.4</strong></span></div>
+    <div class="accent-card on-light accent-bar-indigo">
+      <div class="mini-tag indigo-dark">임원 & 활동가</div>
+      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">이사장워크숍 & 실무책임자교육</div>
+      <div class="challenge-num c-indigo" style="font-size:clamp(24px,2.8vw,40px);">40<span style="font-size:clamp(12px,1.1vw,16px);font-weight:400;">명</span></div>
+      <div class="rating-bar">
+        <div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:rgba(57,73,171,0.25);"></div>
+        <span class="rating-score c-indigo">4.4</span>
+      </div>
     </div>
-    <div class="edu-cell">
-      <div class="edu-cat c-indigo">조합원</div>
-      <div class="edu-name">조합원활동교육 '한걸음 더'</div>
-      <div><span class="edu-stat" style="background:rgba(57,73,171,0.08);color:#3949AB;"><strong>22명</strong></span><span class="edu-stat" style="background:rgba(198,40,40,0.08);color:#C62828;">최고 <strong>4.8</strong></span></div>
+    <div class="accent-card on-light accent-bar-red">
+      <div class="mini-tag" style="background:rgba(198,40,40,0.1);color:#C62828;">조합원 · BEST</div>
+      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">조합원활동교육 '한걸음 더'</div>
+      <div class="challenge-num" style="color:#C62828;font-size:clamp(24px,2.8vw,40px);">22<span style="font-size:clamp(12px,1.1vw,16px);font-weight:400;">명</span></div>
+      <div class="rating-bar">
+        <div class="rating-dot" style="background:#C62828;"></div><div class="rating-dot" style="background:#C62828;"></div><div class="rating-dot" style="background:#C62828;"></div><div class="rating-dot" style="background:#C62828;"></div><div class="rating-dot" style="background:#C62828;"></div>
+        <span class="rating-score" style="color:#C62828;">4.8 Best</span>
+      </div>
     </div>
-    <div class="edu-cell">
-      <div class="edu-cat c-indigo">조합원</div>
-      <div class="edu-name">조합원 기획강좌 (3회)</div>
-      <div><span class="edu-stat" style="background:rgba(57,73,171,0.08);color:#3949AB;"><strong>230명</strong></span><span class="edu-stat" style="background:rgba(57,73,171,0.08);color:#3949AB;">효과성 <strong>4.6</strong></span></div>
+    <div class="accent-card on-light accent-bar-indigo">
+      <div class="mini-tag indigo-dark">조합원</div>
+      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">조합원 기획강좌 (3회)</div>
+      <div class="challenge-num c-indigo" style="font-size:clamp(24px,2.8vw,40px);">230<span style="font-size:clamp(12px,1.1vw,16px);font-weight:400;">명</span></div>
+      <div class="rating-bar">
+        <div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:rgba(57,73,171,0.25);"></div>
+        <span class="rating-score c-indigo">4.6</span>
+      </div>
     </div>
-    <div class="edu-cell">
-      <div class="edu-cat c-indigo">식생활</div>
-      <div class="edu-name">식생활강사 전문과정 & 두레 장학교</div>
-      <div><span class="edu-stat" style="background:rgba(57,73,171,0.08);color:#3949AB;"><strong>31명</strong></span><span class="edu-stat" style="background:rgba(57,73,171,0.08);color:#3949AB;">효과성 <strong>4.6</strong></span></div>
+    <div class="accent-card on-light accent-bar-indigo">
+      <div class="mini-tag indigo-dark">식생활</div>
+      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">식생활강사 전문과정 & 두레 장학교</div>
+      <div class="challenge-num c-indigo" style="font-size:clamp(24px,2.8vw,40px);">31<span style="font-size:clamp(12px,1.1vw,16px);font-weight:400;">명</span></div>
+      <div class="rating-bar">
+        <div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:rgba(57,73,171,0.25);"></div>
+        <span class="rating-score c-indigo">4.6</span>
+      </div>
     </div>
-    <div class="edu-cell">
-      <div class="edu-cat c-indigo">조직담당자</div>
-      <div class="edu-name">조직담당자 실무교육 (5회)</div>
-      <div><span class="edu-stat" style="background:rgba(57,73,171,0.08);color:#3949AB;"><strong>92명</strong></span><span class="edu-stat" style="background:rgba(57,73,171,0.08);color:#3949AB;">효과성 <strong>4.4</strong></span></div>
+    <div class="accent-card on-light accent-bar-indigo">
+      <div class="mini-tag indigo-dark">조직담당자</div>
+      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">조직담당자 실무교육 (5회)</div>
+      <div class="challenge-num c-indigo" style="font-size:clamp(24px,2.8vw,40px);">92<span style="font-size:clamp(12px,1.1vw,16px);font-weight:400;">명</span></div>
+      <div class="rating-bar">
+        <div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:#3949AB;"></div><div class="rating-dot" style="background:rgba(57,73,171,0.25);"></div>
+        <span class="rating-score c-indigo">4.4</span>
+      </div>
     </div>
   </div>
 </div>
@@ -1110,21 +1235,29 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-title" style="color:#fff;">2025년 <span class="white-orange">민중교역</span> 활동</div>
   <div class="e-divider orange"></div>
   <div class="e-emotion c-white-30">국경을 넘어, 생산자의 삶과 연대합니다</div>
-  <div class="ft-grid">
-    <div class="ft-cell">
-      <div class="ft-name c-light-orange">민중교역포럼<br>팔레스타인연대강연회</div>
-      <div class="ft-num c-light-orange">230<span class="ft-unit c-white-50">명</span></div>
-      <div class="ft-desc c-white-30">만족도 4.53 · 주민, 팔당, 두레한강</div>
+  <div class="challenge-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="accent-card on-dark accent-bar-orange">
+      <div class="mini-tag orange">포럼 · 연대</div>
+      <div class="challenge-title" style="color:#fff;font-weight:700;">민중교역포럼 &<br>팔레스타인연대강연회</div>
+      <div class="challenge-num" style="color:#FFAB91;">230<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">명</span></div>
+      <div class="challenge-desc c-white-30">만족도 4.53 · 주민, 팔당, 두레한강</div>
+      <div class="rating-bar">
+        <div class="rating-dot" style="background:#FFAB91;"></div><div class="rating-dot" style="background:#FFAB91;"></div><div class="rating-dot" style="background:#FFAB91;"></div><div class="rating-dot" style="background:#FFAB91;"></div><div class="rating-dot" style="background:rgba(255,171,145,0.25);"></div>
+        <span class="rating-score" style="color:#FFAB91;">4.53</span>
+      </div>
     </div>
-    <div class="ft-cell">
-      <div class="ft-name c-light-orange">발랑곤바나나<br>정기구독 캠페인</div>
-      <div class="ft-num c-light-orange">1,793<span class="ft-unit c-white-50">명</span></div>
-      <div class="ft-desc c-white-30">42,768kg · 목표 160% 달성</div>
+    <div class="accent-card on-dark accent-bar-orange">
+      <div class="mini-tag orange">캠페인 · 160%</div>
+      <div class="challenge-title" style="color:#fff;font-weight:700;">발랑곤바나나<br>정기구독 캠페인</div>
+      <div class="challenge-num" style="color:#FFAB91;">1,793<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">명</span></div>
+      <div class="challenge-desc c-white-30">42,768kg · 목표 <strong style="color:#FFAB91;">160%</strong> 달성</div>
+      <div class="progress-inline"><div class="progress-fill" data-width="100" style="background:linear-gradient(90deg,#E65100,#FFAB91);"></div></div>
     </div>
-    <div class="ft-cell">
-      <div class="ft-name c-light-orange">필리핀 생산지 방문<br>바르크 점검 & 교류</div>
-      <div class="ft-num c-light-orange">22<span class="ft-unit c-white-50">명</span></div>
-      <div class="ft-desc c-white-30">8곳 방문 · 바르크 5명+연수 17명</div>
+    <div class="accent-card on-dark accent-bar-orange">
+      <div class="mini-tag orange">교류 · 방문</div>
+      <div class="challenge-title" style="color:#fff;font-weight:700;">필리핀 생산지 방문<br>바르크 점검 & 교류</div>
+      <div class="challenge-num" style="color:#FFAB91;">22<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">명</span></div>
+      <div class="challenge-desc c-white-30">8곳 방문 · 바르크 5명 + 연수 17명</div>
     </div>
   </div>
   <div class="photo-strip photo-strip-3" style="margin-top:30px;">
@@ -1149,26 +1282,30 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-title" style="color:#1a1a1a;font-size:clamp(28px,3.8vw,52px);"><span class="green">기후위기 대응</span> & <span class="orange">생산자 연대</span></div>
   <div class="e-divider green"></div>
   <div class="e-emotion c-dark-gray">지구와 이웃을 함께 돌보는 것이 생협의 길입니다</div>
-  <div class="cl-grid">
-    <div class="cl-cell">
-      <div class="cl-name c-green">종이팩재활용 집중 캠페인</div>
-      <div class="cl-num c-green">2,001kg</div>
-      <div class="cl-desc c-dark-gray">신규지역기관 26곳 발굴 · 두친소 6곳</div>
+  <div class="challenge-grid" style="grid-template-columns:repeat(2,1fr);">
+    <div class="accent-card on-light accent-bar-green">
+      <div class="mini-tag green-dark">기후 · 환경</div>
+      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">종이팩재활용 집중 캠페인</div>
+      <div class="challenge-num c-green" style="font-size:clamp(26px,3vw,42px);">2,001<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">kg</span></div>
+      <div class="challenge-desc c-gray">신규지역기관 <strong class="c-green">26곳</strong> 발굴 · 두친소 6곳</div>
     </div>
-    <div class="cl-cell">
-      <div class="cl-name c-green">927 기후정의행진</div>
-      <div class="cl-num c-green">100여명</div>
-      <div class="cl-desc c-dark-gray">죽바클 워크숍 연계 · 21% 파티 활동 제안</div>
+    <div class="accent-card on-light accent-bar-green">
+      <div class="mini-tag green-dark">기후 · 행동</div>
+      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">927 기후정의행진</div>
+      <div class="challenge-num c-green" style="font-size:clamp(26px,3vw,42px);">100<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">여명</span></div>
+      <div class="challenge-desc c-gray">죽바클 워크숍 연계 · 21% 파티 활동 제안</div>
     </div>
-    <div class="cl-cell">
-      <div class="cl-name c-orange">생명나눔한마당</div>
-      <div class="cl-num c-orange">400여명</div>
-      <div class="cl-desc c-dark-gray">의성산운생태공원 · 의성군비 2,500만원</div>
+    <div class="accent-card on-light accent-bar-orange">
+      <div class="mini-tag" style="background:rgba(230,81,0,0.1);color:#E65100;">연대 · 나눔</div>
+      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">생명나눔한마당</div>
+      <div class="challenge-num c-orange" style="font-size:clamp(26px,3vw,42px);">400<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">여명</span></div>
+      <div class="challenge-desc c-gray">의성산운생태공원 · 의성군비 <strong class="c-orange">2,500만원</strong></div>
     </div>
-    <div class="cl-cell">
-      <div class="cl-name c-orange">1004 기금</div>
-      <div class="cl-num c-orange">3,800만원</div>
-      <div class="cl-desc c-dark-gray">산불피해(4월) · 폭우피해(8월) 복구 지원</div>
+    <div class="accent-card on-light accent-bar-orange">
+      <div class="mini-tag" style="background:rgba(230,81,0,0.1);color:#E65100;">연대 · 기금</div>
+      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">1004 기금</div>
+      <div class="challenge-num c-orange" style="font-size:clamp(26px,3vw,42px);">3,800<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">만원</span></div>
+      <div class="challenge-desc c-gray">산불피해(4월) · 폭우피해(8월) 복구 지원</div>
     </div>
   </div>
   <div class="photo-strip photo-strip-4" style="margin-top:30px;">
@@ -1228,10 +1365,8 @@ body:hover .section-indicator { opacity: 1; }
   <button class="ctrl-btn" id="btnRestart" title="처음부터">↺</button>
 </div>
 
-<!-- BGM Audio (Mixkit Free License - no attribution required) -->
-<audio id="bgm" loop preload="auto">
-  <source src="https://assets.mixkit.co/music/127/127.mp3" type="audio/mpeg">
-</audio>
+<!-- BGM Audio Playlist (Mixkit Free License - no attribution required) -->
+<audio id="bgm" preload="auto"></audio>
 <!-- Transition sound (short whoosh) synthesized via Web Audio API -->
 
 <script>
@@ -1330,20 +1465,35 @@ function updateSettingsDisplay() {
   document.getElementById('settingSlideCount').textContent = sections.length + '장';
   document.getElementById('settingPhotoCount').textContent = photoData.length + '장';
 }
-document.querySelectorAll('.speed-btn').forEach(btn => {
+document.querySelectorAll('#speedControls .speed-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('#speedControls .speed-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     speedMultiplier = parseFloat(btn.dataset.speed);
-    // Update durations
     sections.forEach((s, i) => {
       s.duration = Math.round(s._baseDuration / speedMultiplier);
     });
     updateSettingsDisplay();
   });
 });
+// BGM track selector
+document.querySelectorAll('.bgm-opt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.bgm-opt').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    bgmTrackIdx = parseInt(btn.dataset.bgm);
+    loadBgmTrack(bgmTrackIdx);
+  });
+});
 document.getElementById('btnStart').addEventListener('click', () => {
   document.getElementById('settingsOverlay').classList.add('hidden');
+  // Auto-play BGM on start
+  bgm.volume = 0.2;
+  bgm.play().then(() => {
+    bgmPlaying = true;
+    document.getElementById('btnBgm').style.opacity = '1';
+    document.getElementById('btnBgm').textContent = '♫';
+  }).catch(() => {});
   setTimeout(() => init(), 400);
 });
 // Store base durations and init settings
@@ -1473,8 +1623,16 @@ function activateSection(index) {
 
 function triggerAnimations(sid) {
   const sec = document.getElementById(sid);
-  const els = sec.querySelectorAll('.e-label, .e-title, .e-divider, .e-emotion, .e-cell, .e-color-bar, .e-subtitle, .bar-chart, .ring-container, .inno-item, .coop-summary, .bubble-chart, .challenge-card, .challenge-divider, .hope-msg, .policy-cell, .producer-cell, .edu-cell, .ft-cell, .cl-cell, .photo-strip, .end-year, .end-msg, .end-org, .end-logo');
+  const els = sec.querySelectorAll('.e-label, .e-title, .e-divider, .e-emotion, .e-cell, .e-color-bar, .e-subtitle, .bar-chart, .ring-container, .inno-item, .accent-card, .coop-summary, .bubble-chart, .challenge-card, .challenge-divider, .hope-msg, .policy-cell, .producer-cell, .edu-cell, .ft-cell, .cl-cell, .photo-strip, .end-year, .end-msg, .end-org, .end-logo');
   els.forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 150));
+
+  // Animate progress-fill bars when section activates
+  setTimeout(() => {
+    sec.querySelectorAll('.progress-fill').forEach(bar => {
+      const w = bar.dataset.width;
+      if (w) bar.style.width = w + '%';
+    });
+  }, 600);
 
   if (sid === 'scene2') {
     setTimeout(() => {
@@ -1534,6 +1692,7 @@ function startAutoPlay() {
       // Auto-loop: restart from beginning
       document.querySelectorAll('.show').forEach(el=>el.classList.remove('show'));
       document.querySelectorAll('#growthChart .bar-fill').forEach(b=>b.style.height='0');
+      document.querySelectorAll('.progress-fill').forEach(b=>b.style.width='0');
       document.getElementById('piProgress').style.strokeDashoffset=603;
       document.querySelectorAll('.bubble').forEach(b=>b.classList.remove('visible'));
       stopSlideshow();
@@ -1552,6 +1711,7 @@ document.getElementById('btnRestart').addEventListener('click', () => {
   clearTimeout(autoTimer); stopSlideshow();
   document.querySelectorAll('.show').forEach(el=>el.classList.remove('show'));
   document.querySelectorAll('#growthChart .bar-fill').forEach(b=>b.style.height='0');
+  document.querySelectorAll('.progress-fill').forEach(b=>b.style.width='0');
   document.getElementById('piProgress').style.strokeDashoffset=603;
   document.querySelectorAll('.bubble').forEach(b=>b.classList.remove('visible'));
   activateSection(0); isPaused=false;
@@ -1603,19 +1763,42 @@ function playTransitionSound() {
   osc.stop(audioCtx.currentTime + 0.4);
 }
 
-// ===== BGM CONTROL =====
+// ===== BGM PLAYLIST =====
 const bgm = document.getElementById('bgm');
 let bgmPlaying = false;
+let bgmTrackIdx = 0;
+const bgmPlaylist = [
+  'https://assets.mixkit.co/music/22/22.mp3',    // Piano Reflections - 잔잔한 피아노
+  'https://assets.mixkit.co/music/587/587.mp3',   // Discover - 따뜻한 영감
+  'https://assets.mixkit.co/music/543/543.mp3',   // A New Life - 희망적
+  'https://assets.mixkit.co/music/551/551.mp3',   // Home - 감성적
+  'https://assets.mixkit.co/music/31/31.mp3',     // Dreaming Big - 도약
+];
+function loadBgmTrack(idx) {
+  bgm.src = bgmPlaylist[idx % bgmPlaylist.length];
+  bgm.load();
+}
+bgm.addEventListener('ended', () => {
+  bgmTrackIdx++;
+  loadBgmTrack(bgmTrackIdx);
+  bgm.volume = 0.2;
+  bgm.play().catch(() => {});
+});
+loadBgmTrack(0);
+bgm.volume = 0.2;
+
 document.getElementById('btnBgm').addEventListener('click', () => {
   if (bgmPlaying) {
     bgm.pause();
     bgmPlaying = false;
     document.getElementById('btnBgm').style.opacity = '0.4';
+    document.getElementById('btnBgm').textContent = '♪';
   } else {
-    bgm.volume = 0.25;
+    bgm.volume = 0.2;
     bgm.play().catch(() => {});
     bgmPlaying = true;
     document.getElementById('btnBgm').style.opacity = '1';
+    document.getElementById('btnBgm').textContent = '♫';
   }
 });
 document.getElementById('btnBgm').style.opacity = '0.4';
