@@ -532,6 +532,10 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 }
 
 .photo-item:hover img { transform: scale(1.05) !important; }
+.paper-vertical-card:hover img { transform: scale(1.05) !important; }
+.paper-vertical-card.anim-fade-up img { animation: ph-fade-up 1.2s cubic-bezier(0.16,1,0.3,1) forwards; }
+.paper-vertical-card.anim-reveal img { animation: ph-reveal 1.4s cubic-bezier(0.16,1,0.3,1) forwards; }
+.paper-vertical-card.anim-zoom img { animation: ph-zoom 1.4s cubic-bezier(0.16,1,0.3,1) forwards; }
 .photo-caption {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: clamp(12px, 2vh, 24px) clamp(8px, 1.2vw, 16px) clamp(6px, 1vh, 12px);
@@ -1103,24 +1107,18 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-title" style="color:#1a1a1a;font-size:clamp(24px,3.2vw,44px);">"175시간의 기록,<br>만족을 넘어 <span class="indigo">실질적인 변화</span>를 만드는 시간"</div>
   <div class="e-divider indigo"></div>
   <div class="e-emotion c-dark-gray">사람을 키우는 교육, 조직을 살리는 배움</div>
-  <div class="challenge-grid" style="grid-template-columns:repeat(3,1fr);margin-top:clamp(20px,4vh,40px);">
-    <div class="accent-card on-light accent-bar-indigo">
-      <div class="mini-tag indigo-dark">임원 & 활동가</div>
-      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;font-size:clamp(15px,1.5vw,20px);">임원교육 · 이사장워크숍<br>실무책임자교육</div>
-      <div class="challenge-num c-indigo" style="font-size:clamp(28px,3vw,42px);">97<span style="font-size:clamp(12px,1.1vw,16px);font-weight:400;">명</span></div>
-      <div class="challenge-desc c-gray">효과성 4.4~4.6</div>
+  <div class="photo-strip photo-strip-3" style="margin-top:clamp(20px,4vh,40px);">
+    <div class="photo-item" data-anim="anim-fade-up">
+      <img src="photos/edu/02-imwon.png" alt="임원교육 · 이사장워크숍" loading="lazy">
+      <div class="photo-caption">임원교육 · 이사장워크숍 · 실무책임자교육</div>
     </div>
-    <div class="accent-card on-light accent-bar-indigo">
-      <div class="mini-tag indigo-dark">조직담당자</div>
-      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;font-size:clamp(15px,1.5vw,20px);">조직담당자 실무교육<br>5회 운영</div>
-      <div class="challenge-num c-indigo" style="font-size:clamp(28px,3vw,42px);">92<span style="font-size:clamp(12px,1.1vw,16px);font-weight:400;">명</span></div>
-      <div class="challenge-desc c-gray">효과성 4.4</div>
+    <div class="photo-item" data-anim="anim-reveal">
+      <img src="photos/edu/06-jojik.png" alt="조직담당자 실무교육" loading="lazy">
+      <div class="photo-caption">조직담당자 실무교육</div>
     </div>
-    <div class="accent-card on-light accent-bar-indigo">
-      <div class="mini-tag indigo-dark">식생활</div>
-      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;font-size:clamp(15px,1.5vw,20px);">식생활강사양성교육<br>전문과정 & 장학교</div>
-      <div class="challenge-num c-indigo" style="font-size:clamp(28px,3vw,42px);">31<span style="font-size:clamp(12px,1.1vw,16px);font-weight:400;">명</span></div>
-      <div class="challenge-desc c-gray">효과성 4.6</div>
+    <div class="photo-item" data-anim="anim-zoom">
+      <img src="photos/edu/05-jang.png" alt="식생활강사양성교육" loading="lazy">
+      <div class="photo-caption">식생활강사양성교육 전문과정 & 장학교</div>
     </div>
   </div>
 </div>
@@ -1161,11 +1159,9 @@ body:hover .section-indicator { opacity: 1; }
       <div class="challenge-desc c-white-30">팔레스타인 생산자와 함께 나눈<br>평화를 향한 연대</div>
     </div>
     <div class="accent-card on-dark accent-bar-orange">
-      <div class="mini-tag orange">캠페인 · 160%</div>
+      <div class="mini-tag orange">캠페인</div>
       <div class="challenge-title" style="color:#fff;font-weight:700;">발랑곤바나나 정기구독</div>
       <div class="challenge-num" style="color:#FFAB91;">1,793<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">명</span></div>
-      <div class="challenge-desc c-white-30">42,768kg · 목표 <strong style="color:#FFAB91;">160%</strong> 달성</div>
-      <div class="progress-inline"><div class="progress-fill" data-width="100" style="background:linear-gradient(90deg,#E65100,#FFAB91);"></div></div>
     </div>
     <div class="accent-card on-dark accent-bar-orange">
       <div class="mini-tag orange">교류연수</div>
@@ -1174,71 +1170,54 @@ body:hover .section-indicator { opacity: 1; }
       <div class="challenge-desc c-white-30">바르크프로젝트 점검<br>필리핀생산지교류연수</div>
     </div>
   </div>
-</div>
-
-<!-- 2-5: 민중교역 사진 -->
-<div class="section bg-deep" id="fair-trade-photos">
-  <div class="e-label orange">FAIR TRADE · IN ACTION</div>
-  <div class="e-title" style="color:#fff;font-size:clamp(24px,3vw,40px);">국경을 넘은 <span class="white-orange">연대의 현장</span></div>
-  <div class="e-divider orange"></div>
-  <div class="photo-strip photo-strip-3" style="margin-top:clamp(24px,5vh,50px);">
-    <div class="photo-item" data-anim="anim-fade-up">
-      <img src="photos/edu2/04-palestine.jpg" alt="팔레스타인 생산자 환영" loading="lazy">
+  <div class="photo-strip photo-strip-3" style="margin-top:clamp(16px,3vh,30px);">
+    <div class="photo-item" data-anim="anim-fade-up" style="max-height:clamp(120px,18vh,200px);overflow:hidden;">
+      <img src="photos/edu2/04-palestine.jpg" alt="팔레스타인 생산자 환영" loading="lazy" style="height:100%;object-fit:cover;">
       <div class="photo-caption">팔레스타인 생산자와 함께</div>
     </div>
-    <div class="photo-item" data-anim="anim-slide-in">
-      <img src="photos/edu2/05-banana.jpg" alt="발랑곤바나나 캠페인" loading="lazy">
+    <div class="photo-item" data-anim="anim-slide-in" style="max-height:clamp(120px,18vh,200px);overflow:hidden;">
+      <img src="photos/edu2/05-banana.jpg" alt="발랑곤바나나 캠페인" loading="lazy" style="height:100%;object-fit:cover;">
       <div class="photo-caption">발랑곤바나나 정기구독</div>
     </div>
-    <div class="photo-item" data-anim="anim-reveal">
-      <img src="photos/edu2/06-philippines.jpg" alt="필리핀 생산지 교류연수" loading="lazy">
-      <div class="photo-caption">필리핀 민중교역 생산지 교류연수</div>
+    <div class="photo-item" data-anim="anim-reveal" style="max-height:clamp(120px,18vh,200px);overflow:hidden;">
+      <img src="photos/edu2/06-philippines.jpg" alt="필리핀 생산지 교류연수" loading="lazy" style="height:100%;object-fit:cover;">
+      <div class="photo-caption">필리핀 생산지 교류연수</div>
     </div>
   </div>
 </div>
 
-<!-- 2-6: 종이팩수거캠페인 카드 -->
+<!-- 2-6: 종이팩수거캠페인 (카드+세로사진 통합) -->
 <div class="section bg-white" id="paper-campaign">
   <div class="e-label green">CLIMATE · RECYCLE</div>
-  <div class="e-title" style="color:#1a1a1a;font-size:clamp(26px,3.5vw,48px);"><span class="green">기후위기 대응</span>,<br>종이팩수거캠페인</div>
+  <div class="e-title" style="color:#1a1a1a;font-size:clamp(22px,2.8vw,38px);margin-bottom:clamp(4px,1vh,10px);"><span class="green">기후위기 대응</span>, 종이팩수거캠페인</div>
   <div class="e-divider green"></div>
-  <div class="e-emotion c-dark-gray">자원도 아끼고, 지구도 살리세요</div>
-  <div class="challenge-grid" style="grid-template-columns:repeat(3,1fr);margin-top:clamp(24px,5vh,50px);">
-    <div class="accent-card on-light accent-bar-green">
-      <div class="mini-tag green-dark">수거 실적</div>
-      <div class="challenge-num c-green" style="font-size:clamp(32px,3.8vw,52px);">2,565<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">kg</span></div>
-      <div class="challenge-title" style="color:#1a1a1a;">일반팩 + 멸균팩 총 수거량</div>
+  <div class="paper-photo-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.5vw,24px);margin-top:clamp(16px,3vh,32px);width:100%;max-width:1100px;height:clamp(320px,50vh,520px);">
+    <!-- 카드 1: 수거 실적 -->
+    <div class="paper-vertical-card" data-anim="anim-fade-up" style="position:relative;border-radius:14px;overflow:hidden;height:100%;">
+      <img src="photos/edu2/07-papercup-poster.jpg" alt="종이팩 수거 포스터" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);">
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75) 40%);padding:clamp(16px,2.5vh,28px) clamp(12px,1.5vw,20px);text-align:center;">
+        <div style="display:inline-block;background:rgba(76,175,80,0.2);color:#A5D6A7;padding:3px 10px;border-radius:20px;font-size:clamp(9px,0.9vw,11px);font-weight:700;letter-spacing:1px;margin-bottom:6px;">수거 실적</div>
+        <div style="color:#fff;font-size:clamp(32px,3.5vw,48px);font-weight:900;line-height:1.1;">2,565<span style="font-size:clamp(13px,1.2vw,18px);font-weight:400;">kg</span></div>
+        <div style="color:rgba(255,255,255,0.65);font-size:clamp(11px,1vw,14px);margin-top:4px;">일반팩 + 멸균팩 총 수거량</div>
+      </div>
     </div>
-    <div class="accent-card on-light accent-bar-green">
-      <div class="mini-tag green-dark">신규 발굴</div>
-      <div class="challenge-num c-green" style="font-size:clamp(32px,3.8vw,52px);">26<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">곳</span></div>
-      <div class="challenge-title" style="color:#1a1a1a;">신규지역기관 발굴</div>
+    <!-- 카드 2: 신규 발굴 -->
+    <div class="paper-vertical-card" data-anim="anim-reveal" style="position:relative;border-radius:14px;overflow:hidden;height:100%;">
+      <img src="photos/edu2/08-papercup-box.png" alt="종이팩 수거함" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);">
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75) 40%);padding:clamp(16px,2.5vh,28px) clamp(12px,1.5vw,20px);text-align:center;">
+        <div style="display:inline-block;background:rgba(76,175,80,0.2);color:#A5D6A7;padding:3px 10px;border-radius:20px;font-size:clamp(9px,0.9vw,11px);font-weight:700;letter-spacing:1px;margin-bottom:6px;">신규 발굴</div>
+        <div style="color:#fff;font-size:clamp(32px,3.5vw,48px);font-weight:900;line-height:1.1;">26<span style="font-size:clamp(13px,1.2vw,18px);font-weight:400;">곳</span></div>
+        <div style="color:rgba(255,255,255,0.65);font-size:clamp(11px,1vw,14px);margin-top:4px;">신규지역기관 발굴</div>
+      </div>
     </div>
-    <div class="accent-card on-light accent-bar-green">
-      <div class="mini-tag green-dark">두친소</div>
-      <div class="challenge-num c-green" style="font-size:clamp(32px,3.8vw,52px);">6<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">곳</span></div>
-      <div class="challenge-title" style="color:#1a1a1a;">두레의 친구를 소개합니다</div>
-    </div>
-  </div>
-</div>
-
-<!-- 2-7: 종이팩 + 기후 사진 -->
-<div class="section bg-dark" id="paper-photos">
-  <div class="e-label green" style="color:#A5D6A7;">CLIMATE · FIELD</div>
-  <div class="e-title" style="color:#fff;font-size:clamp(24px,3vw,40px);">작은 실천이 모여 <span class="white-green">큰 변화</span>가 됩니다</div>
-  <div class="e-divider" style="background:#A5D6A7;"></div>
-  <div class="photo-strip photo-strip-3" style="margin-top:clamp(24px,5vh,50px);">
-    <div class="photo-item" data-anim="anim-fade-up">
-      <img src="photos/edu2/07-papercup-poster.jpg" alt="종이팩 수거 포스터" loading="lazy">
-      <div class="photo-caption">종이팩 수거함 캠페인</div>
-    </div>
-    <div class="photo-item" data-anim="anim-reveal">
-      <img src="photos/edu2/08-papercup-box.png" alt="종이팩 수거함" loading="lazy">
-      <div class="photo-caption">종이팩 수거함 설치</div>
-    </div>
-    <div class="photo-item" data-anim="anim-zoom">
-      <img src="photos/edu2/09-duchinso.png" alt="두친소" loading="lazy">
-      <div class="photo-caption">두친소 · 구로구 공익지원활동센터</div>
+    <!-- 카드 3: 두친소 -->
+    <div class="paper-vertical-card" data-anim="anim-zoom" style="position:relative;border-radius:14px;overflow:hidden;height:100%;">
+      <img src="photos/edu2/09-duchinso.png" alt="두친소" loading="lazy" style="width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);">
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75) 40%);padding:clamp(16px,2.5vh,28px) clamp(12px,1.5vw,20px);text-align:center;">
+        <div style="display:inline-block;background:rgba(76,175,80,0.2);color:#A5D6A7;padding:3px 10px;border-radius:20px;font-size:clamp(9px,0.9vw,11px);font-weight:700;letter-spacing:1px;margin-bottom:6px;">두친소</div>
+        <div style="color:#fff;font-size:clamp(32px,3.5vw,48px);font-weight:900;line-height:1.1;">6<span style="font-size:clamp(13px,1.2vw,18px);font-weight:400;">곳</span></div>
+        <div style="color:rgba(255,255,255,0.65);font-size:clamp(11px,1vw,14px);margin-top:4px;">두레의 친구를 소개합니다</div>
+      </div>
     </div>
   </div>
 </div>
@@ -1274,16 +1253,16 @@ body:hover .section-indicator { opacity: 1; }
   </div>
 </div>
 
-<!-- 2-9: 1004 기금 조성 카드 -->
+<!-- 2-9: 1004 기금 조성 (카드+사진 통합) -->
 <div class="section bg-deep" id="solidarity-fund">
   <div class="e-label red">1004 FUND</div>
-  <div class="e-title" style="color:#fff;font-size:clamp(26px,3.5vw,48px);">생산자와의 연대,<br><span class="white-red">1004 기금</span> 조성</div>
+  <div class="e-title" style="color:#fff;font-size:clamp(26px,3.5vw,48px);"><span class="white-red">1004 기금</span> 모금 결과 보고</div>
   <div class="e-divider red"></div>
   <div class="e-emotion c-white-30">어려운 이웃에게 전하는 두레의 따뜻한 마음</div>
-  <div class="challenge-grid" style="grid-template-columns:repeat(2,1fr);max-width:900px;margin-top:clamp(24px,5vh,50px);">
+  <div class="challenge-grid" style="grid-template-columns:repeat(4,1fr);max-width:1100px;margin-top:clamp(24px,5vh,50px);">
     <div class="accent-card on-dark accent-bar-red">
       <div class="mini-tag" style="background:rgba(239,83,80,0.15);color:#EF9A9A;">4월 · 산불피해</div>
-      <div class="challenge-title" style="color:#fff;font-weight:700;">의성군 지정기탁</div>
+      <div class="challenge-title" style="color:#fff;font-weight:700;">의성군</div>
       <div class="challenge-num" style="color:#EF9A9A;font-size:clamp(32px,3.5vw,48px);">2,000<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">만원</span></div>
     </div>
     <div class="accent-card on-dark accent-bar-red">
@@ -1300,31 +1279,6 @@ body:hover .section-indicator { opacity: 1; }
       <div class="mini-tag blue">8월 · 폭우피해</div>
       <div class="challenge-title" style="color:#fff;font-weight:700;">두레한강생산자회</div>
       <div class="challenge-num" style="color:#90CAF9;font-size:clamp(32px,3.5vw,48px);">700<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">만원</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- 2-10: 1004 기금 사진 -->
-<div class="section bg-dark" id="fund-photos">
-  <div class="e-label red">1004 FUND · DELIVERY</div>
-  <div class="e-title" style="color:#fff;font-size:clamp(24px,3vw,40px);">조합원의 마음을 <span class="white-red">전달</span>합니다</div>
-  <div class="e-divider red"></div>
-  <div class="photo-strip photo-strip-4" style="margin-top:clamp(24px,5vh,50px);">
-    <div class="photo-item" data-anim="anim-fade-up">
-      <img src="photos/edu2/12-fire-uiseong.jpg" alt="의성군 산불피해 복구 기금" loading="lazy">
-      <div class="photo-caption">의성군 2천만원 전달</div>
-    </div>
-    <div class="photo-item" data-anim="anim-reveal">
-      <img src="photos/edu2/13-fire-minsok.jpg" alt="민속죽염 생산지" loading="lazy">
-      <div class="photo-caption">민속죽염 4백만원 전달</div>
-    </div>
-    <div class="photo-item" data-anim="anim-zoom">
-      <img src="photos/edu2/14-flood-hongseong.jpg" alt="홍성유기농 폭우피해복구" loading="lazy">
-      <div class="photo-caption">홍성유기농 7백만원 전달</div>
-    </div>
-    <div class="photo-item" data-anim="anim-slide-in">
-      <img src="photos/edu2/15-flood-hangang.jpg" alt="두레한강 폭우피해복구" loading="lazy">
-      <div class="photo-caption">두레한강생산자회 7백만원 전달</div>
     </div>
   </div>
 </div>
@@ -1468,13 +1422,10 @@ const sections = [
   { id: 'part2-title', duration: 8000 },
   { id: 'edu-175h', duration: 10000 },
   { id: 'edu-photos', duration: 8000 },
-  { id: 'fair-trade', duration: 10000 },
-  { id: 'fair-trade-photos', duration: 8000 },
-  { id: 'paper-campaign', duration: 10000 },
-  { id: 'paper-photos', duration: 8000 },
+  { id: 'fair-trade', duration: 12000 },
+  { id: 'paper-campaign', duration: 12000 },
   { id: 'climate-action', duration: 10000 },
-  { id: 'solidarity-fund', duration: 10000 },
-  { id: 'fund-photos', duration: 8000 },
+  { id: 'solidarity-fund', duration: 12000 },
   { id: 'sanmyeong', duration: 10000 },
   { id: 'part3-transition', duration: 5000 },
   { id: 'slideshow', duration: photoData.length * 6000 },
