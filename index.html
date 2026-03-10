@@ -973,7 +973,10 @@ body:hover .controls { opacity: 1; }
   <button class="ctrl-btn" id="btnRestart" title="처음부터">↺</button>
 </div>
 
-<!-- BGM: synthesized ambient pad via Web Audio API -->
+<!-- BGM Audio (Mixkit Free License - no attribution required) -->
+<audio id="bgm" loop preload="auto">
+  <source src="https://assets.mixkit.co/music/127/127.mp3" type="audio/mpeg">
+</audio>
 <!-- Transition sound (short whoosh) synthesized via Web Audio API -->
 
 <script>
@@ -1218,50 +1221,18 @@ function playTransitionSound() {
   osc.stop(audioCtx.currentTime + 0.4);
 }
 
-// ===== BGM: Synthesized Ambient Pad =====
-let bgmCtx = null, bgmGain = null, bgmOscs = [], bgmPlaying = false;
-function startBGM() {
-  if (!bgmCtx) bgmCtx = new (window.AudioContext || window.webkitAudioContext)();
-  if (bgmCtx.state === 'suspended') bgmCtx.resume();
-  bgmGain = bgmCtx.createGain();
-  bgmGain.gain.setValueAtTime(0, bgmCtx.currentTime);
-  bgmGain.gain.linearRampToValueAtTime(0.06, bgmCtx.currentTime + 2);
-  bgmGain.connect(bgmCtx.destination);
-  // Warm chord: C3, E3, G3, B3 (gentle pad)
-  const freqs = [130.81, 164.81, 196.00, 246.94];
-  freqs.forEach(f => {
-    const osc = bgmCtx.createOscillator();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(f, bgmCtx.currentTime);
-    // Slow LFO-like detuning for warmth
-    osc.detune.setValueAtTime(-5, bgmCtx.currentTime);
-    osc.detune.linearRampToValueAtTime(5, bgmCtx.currentTime + 8);
-    const oscGain = bgmCtx.createGain();
-    oscGain.gain.setValueAtTime(0.25, bgmCtx.currentTime);
-    const filter = bgmCtx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(400, bgmCtx.currentTime);
-    osc.connect(oscGain);
-    oscGain.connect(filter);
-    filter.connect(bgmGain);
-    osc.start();
-    bgmOscs.push(osc);
-  });
-  bgmPlaying = true;
-}
-function stopBGM() {
-  if (bgmGain) {
-    bgmGain.gain.linearRampToValueAtTime(0, bgmCtx.currentTime + 1);
-    setTimeout(() => { bgmOscs.forEach(o => { try { o.stop(); } catch(e){} }); bgmOscs = []; }, 1200);
-  }
-  bgmPlaying = false;
-}
+// ===== BGM CONTROL =====
+const bgm = document.getElementById('bgm');
+let bgmPlaying = false;
 document.getElementById('btnBgm').addEventListener('click', () => {
   if (bgmPlaying) {
-    stopBGM();
+    bgm.pause();
+    bgmPlaying = false;
     document.getElementById('btnBgm').style.opacity = '0.4';
   } else {
-    startBGM();
+    bgm.volume = 0.25;
+    bgm.play().catch(() => {});
+    bgmPlaying = true;
     document.getElementById('btnBgm').style.opacity = '1';
   }
 });
