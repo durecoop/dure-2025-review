@@ -722,9 +722,9 @@ body:hover .section-indicator { opacity: 1; }
       <div class="settings-label">슬라이드쇼 사진</div>
       <div class="settings-value" id="settingPhotoCount">21장</div>
     </div>
-    <div class="settings-row" style="border:none;">
-      <div class="settings-label">배경음악</div>
-      <div class="speed-controls" id="bgmControls">
+    <div style="border:none;padding:clamp(10px,1.2vh,16px) 0;">
+      <div class="settings-label" style="margin-bottom:10px;">배경음악</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
         <button class="speed-btn bgm-opt active" data-bgm="0">🎹 피아노</button>
         <button class="speed-btn bgm-opt" data-bgm="1">🌿 영감</button>
         <button class="speed-btn bgm-opt" data-bgm="2">🌅 희망</button>
@@ -1476,13 +1476,16 @@ document.querySelectorAll('#speedControls .speed-btn').forEach(btn => {
     updateSettingsDisplay();
   });
 });
-// BGM track selector
+// BGM track selector (preview on click)
 document.querySelectorAll('.bgm-opt').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.bgm-opt').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     bgmTrackIdx = parseInt(btn.dataset.bgm);
     loadBgmTrack(bgmTrackIdx);
+    bgm.volume = 0.2;
+    bgm.play().catch(() => {});
+    bgmPlaying = true;
   });
 });
 document.getElementById('btnStart').addEventListener('click', () => {
