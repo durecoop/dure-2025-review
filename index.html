@@ -24,18 +24,19 @@ body {
 /* ===== FIXED LOGO ===== */
 .fixed-logo {
   position: fixed;
-  top: 32px;
-  left: 40px;
+  top: 28px;
+  left: 36px;
   z-index: 9999;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   opacity: 0.92;
   pointer-events: none;
 }
 .logo-icon {
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
 }
 .logo-text {
   display: flex;
@@ -80,6 +81,8 @@ body {
 .bg-gradient-2 { background: linear-gradient(135deg, #0d1b2a 0%, #1b2a4a 50%, #0a1628 100%); }
 .bg-gradient-3 { background: linear-gradient(135deg, #0a1628 0%, #162a3e 50%, #0d1b2a 100%); }
 .bg-gradient-4 { background: linear-gradient(135deg, #0d2818 0%, #1a3a2a 50%, #0a2015 100%); }
+.bg-gradient-5 { background: linear-gradient(135deg, #1a0d2a 0%, #2a1a3e 50%, #1a0d28 100%); }
+.bg-gradient-6 { background: linear-gradient(135deg, #2a1a0d 0%, #3e2a1a 50%, #281a0d 100%); }
 .bg-dark { background: #080808; }
 
 /* ===== PARTICLES ===== */
@@ -105,6 +108,13 @@ body {
 }
 
 /* ===== INTRO ===== */
+#intro .intro-logo {
+  width: 280px;
+  opacity: 0;
+  animation: fade-up 1.5s ease-out 0.3s forwards;
+  margin-bottom: 30px;
+  filter: brightness(0) invert(1);
+}
 #intro .intro-year {
   font-size: 260px;
   font-weight: 900;
@@ -114,7 +124,7 @@ body {
   background-clip: text;
   opacity: 0;
   transform: scale(0.8);
-  animation: intro-year-in 2s ease-out 0.5s forwards;
+  animation: intro-year-in 2s ease-out 1s forwards;
   line-height: 1;
 }
 #intro .intro-title {
@@ -123,7 +133,7 @@ body {
   letter-spacing: 18px;
   margin-top: 10px;
   opacity: 0;
-  animation: fade-up 1.5s ease-out 1.8s forwards;
+  animation: fade-up 1.5s ease-out 2.2s forwards;
 }
 #intro .intro-sub {
   font-size: 28px;
@@ -132,14 +142,14 @@ body {
   margin-top: 35px;
   letter-spacing: 6px;
   opacity: 0;
-  animation: fade-up 1.5s ease-out 2.8s forwards;
+  animation: fade-up 1.5s ease-out 3s forwards;
 }
 #intro .intro-line {
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, transparent, #4CAF50, transparent);
   margin-top: 50px;
-  animation: line-expand 2s ease-out 3.5s forwards;
+  animation: line-expand 2s ease-out 3.8s forwards;
 }
 
 @keyframes intro-year-in {
@@ -176,6 +186,18 @@ body {
 .section-headline.show { animation: fade-up 1s ease-out forwards; }
 .section-headline .highlight { color: #4CAF50; }
 .section-headline .highlight-red { color: #ef5350; }
+.section-headline .highlight-purple { color: #CE93D8; }
+.section-headline .highlight-orange { color: #FFB74D; }
+
+/* ===== PART TRANSITION LOGO ===== */
+.part-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 30px;
+  opacity: 0;
+}
+.part-logo.show { animation: fade-up 1s ease-out forwards; }
 
 /* ===== SCENE 1: CHALLENGES ===== */
 .challenge-keywords {
@@ -553,8 +575,196 @@ body {
   background-clip: text;
 }
 
-/* ===== PART 2 TRANSITION ===== */
-#part2-transition .transition-text {
+/* ===== PART 2: EDUCATION CENTER ===== */
+
+/* Edu Stats - 3 metric cards */
+.edu-metrics {
+  display: flex;
+  gap: 50px;
+  margin-top: 55px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.edu-metric-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(206,147,216,0.2);
+  border-radius: 24px;
+  padding: 50px 60px;
+  text-align: center;
+  min-width: 300px;
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+}
+.edu-metric-card.show { animation: card-in 0.8s ease-out forwards; }
+.edu-metric-icon { font-size: 48px; margin-bottom: 16px; }
+.edu-metric-label {
+  font-size: 20px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 12px;
+}
+.edu-metric-value {
+  font-size: 72px;
+  font-weight: 900;
+  color: #fff;
+}
+.edu-metric-unit {
+  font-size: 28px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+}
+.edu-metric-sub {
+  font-size: 22px;
+  color: #CE93D8;
+  margin-top: 8px;
+  font-weight: 600;
+}
+.edu-metric-detail {
+  font-size: 16px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 6px;
+}
+
+/* Edu Programs - card list */
+.edu-programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 50px;
+  max-width: 1200px;
+}
+.edu-program-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(206,147,216,0.15);
+  border-radius: 18px;
+  padding: 35px 30px;
+  opacity: 0;
+  transform: translateY(30px);
+}
+.edu-program-card.show { animation: fade-up 0.7s ease-out forwards; }
+.edu-program-category {
+  font-size: 14px;
+  font-weight: 600;
+  color: #CE93D8;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.edu-program-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.edu-program-stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.edu-program-stat {
+  font-size: 15px;
+  color: rgba(255,255,255,0.45);
+  background: rgba(206,147,216,0.08);
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+.edu-program-stat strong {
+  color: #CE93D8;
+  font-weight: 700;
+}
+
+/* Fair Trade section */
+.fairtrade-cards {
+  display: flex;
+  gap: 40px;
+  margin-top: 55px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.fairtrade-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,183,77,0.2);
+  border-radius: 24px;
+  padding: 40px 45px;
+  min-width: 320px;
+  max-width: 380px;
+  opacity: 0;
+  transform: translateY(40px);
+}
+.fairtrade-card.show { animation: fade-up 0.8s ease-out forwards; }
+.fairtrade-icon { font-size: 48px; margin-bottom: 14px; }
+.fairtrade-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.fairtrade-desc {
+  font-size: 17px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.fairtrade-number {
+  font-size: 42px;
+  font-weight: 900;
+  color: #FFB74D;
+}
+.fairtrade-number-unit {
+  font-size: 20px;
+  color: rgba(255,255,255,0.5);
+}
+.fairtrade-sub {
+  font-size: 16px;
+  color: rgba(255,183,77,0.7);
+  margin-top: 5px;
+}
+
+/* Climate & Solidarity */
+.climate-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px;
+  margin-top: 50px;
+  max-width: 1100px;
+}
+.climate-card {
+  background: rgba(255,255,255,0.04);
+  border-radius: 20px;
+  padding: 40px;
+  opacity: 0;
+  transform: translateY(30px);
+}
+.climate-card.show { animation: fade-up 0.7s ease-out forwards; }
+.climate-card.green { border: 1px solid rgba(76,175,80,0.2); }
+.climate-card.orange { border: 1px solid rgba(255,183,77,0.2); }
+.climate-card-icon { font-size: 42px; margin-bottom: 12px; }
+.climate-card-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 8px;
+}
+.climate-card-desc {
+  font-size: 16px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.climate-card-value {
+  font-size: 38px;
+  font-weight: 900;
+}
+.climate-card-value.green-text { color: #4CAF50; }
+.climate-card-value.orange-text { color: #FFB74D; }
+.climate-card-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+}
+
+/* ===== PART TRANSITION ===== */
+.transition-text {
   font-size: 56px;
   font-weight: 300;
   letter-spacing: 10px;
@@ -562,14 +772,14 @@ body {
   line-height: 1.4;
   opacity: 0;
 }
-#part2-transition .transition-text.show { animation: fade-up 1.5s ease-out forwards; }
-#part2-transition .transition-line {
+.transition-text.show { animation: fade-up 1.5s ease-out forwards; }
+.transition-line {
   width: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, #4CAF50, transparent);
   margin-top: 35px;
 }
-#part2-transition .transition-line.show { animation: line-expand 2s ease-out forwards; }
+.transition-line.show { animation: line-expand 2s ease-out forwards; }
 
 /* ===== PHOTO SLIDESHOW ===== */
 #slideshow { background: #000; }
@@ -640,6 +850,13 @@ body {
 #ending {
   background: linear-gradient(135deg, #0a1a0a 0%, #1a2e1a 50%, #0a1a0a 100%);
 }
+#ending .ending-logo {
+  width: 200px;
+  opacity: 0;
+  filter: brightness(0) invert(1);
+  margin-bottom: 20px;
+}
+#ending .ending-logo.show { animation: fade-up 1.2s ease-out forwards; }
 #ending .ending-year {
   font-size: 160px;
   font-weight: 900;
@@ -726,6 +943,8 @@ body:hover .controls { opacity: 1; }
   .innovation-number { font-size: 48px; }
   .innovation-grid { grid-template-columns: 1fr 1fr; }
   .coop-grid { grid-template-columns: repeat(3, 1fr); }
+  .edu-programs-grid { grid-template-columns: repeat(2, 1fr); }
+  .climate-grid { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
@@ -736,14 +955,7 @@ body:hover .controls { opacity: 1; }
 
 <!-- Fixed Logo (Always Visible) -->
 <div class="fixed-logo">
-  <svg class="logo-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="26" cy="26" r="25" stroke="#4CAF50" stroke-width="2" fill="rgba(76,175,80,0.08)"/>
-    <path d="M26 10 C20 10, 12 16, 12 24 C12 32, 18 40, 26 42 C34 40, 40 32, 40 24 C40 16, 32 10, 26 10Z" fill="#4CAF50" opacity="0.15"/>
-    <path d="M26 14 C26 14, 20 20, 20 26 C20 32, 23 36, 26 38" stroke="#4CAF50" stroke-width="2" fill="none" stroke-linecap="round"/>
-    <path d="M26 14 C26 14, 32 20, 32 26 C32 32, 29 36, 26 38" stroke="#81C784" stroke-width="2" fill="none" stroke-linecap="round"/>
-    <path d="M16 24 C20 22, 24 24, 26 26 C28 24, 32 22, 36 24" stroke="#A5D6A7" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-    <circle cx="26" cy="20" r="3" fill="#4CAF50"/>
-  </svg>
+  <img class="logo-icon" src="logos/logo-green-spiral.png" alt="두레생협">
   <div class="logo-text">
     <span class="logo-main">두레생협</span>
     <span class="logo-sub">DURE COOP</span>
@@ -755,6 +967,7 @@ body:hover .controls { opacity: 1; }
 
 <!-- ========== INTRO ========== -->
 <div class="section bg-gradient-1 active" id="intro">
+  <img class="intro-logo" src="logos/logo-color-horizontal.png" alt="두레생협">
   <div class="intro-year">2025</div>
   <div class="intro-title">년을 돌아보며</div>
   <div class="intro-sub">두레생협연합회 제26기 정기총회</div>
@@ -763,6 +976,7 @@ body:hover .controls { opacity: 1; }
 
 <!-- ========== PART 1 TITLE ========== -->
 <div class="section bg-gradient-1" id="part1-title">
+  <img class="part-logo" src="logos/logo-green-spiral.png" alt="">
   <div class="part-title">PART 1</div>
   <div class="section-headline">
     <span class="highlight">사업결과</span>로 본 2025년
@@ -1006,9 +1220,176 @@ body:hover .controls { opacity: 1; }
   </div>
 </div>
 
-<!-- ========== PART 2 TRANSITION ========== -->
-<div class="section bg-dark" id="part2-transition">
+<!-- ==================== PART 2: 두레교육활동센터 ==================== -->
+
+<!-- PART 2 TITLE -->
+<div class="section bg-dark" id="part2-title">
+  <img class="part-logo" src="logos/logo-green-spiral.png" alt="">
   <div class="part-title">PART 2</div>
+  <div class="transition-text">두레교육활동센터<br>2025년 활동보고</div>
+  <div class="transition-line"></div>
+</div>
+
+<!-- ========== EDU STATS ========== -->
+<div class="section bg-gradient-5" id="edu-stats">
+  <div class="section-headline">
+    교육 <span class="highlight-purple">핵심 성과</span> 지표
+  </div>
+  <div class="edu-metrics">
+    <div class="edu-metric-card">
+      <div class="edu-metric-icon">🕐</div>
+      <div class="edu-metric-label">총 교육 시간</div>
+      <div class="edu-metric-value">175<span class="edu-metric-unit">시간</span></div>
+      <div class="edu-metric-sub">전년 대비 효율화</div>
+      <div class="edu-metric-detail">목표 달성률 100%</div>
+    </div>
+    <div class="edu-metric-card">
+      <div class="edu-metric-icon">👥</div>
+      <div class="edu-metric-label">총 참여 인원</div>
+      <div class="edu-metric-value"><span class="count2" data-target="601" data-format="int">0</span><span class="edu-metric-unit">명</span></div>
+      <div class="edu-metric-sub">+28.4% (전년 468명)</div>
+      <div class="edu-metric-detail">전년 대비 +133명</div>
+    </div>
+    <div class="edu-metric-card">
+      <div class="edu-metric-icon">⭐</div>
+      <div class="edu-metric-label">교육 효과성 점수</div>
+      <div class="edu-metric-value">4.43<span class="edu-metric-unit">/5.0</span></div>
+      <div class="edu-metric-sub">Very Good</div>
+      <div class="edu-metric-detail">만족도에서 효과성 측정으로 전환</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== EDU PROGRAMS ========== -->
+<div class="section bg-gradient-5" id="edu-programs">
+  <div class="section-headline" style="font-size:48px;">
+    주요 <span class="highlight-purple">교육 프로그램</span>
+  </div>
+  <div class="edu-programs-grid">
+    <div class="edu-program-card">
+      <div class="edu-program-category">임원 & 활동가</div>
+      <div class="edu-program-name">신임임원교육 & 임원교육</div>
+      <div class="edu-program-stats">
+        <div class="edu-program-stat"><strong>57명</strong> 참여</div>
+        <div class="edu-program-stat">효과성 <strong>4.6</strong></div>
+      </div>
+    </div>
+    <div class="edu-program-card">
+      <div class="edu-program-category">임원 & 활동가</div>
+      <div class="edu-program-name">이사장워크숍 & 실무책임자교육</div>
+      <div class="edu-program-stats">
+        <div class="edu-program-stat"><strong>40명</strong> 참여</div>
+        <div class="edu-program-stat">효과성 <strong>4.4</strong></div>
+      </div>
+    </div>
+    <div class="edu-program-card">
+      <div class="edu-program-category">조합원</div>
+      <div class="edu-program-name">조합원활동교육 '한걸음 더'</div>
+      <div class="edu-program-stats">
+        <div class="edu-program-stat"><strong>22명</strong> 참여</div>
+        <div class="edu-program-stat">효과성 <strong>4.8</strong> 최고</div>
+      </div>
+    </div>
+    <div class="edu-program-card">
+      <div class="edu-program-category">조합원</div>
+      <div class="edu-program-name">조합원 기획강좌 (3회)</div>
+      <div class="edu-program-stats">
+        <div class="edu-program-stat"><strong>230명</strong> 참여</div>
+        <div class="edu-program-stat">효과성 <strong>4.6</strong></div>
+      </div>
+    </div>
+    <div class="edu-program-card">
+      <div class="edu-program-category">식생활</div>
+      <div class="edu-program-name">식생활강사 전문과정 & 두레 장학교</div>
+      <div class="edu-program-stats">
+        <div class="edu-program-stat"><strong>31명</strong> 참여</div>
+        <div class="edu-program-stat">효과성 <strong>4.6</strong></div>
+      </div>
+    </div>
+    <div class="edu-program-card">
+      <div class="edu-program-category">조직담당자</div>
+      <div class="edu-program-name">조직담당자 실무교육 (5회)</div>
+      <div class="edu-program-stats">
+        <div class="edu-program-stat"><strong>92명</strong> 참여</div>
+        <div class="edu-program-stat">효과성 <strong>4.4</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FAIR TRADE ========== -->
+<div class="section bg-gradient-6" id="fair-trade">
+  <div class="section-headline" style="font-size:48px;">
+    2025년 <span class="highlight-orange">민중교역</span> 활동
+  </div>
+  <div class="fairtrade-cards">
+    <div class="fairtrade-card">
+      <div class="fairtrade-icon">🕊️</div>
+      <div class="fairtrade-name">민중교역포럼 /<br>팔레스타인연대강연회</div>
+      <div class="fairtrade-desc">팔레스타인 생산자와 함께하는<br>가치 공유 및 확산, 조합원 교류</div>
+      <div class="fairtrade-number">230<span class="fairtrade-number-unit">명 참석</span></div>
+      <div class="fairtrade-sub">만족도 4.53 / 주민, 팔당, 두레한강</div>
+    </div>
+    <div class="fairtrade-card">
+      <div class="fairtrade-icon">🍌</div>
+      <div class="fairtrade-name">발랑곤바나나<br>정기구독 캠페인</div>
+      <div class="fairtrade-desc">안정적 소비기반 구축 및<br>생활재 컨텐츠 제공 (5~11월)</div>
+      <div class="fairtrade-number">1,793<span class="fairtrade-number-unit">명 구독</span></div>
+      <div class="fairtrade-sub">42,768kg (3,564박스) / 목표 160% 달성</div>
+    </div>
+    <div class="fairtrade-card">
+      <div class="fairtrade-icon">🌏</div>
+      <div class="fairtrade-name">필리핀 생산지 방문<br>바르크 점검 & 교류연수</div>
+      <div class="fairtrade-desc">아시아민중기금 /<br>필리핀생산지교류연수</div>
+      <div class="fairtrade-number">22<span class="fairtrade-number-unit">명 방문</span></div>
+      <div class="fairtrade-sub">생산자공동체 총 8곳 / 바르크 5명+연수 17명</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== CLIMATE & SOLIDARITY ========== -->
+<div class="section bg-gradient-4" id="climate-solidarity">
+  <div class="section-headline" style="font-size:48px;">
+    <span class="highlight">기후위기 대응</span> & <span class="highlight-orange">생산자 연대</span>
+  </div>
+  <div class="climate-grid">
+    <div class="climate-card green">
+      <div class="climate-card-icon">♻️</div>
+      <div class="climate-card-title">종이팩재활용 집중 캠페인</div>
+      <div class="climate-card-desc">상·하반기 진행 / 지역기관 수거함 배포</div>
+      <div class="climate-card-value green-text">2,001kg 수거</div>
+      <div class="climate-card-sub">신규지역기관 26곳 발굴 / 두친소 6곳</div>
+    </div>
+    <div class="climate-card green">
+      <div class="climate-card-icon">✊</div>
+      <div class="climate-card-title">927 기후정의행진</div>
+      <div class="climate-card-desc">죽음의 바늘 클럽 워크숍 연계</div>
+      <div class="climate-card-value green-text">100여명 참가</div>
+      <div class="climate-card-sub">21% 파티 연장선의 활동 제안</div>
+    </div>
+    <div class="climate-card orange">
+      <div class="climate-card-icon">🌾</div>
+      <div class="climate-card-title">생명나눔한마당</div>
+      <div class="climate-card-desc">10/18(토) 의성산운생태공원</div>
+      <div class="climate-card-value orange-text">400여명 참가</div>
+      <div class="climate-card-sub">의성군비 2,500만원 지원</div>
+    </div>
+    <div class="climate-card orange">
+      <div class="climate-card-icon">🤲</div>
+      <div class="climate-card-title">1004 기금</div>
+      <div class="climate-card-desc">산불피해복구 (4월) / 폭우피해복구 (8월)</div>
+      <div class="climate-card-value orange-text">총 3,800만원</div>
+      <div class="climate-card-sub">의성군·민속죽염 2,400만원 / 홍성유기농·두레한강 1,400만원</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PART 3: 활동사진 ==================== -->
+
+<!-- PART 3 TRANSITION -->
+<div class="section bg-dark" id="part3-transition">
+  <img class="part-logo" src="logos/logo-green-spiral.png" alt="">
+  <div class="part-title">PART 3</div>
   <div class="transition-text">함께 만들어간<br>2025년의 순간들</div>
   <div class="transition-line"></div>
 </div>
@@ -1020,6 +1401,7 @@ body:hover .controls { opacity: 1; }
 
 <!-- ========== ENDING ========== -->
 <div class="section" id="ending">
+  <img class="ending-logo" src="logos/logo-color-horizontal.png" alt="두레생협">
   <div class="ending-year">2026</div>
   <div class="ending-msg">함께 더 멀리</div>
   <div class="ending-org">두레생협연합회</div>
@@ -1098,7 +1480,14 @@ const sections = [
   { id: 'scene5', duration: 10000 },
   { id: 'scene6', duration: 12000 },
   { id: 'scene7', duration: 12000 },
-  { id: 'part2-transition', duration: 5000 },
+  // PART 2: 두레교육활동센터
+  { id: 'part2-title', duration: 5000 },
+  { id: 'edu-stats', duration: 10000 },
+  { id: 'edu-programs', duration: 12000 },
+  { id: 'fair-trade', duration: 12000 },
+  { id: 'climate-solidarity', duration: 12000 },
+  // PART 3: 활동사진
+  { id: 'part3-transition', duration: 5000 },
   { id: 'slideshow', duration: photoData.length * 6000 },
   { id: 'ending', duration: 10000 },
 ];
@@ -1178,7 +1567,7 @@ function activateSection(index) {
 
 function triggerAnimations(sectionId) {
   const section = document.getElementById(sectionId);
-  const els = section.querySelectorAll('.part-title, .section-headline, .challenge-card, .bar-group, .counter-item, .channel-card, .progress-ring-container, .logistics-stats, .innovation-item, .coop-total, .trend-row, .hope-message, .transition-text, .transition-line, .ending-year, .ending-msg, .ending-org, .ending-line');
+  const els = section.querySelectorAll('.part-logo, .part-title, .section-headline, .challenge-card, .bar-group, .counter-item, .channel-card, .progress-ring-container, .logistics-stats, .innovation-item, .coop-total, .trend-row, .hope-message, .transition-text, .transition-line, .ending-logo, .ending-year, .ending-msg, .ending-org, .ending-line, .edu-metric-card, .edu-program-card, .fairtrade-card, .climate-card');
   els.forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 200));
 
   if (sectionId === 'scene2') {
@@ -1195,6 +1584,12 @@ function triggerAnimations(sectionId) {
       c.style.strokeDasharray = circ;
       c.style.strokeDashoffset = circ * (1 - 0.707);
     }, 500);
+  }
+
+  if (sectionId === 'edu-stats') {
+    setTimeout(() => {
+      document.querySelectorAll('#edu-stats .count2').forEach(startCounter);
+    }, 800);
   }
 }
 
