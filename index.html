@@ -763,6 +763,75 @@ body {
   margin-top: 4px;
 }
 
+/* ===== POLICY & PRODUCER SECTIONS ===== */
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+  max-width: 1200px;
+}
+.policy-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(100,181,246,0.2);
+  border-radius: 20px;
+  padding: 40px 35px;
+  opacity: 0;
+  transform: translateY(30px);
+}
+.policy-card.show { animation: fade-up 0.7s ease-out forwards; }
+.policy-card-icon { font-size: 40px; margin-bottom: 12px; }
+.policy-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.policy-card-desc {
+  font-size: 16px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+}
+.policy-card-desc strong {
+  color: #64B5F6;
+  font-weight: 700;
+}
+
+.producer-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px;
+  margin-top: 50px;
+  max-width: 1100px;
+}
+.producer-item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(76,175,80,0.2);
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.producer-item.show { animation: slide-in 0.7s ease-out forwards; }
+.producer-item-icon { font-size: 40px; flex-shrink: 0; }
+.producer-item-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 8px;
+}
+.producer-item-desc {
+  font-size: 16px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+}
+
+.section-headline .highlight-blue { color: #64B5F6; }
+
 /* ===== PART TRANSITION ===== */
 .transition-text {
   font-size: 56px;
@@ -1042,13 +1111,13 @@ body:hover .controls { opacity: 1; }
     </div>
     <div class="counter-item">
       <div class="counter-label">조합원 이용액</div>
-      <div class="counter-number"><span class="count" data-target="1264.4">0</span><span class="counter-unit">억원</span></div>
+      <div class="counter-number"><span class="count" data-target="1265.1">0</span><span class="counter-unit">억원</span></div>
       <div class="counter-change">+2.1%</div>
     </div>
     <div class="counter-item">
       <div class="counter-label">조합원 가구 수</div>
-      <div class="counter-number"><span class="count" data-target="258121" data-format="int">0</span><span class="counter-unit">가구</span></div>
-      <div class="counter-change">+8.9%</div>
+      <div class="counter-number"><span class="count" data-target="237801" data-format="int">0</span><span class="counter-unit">가구</span></div>
+      <div class="counter-change">+0.7%</div>
     </div>
   </div>
 </div>
@@ -1160,6 +1229,82 @@ body:hover .controls { opacity: 1; }
   </div>
 </div>
 
+<!-- ========== SCENE 5B: 정책사업 ========== -->
+<div class="section bg-gradient-3" id="scene5b">
+  <div class="section-headline" style="font-size:48px;">
+    <span class="highlight-blue">제도 개선</span>과 정책사업
+  </div>
+  <div class="policy-grid">
+    <div class="policy-card">
+      <div class="policy-card-icon">🥗</div>
+      <div class="policy-card-title">농식품 바우처사업</div>
+      <div class="policy-card-desc">취약계층 대상 <strong>건강한 먹거리 접근성</strong> 확대를 위한 바우처 사업 추진</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-card-icon">🤰</div>
+      <div class="policy-card-title">임산부 친환경농산물 지원</div>
+      <div class="policy-card-desc">경기임산부 친환경농산물 지원사업, <strong>동작구/중구</strong> 임산부 지원사업 확대</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-card-icon">🏷️</div>
+      <div class="policy-card-title">농축산물 할인 지원사업</div>
+      <div class="policy-card-desc">경기 농축산물 할인지원사업 참여로 <strong>조합원 실질 혜택</strong> 강화</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-card-icon">⚖️</div>
+      <div class="policy-card-title">생협법 개정 연대활동</div>
+      <div class="policy-card-desc"><strong>주무부처 변경</strong> 및 생협법 개정을 위한 연대활동 추진</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-card-icon">💳</div>
+      <div class="policy-card-title">지역화폐 등록 확대</div>
+      <div class="policy-card-desc">지역화폐, <strong>민생회복 소비쿠폰</strong> 사용처 등록 확대</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-card-icon">📋</div>
+      <div class="policy-card-title">다양한 정책사업 추진</div>
+      <div class="policy-card-desc">제도적 기반을 통한 <strong>사업 안정화</strong> 및 지속가능 성장 기반 구축</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SCENE 5C: 생산자와 함께 ========== -->
+<div class="section bg-gradient-4" id="scene5c">
+  <div class="section-headline" style="font-size:48px;">
+    <span class="highlight">생산자와 함께</span>,<br>소비자를 위한 생활재
+  </div>
+  <div class="producer-items">
+    <div class="producer-item">
+      <div class="producer-item-icon">👨‍🌾</div>
+      <div>
+        <div class="producer-item-title">생산자의 얼굴이 보이는 생활재</div>
+        <div class="producer-item-desc">생산자 브랜드를 통해 신뢰와 투명성을 높이고, 조합원과 생산자의 직접적인 연결 강화</div>
+      </div>
+    </div>
+    <div class="producer-item">
+      <div class="producer-item-icon">🌿</div>
+      <div>
+        <div class="producer-item-title">제철 농산물 산지 점검</div>
+        <div class="producer-item-desc">산지 현장 점검을 통한 품질 관리 강화 및 안전한 먹거리 공급 체계 확립</div>
+      </div>
+    </div>
+    <div class="producer-item">
+      <div class="producer-item-icon">🤝</div>
+      <div>
+        <div class="producer-item-title">생산자-소비자 상생</div>
+        <div class="producer-item-desc">공정한 거래와 지속가능한 농업을 위한 생산자와 소비자 간 신뢰 기반 협력</div>
+      </div>
+    </div>
+    <div class="producer-item">
+      <div class="producer-item-icon">🛡️</div>
+      <div>
+        <div class="producer-item-title">안전한 생활재 공급</div>
+        <div class="producer-item-desc">엄격한 품질 기준과 투명한 생산 과정으로 조합원 가족의 건강한 식탁 지원</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ========== SCENE 6 ========== -->
 <div class="section bg-gradient-1" id="scene6">
   <div class="section-headline" style="font-size:48px;">
@@ -1168,11 +1313,11 @@ body:hover .controls { opacity: 1; }
   <div class="coop-total">
     <div class="coop-total-item">
       <div class="coop-total-label">전체 조합원</div>
-      <div class="coop-total-value">257,231<span class="counter-unit">가구</span></div>
+      <div class="coop-total-value">237,801<span class="counter-unit">가구</span></div>
     </div>
     <div class="coop-total-item">
       <div class="coop-total-label">총 이용액</div>
-      <div class="coop-total-value">1,264.4<span class="counter-unit">억원</span></div>
+      <div class="coop-total-value">1,265.1<span class="counter-unit">억원</span></div>
     </div>
   </div>
   <div class="coop-grid-wrapper">
@@ -1419,27 +1564,27 @@ body:hover .controls { opacity: 1; }
 <script>
 // ===== DATA =====
 const coopData = [
-  { name: '경기두레', members: '32,436', amount: '209.8억' },
-  { name: '푸른두레', members: '29,117', amount: '148.8억' },
-  { name: '참좋은두레', members: '22,501', amount: '101.0억' },
-  { name: '경기남부', members: '21,844', amount: '99.8억' },
-  { name: '바른두레', members: '18,396', amount: '79.3억' },
-  { name: '에코생협', members: '16,298', amount: '75.1억' },
+  { name: '경기두레', members: '25,600', amount: '209.8억' },
+  { name: '푸른두레', members: '28,754', amount: '148.8억' },
+  { name: '참좋은두레', members: '22,444', amount: '101.0억' },
+  { name: '경기남부', members: '17,591', amount: '99.9억' },
+  { name: '바른두레', members: '18,182', amount: '79.3억' },
+  { name: '에코생협', members: '15,888', amount: '75.1억' },
   { name: '주민두레', members: '15,925', amount: '68.8억' },
-  { name: '팔당생명살림', members: '13,412', amount: '66.5억' },
+  { name: '팔당생명살림', members: '12,914', amount: '67.2억' },
   { name: '서울남부두레', members: '13,024', amount: '74.9억' },
-  { name: '울림두레', members: '12,952', amount: '63.7억' },
-  { name: '고양파주두레', members: '11,841', amount: '51.0억' },
+  { name: '울림두레', members: '12,714', amount: '63.7억' },
+  { name: '고양파주두레', members: '11,428', amount: '51.0억' },
   { name: '은평두레', members: '11,811', amount: '57.7억' },
-  { name: '안성두레', members: '8,106', amount: '15.0억' },
+  { name: '안성두레', members: '3,326', amount: '15.0억' },
   { name: '평택두레', members: '7,144', amount: '30.6억' },
-  { name: '원주생협', members: '5,805', amount: '22.4억' },
+  { name: '원주생협', members: '5,821', amount: '22.4억' },
   { name: '서울북부두레', members: '3,522', amount: '18.6억' },
-  { name: '춘천두레', members: '3,310', amount: '15.6억' },
-  { name: '안양Y등대', members: '2,226', amount: '11.3억' },
-  { name: '시흥Y', members: '2,109', amount: '7.2억' },
+  { name: '춘천두레', members: '3,310', amount: '15.7억' },
+  { name: '안양Y등대', members: '1,879', amount: '11.3억' },
+  { name: '시흥Y', members: '1,822', amount: '7.2억' },
   { name: '성동두레', members: '1,786', amount: '6.6억' },
-  { name: '생태유아공동체', members: '1,383', amount: '35.7억' },
+  { name: '생태유아공동체', members: '633', amount: '35.7억' },
   { name: '아름다운', members: '818', amount: '3.2억' },
   { name: '한울안', members: '1,465', amount: '1.8억' },
 ];
@@ -1478,6 +1623,8 @@ const sections = [
   { id: 'scene3', duration: 10000 },
   { id: 'scene4', duration: 10000 },
   { id: 'scene5', duration: 10000 },
+  { id: 'scene5b', duration: 10000 },
+  { id: 'scene5c', duration: 10000 },
   { id: 'scene6', duration: 12000 },
   { id: 'scene7', duration: 12000 },
   // PART 2: 두레교육활동센터
@@ -1567,7 +1714,7 @@ function activateSection(index) {
 
 function triggerAnimations(sectionId) {
   const section = document.getElementById(sectionId);
-  const els = section.querySelectorAll('.part-logo, .part-title, .section-headline, .challenge-card, .bar-group, .counter-item, .channel-card, .progress-ring-container, .logistics-stats, .innovation-item, .coop-total, .trend-row, .hope-message, .transition-text, .transition-line, .ending-logo, .ending-year, .ending-msg, .ending-org, .ending-line, .edu-metric-card, .edu-program-card, .fairtrade-card, .climate-card');
+  const els = section.querySelectorAll('.part-logo, .part-title, .section-headline, .challenge-card, .bar-group, .counter-item, .channel-card, .progress-ring-container, .logistics-stats, .innovation-item, .coop-total, .trend-row, .hope-message, .transition-text, .transition-line, .ending-logo, .ending-year, .ending-msg, .ending-org, .ending-line, .edu-metric-card, .edu-program-card, .fairtrade-card, .climate-card, .policy-card, .producer-item');
   els.forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 200));
 
   if (sectionId === 'scene2') {
