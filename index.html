@@ -237,8 +237,8 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 /* ===== BUBBLE CHART ===== */
 .bubble-chart {
   position: relative;
-  width: 100%; max-width: 1200px;
-  height: clamp(350px, 60vh, 600px);
+  width: 100%; max-width: 1400px;
+  height: clamp(400px, 70vh, 700px);
   margin-top: clamp(10px, 2vh, 20px);
   opacity: 0;
 }
@@ -498,12 +498,11 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
   transition: opacity 0.6s, transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
 }
 .network-center.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-.network-line {
-  position: absolute; height: 2px; transform-origin: left center;
-  opacity: 0; transform: scaleX(0);
-  transition: opacity 0.5s, transform 0.8s cubic-bezier(0.16,1,0.3,1);
+.network-svg-line {
+  stroke-dasharray: 1000; stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 1s cubic-bezier(0.16,1,0.3,1);
 }
-.network-line.visible { opacity: 1; transform: scaleX(1) !important; }
+.network-svg-line.visible { stroke-dashoffset: 0; }
 
 /* ===== DONUT CHART ===== */
 .donut-container {
@@ -1256,24 +1255,26 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-title" style="color:#1a1a1a;"><span class="green">생산자와 함께</span>, 소비자를 위한 생활재</div>
   <div class="e-divider green"></div>
   <div class="network-container" id="producerNetwork">
+    <svg style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;overflow:visible;">
+      <line class="network-svg-line" x1="50%" y1="50%" x2="82%" y2="15%" stroke="#1B5E20" stroke-width="2" data-delay="0.3"/>
+      <line class="network-svg-line" x1="50%" y1="50%" x2="82%" y2="85%" stroke="#1B5E20" stroke-width="2" data-delay="0.5"/>
+      <line class="network-svg-line" x1="50%" y1="50%" x2="18%" y2="15%" stroke="#1B5E20" stroke-width="2" data-delay="0.7"/>
+      <line class="network-svg-line" x1="50%" y1="50%" x2="18%" y2="85%" stroke="#1B5E20" stroke-width="2" data-delay="0.9"/>
+    </svg>
     <div class="network-center" style="background:#1B5E20;color:#fff;">두레</div>
-    <div class="network-line" style="top:50%;left:50%;width:25%;transform-origin:left center;background:#1B5E20;" data-delay="0.3"></div>
-    <div class="network-line" style="top:50%;left:25%;width:25%;transform-origin:right center;background:#1B5E20;" data-delay="0.5"></div>
-    <div class="network-line" style="top:25%;left:50%;width:20%;transform-origin:left center;background:#1B5E20;transform:scaleX(0) rotate(-35deg);" data-delay="0.7"></div>
-    <div class="network-line" style="bottom:25%;left:50%;width:20%;transform-origin:left center;background:#1B5E20;transform:scaleX(0) rotate(35deg);" data-delay="0.9"></div>
-    <div class="network-node" style="top:8%;right:3%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.5">
+    <div class="network-node" style="top:3%;right:3%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.5">
       <div style="font-weight:700;color:#1B5E20;font-size:clamp(18px,2vw,24px);">생산자 브랜드</div>
       <div style="font-size:clamp(14px,1.4vw,18px);color:#555;margin-top:6px;">신뢰와 투명성 강화</div>
     </div>
-    <div class="network-node" style="bottom:8%;right:3%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.7">
+    <div class="network-node" style="bottom:3%;right:3%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.7">
       <div style="font-weight:700;color:#1B5E20;font-size:clamp(18px,2vw,24px);">산지 품질 점검</div>
       <div style="font-size:clamp(14px,1.4vw,18px);color:#555;margin-top:6px;">안전한 먹거리 공급</div>
     </div>
-    <div class="network-node" style="top:8%;left:3%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.9">
+    <div class="network-node" style="top:3%;left:3%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.9">
       <div style="font-weight:700;color:#1B5E20;font-size:clamp(18px,2vw,24px);">생산자-소비자 상생</div>
       <div style="font-size:clamp(14px,1.4vw,18px);color:#555;margin-top:6px;">공정 거래 협력</div>
     </div>
-    <div class="network-node" style="bottom:8%;left:3%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="1.1">
+    <div class="network-node" style="bottom:3%;left:3%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="1.1">
       <div style="font-weight:700;color:#1B5E20;font-size:clamp(18px,2vw,24px);">안전한 생활재</div>
       <div style="font-size:clamp(14px,1.4vw,18px);color:#555;margin-top:6px;">엄격한 품질 기준</div>
     </div>
@@ -1751,8 +1752,8 @@ function buildBubbleChart() {
 
   const vw = window.innerWidth;
   const vh = window.innerHeight;
-  const cw = Math.min(vw * 0.92, 1200);
-  const ch = Math.min(vh * 0.60, 600);
+  const cw = Math.min(vw * 0.95, 1400);
+  const ch = Math.min(vh * 0.70, 700);
 
   const data = coopData.map(c => {
     const amt = parseFloat(c.amount.replace('억',''));
@@ -1760,9 +1761,9 @@ function buildBubbleChart() {
   }).sort((a, b) => b.amtNum - a.amtNum);
 
   const n = data.length;
-  const r = Math.min(cw, ch) * 0.055; // uniform bubble size
-  const heartScaleX = cw * 0.42;
-  const heartScaleY = ch * 0.42;
+  const r = Math.min(cw, ch) * 0.06; // uniform bubble size
+  const heartScaleX = cw * 0.46;
+  const heartScaleY = ch * 0.46;
 
   // Heart curve: x=16sin³(t), y=-(13cos(t)-5cos(2t)-2cos(3t)-cos(4t))
   // Place bubbles along outline + fill inside
@@ -1911,7 +1912,7 @@ function triggerAnimations(sid) {
       const center = net.querySelector('.network-center');
       if (center) center.classList.add('visible');
     }, 500);
-    net.querySelectorAll('.network-line').forEach(line => {
+    net.querySelectorAll('.network-svg-line').forEach(line => {
       const d = parseFloat(line.dataset.delay || 0.3);
       setTimeout(() => line.classList.add('visible'), d * 1000 + 500);
     });
@@ -1999,7 +2000,7 @@ function startAutoPlay() {
       ['donut-store','donut-online','donut-public'].forEach(id=>{const e=document.getElementById(id);if(e)e.style.strokeDasharray='0 502.65';});
       ['gauge1','gauge2'].forEach(id=>{const e=document.getElementById(id);if(e)e.style.strokeDasharray='0 534';});
       document.querySelectorAll('.flip-card').forEach(c=>c.classList.remove('flipped'));
-      document.querySelectorAll('.network-center,.network-node,.network-line').forEach(n=>n.classList.remove('visible'));
+      document.querySelectorAll('.network-center,.network-node,.network-svg-line').forEach(n=>n.classList.remove('visible'));
       document.querySelectorAll('.timeline-step').forEach(s=>s.classList.remove('visible'));
       document.querySelectorAll('.stack-bar-segment').forEach(s=>s.style.width='0');
       document.querySelectorAll('.big-num-reveal').forEach(b=>b.classList.remove('visible'));
@@ -2027,7 +2028,7 @@ document.getElementById('btnRestart').addEventListener('click', () => {
   ['donut-store','donut-online','donut-public'].forEach(id=>{const e=document.getElementById(id);if(e)e.style.strokeDasharray='0 502.65';});
   ['gauge1','gauge2'].forEach(id=>{const e=document.getElementById(id);if(e)e.style.strokeDasharray='0 534';});
   document.querySelectorAll('.flip-card').forEach(c=>c.classList.remove('flipped'));
-  document.querySelectorAll('.network-center,.network-node,.network-line').forEach(n=>n.classList.remove('visible'));
+  document.querySelectorAll('.network-center,.network-node,.network-svg-line').forEach(n=>n.classList.remove('visible'));
   document.querySelectorAll('.timeline-step').forEach(s=>s.classList.remove('visible'));
   document.querySelectorAll('.stack-bar-segment').forEach(s=>s.style.width='0');
   document.querySelectorAll('.big-num-reveal').forEach(b=>b.classList.remove('visible'));
