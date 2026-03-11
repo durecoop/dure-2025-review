@@ -734,6 +734,7 @@ body:hover .section-indicator { opacity: 1; }
         <button class="speed-btn bgm-opt" data-bgm="2">🌅 희망</button>
         <button class="speed-btn bgm-opt" data-bgm="3">🏡 감성</button>
         <button class="speed-btn bgm-opt" data-bgm="4">🚀 도약</button>
+        <button class="speed-btn bgm-opt" data-bgm="5">🎤 바람의 노래</button>
       </div>
     </div>
     <div class="total-time">
@@ -1716,6 +1717,7 @@ const bgmPlaylist = [
   'https://assets.mixkit.co/music/543/543.mp3',   // A New Life - 희망적
   'https://assets.mixkit.co/music/551/551.mp3',   // Home - 감성적
   'https://assets.mixkit.co/music/31/31.mp3',     // Dreaming Big - 도약
+  'bgm/singeragain-wind-song.webm',               // 싱어게인 - 바람의 노래
 ];
 function loadBgmTrack(idx) {
   bgm.src = bgmPlaylist[idx % bgmPlaylist.length];
@@ -1760,8 +1762,7 @@ const _origActivate = activateSection;
 activateSection = function(index) {
   const prevSection = currentSection;
   _origActivate(index);
-  // Play transition sound (skip on first load)
-  if (prevSection !== index) playTransitionSound();
+  // Transition sound disabled
   // Animate photos in the new section
   const sec = document.getElementById(sections[index].id);
   if (sec.querySelectorAll('.photo-item').length > 0) {
