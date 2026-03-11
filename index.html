@@ -449,6 +449,249 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 .cl-name { font-size: clamp(14px, 1.5vw, 19px); font-weight: 700; margin-bottom: clamp(3px, 0.5vh, 6px); }
 .cl-desc { font-size: clamp(11px, 1.1vw, 14px); line-height: 1.5; margin-top: clamp(4px, 0.6vh, 8px); }
 
+/* ===== STAGGERED CARD ENTRANCE ===== */
+.stagger-1 { animation-delay: 0s !important; }
+.stagger-2 { animation-delay: 0.3s !important; }
+.stagger-3 { animation-delay: 0.6s !important; }
+.stagger-4 { animation-delay: 0.9s !important; }
+
+/* ===== CARD FLIP ===== */
+.flip-card {
+  perspective: 800px; cursor: pointer;
+}
+.flip-card-inner {
+  position: relative; width: 100%; height: 100%;
+  transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  transform-style: preserve-3d;
+}
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: clamp(16px, 2vh, 24px) clamp(12px, 1.5vw, 20px);
+  text-align: center;
+}
+.flip-card-back { transform: rotateY(180deg); }
+
+/* ===== NETWORK NODES ===== */
+.network-container {
+  position: relative; width: 100%; max-width: 900px;
+  height: clamp(280px, 40vh, 420px); margin-top: clamp(20px, 4vh, 40px);
+  opacity: 0;
+}
+.network-container.show { animation: fade-scale 1s cubic-bezier(0.16,1,0.3,1) forwards; }
+.network-node {
+  position: absolute; border-radius: 12px;
+  padding: clamp(14px, 2vh, 24px) clamp(12px, 1.5vw, 20px);
+  text-align: center; opacity: 0; transform: scale(0.8);
+  transition: opacity 0.6s, transform 0.6s cubic-bezier(0.16,1,0.3,1);
+  max-width: clamp(160px, 20vw, 220px);
+}
+.network-node.visible { opacity: 1; transform: scale(1); }
+.network-center {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: clamp(80px, 10vw, 120px); height: clamp(80px, 10vw, 120px);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: clamp(16px, 2vw, 24px);
+  z-index: 2; opacity: 0; transform: translate(-50%, -50%) scale(0);
+  transition: opacity 0.6s, transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+.network-center.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.network-line {
+  position: absolute; height: 2px; transform-origin: left center;
+  opacity: 0; transform: scaleX(0);
+  transition: opacity 0.5s, transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.network-line.visible { opacity: 1; transform: scaleX(1); }
+
+/* ===== DONUT CHART ===== */
+.donut-container {
+  position: relative; width: clamp(200px, 28vw, 320px); height: clamp(200px, 28vw, 320px);
+  margin: clamp(16px, 3vh, 30px) auto 0; opacity: 0;
+}
+.donut-container.show { animation: fade-scale 1s cubic-bezier(0.16,1,0.3,1) forwards; }
+.donut-center-text {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  text-align: center;
+}
+.donut-legend {
+  display: flex; gap: clamp(16px, 3vw, 40px); justify-content: center;
+  margin-top: clamp(16px, 3vh, 30px); flex-wrap: wrap;
+}
+.donut-legend-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: clamp(12px, 1.2vw, 15px);
+}
+.donut-legend-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+}
+
+/* ===== TIMELINE STEPS ===== */
+.timeline-steps {
+  display: flex; align-items: flex-start; justify-content: center;
+  gap: 0; width: 100%; max-width: 1000px; margin-top: clamp(16px, 3vh, 32px);
+  position: relative;
+}
+.timeline-step {
+  flex: 1; text-align: center; position: relative;
+  padding: clamp(12px, 2vh, 20px) clamp(8px, 1vw, 16px);
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s, transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.timeline-step.visible { opacity: 1; transform: translateY(0); }
+.timeline-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  margin: 0 auto clamp(8px, 1.5vh, 16px);
+  position: relative; z-index: 2;
+}
+.timeline-line {
+  position: absolute; top: clamp(20px, 3vh, 28px); left: 50%; right: -50%;
+  height: 2px; opacity: 0.3;
+}
+.timeline-step:last-child .timeline-line { display: none; }
+.timeline-num {
+  font-size: clamp(28px, 3.5vw, 48px); font-weight: 900; line-height: 1;
+  margin-bottom: clamp(4px, 0.8vh, 8px);
+}
+
+/* ===== VERTICAL BAR CHART ===== */
+.vbar-chart {
+  display: flex; align-items: flex-end; justify-content: center;
+  gap: clamp(20px, 4vw, 60px); width: 100%; max-width: 800px;
+  height: clamp(200px, 35vh, 350px); margin-top: clamp(16px, 3vh, 32px);
+}
+.vbar-col {
+  display: flex; flex-direction: column; align-items: center;
+  flex: 1; height: 100%; justify-content: flex-end;
+}
+.vbar-num {
+  font-size: clamp(20px, 2.5vw, 32px); font-weight: 900;
+  margin-bottom: clamp(4px, 0.8vh, 8px);
+}
+.vbar-fill {
+  width: 100%; max-width: clamp(60px, 8vw, 100px); border-radius: 8px 8px 0 0;
+  height: 0; transition: height 1.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+.vbar-label {
+  font-size: clamp(11px, 1.1vw, 14px); margin-top: clamp(6px, 1vh, 12px);
+  text-align: center; font-weight: 500;
+}
+
+/* ===== PEOPLE GRID ===== */
+.people-grid {
+  display: grid; grid-template-columns: repeat(10, 1fr);
+  gap: clamp(4px, 0.5vw, 8px); max-width: clamp(200px, 30vw, 350px);
+  margin: clamp(12px, 2vh, 20px) auto 0;
+}
+.people-icon {
+  font-size: clamp(14px, 1.8vw, 22px); text-align: center;
+  opacity: 0.15; transition: opacity 0.3s, color 0.3s;
+}
+.people-icon.lit { opacity: 1; }
+
+/* ===== STACKED TOTAL ===== */
+.stack-total {
+  text-align: center; margin-top: clamp(16px, 3vh, 32px);
+}
+.stack-total-num {
+  font-size: clamp(40px, 6vw, 80px); font-weight: 900; line-height: 1;
+}
+.stack-bar-container {
+  display: flex; width: 100%; max-width: 800px; height: clamp(40px, 6vh, 60px);
+  margin: clamp(16px, 3vh, 30px) auto 0; border-radius: 8px; overflow: hidden;
+}
+.stack-bar-segment {
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(11px, 1.1vw, 14px); font-weight: 700; color: #fff;
+  height: 100%; width: 0;
+  transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+}
+.stack-bar-labels {
+  display: flex; width: 100%; max-width: 800px; margin: clamp(8px, 1.5vh, 16px) auto 0;
+  font-size: clamp(10px, 1vw, 13px);
+}
+.stack-bar-label {
+  display: flex; flex-direction: column; align-items: center;
+  width: 0; transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+}
+
+/* ===== BIG NUMBER REVEAL ===== */
+.big-num-reveal {
+  text-align: center; opacity: 0; transform: translateY(30px);
+  transition: opacity 0.8s, transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.big-num-reveal.visible { opacity: 1; transform: translateY(0); }
+.big-num-main {
+  font-size: clamp(60px, 12vw, 140px); font-weight: 900; line-height: 1;
+  letter-spacing: -4px;
+}
+.big-num-sub {
+  font-size: clamp(36px, 6vw, 72px); font-weight: 900; line-height: 1;
+  letter-spacing: -2px; margin-top: clamp(8px, 2vh, 20px);
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s 0.5s, transform 0.6s 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.big-num-reveal.visible .big-num-sub { opacity: 1; transform: translateY(0); }
+
+/* ===== COUNTDOWN (Scene 7) ===== */
+@keyframes warning-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+@keyframes ripple-out {
+  0% { box-shadow: 0 0 0 0 rgba(239,83,80,0.4); }
+  100% { box-shadow: 0 0 0 20px rgba(239,83,80,0); }
+}
+.warning-blink { animation: warning-pulse 0.6s ease-in-out 2; }
+.ripple-effect { animation: ripple-out 1s ease-out; }
+
+/* ===== CIRCULAR GAUGE (Part 2 Opening) ===== */
+.gauge-container {
+  display: flex; gap: clamp(40px, 8vw, 100px); justify-content: center;
+  align-items: center; margin-top: clamp(24px, 5vh, 50px);
+}
+.gauge-wrap {
+  text-align: center; opacity: 0;
+  transition: opacity 0.6s;
+}
+.gauge-wrap.visible { opacity: 1; }
+.gauge-ring {
+  position: relative; width: clamp(160px, 22vw, 260px); height: clamp(160px, 22vw, 260px);
+  margin: 0 auto;
+}
+.gauge-ring svg { width: 100%; height: 100%; }
+.gauge-center {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  text-align: center;
+}
+.gauge-num {
+  font-size: clamp(32px, 4.5vw, 56px); font-weight: 900; line-height: 1;
+}
+.gauge-label {
+  font-size: clamp(12px, 1.2vw, 16px); margin-top: clamp(8px, 1.5vh, 14px);
+  font-weight: 500; letter-spacing: 1px;
+}
+
+/* ===== TYPING EFFECT ===== */
+.typing-text {
+  overflow: hidden; white-space: nowrap;
+  border-right: 2px solid; width: 0;
+  animation: typing-expand 3s steps(40, end) forwards, typing-blink 0.7s step-end infinite;
+}
+@keyframes typing-expand { 0% { width: 0; } 100% { width: 100%; } }
+@keyframes typing-blink { 0%, 100% { border-color: transparent; } 50% { border-color: currentColor; } }
+
+/* ===== PARTICLE (Scene 2 bar) ===== */
+@keyframes particle-rise {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-40px) scale(0); }
+}
+.particle {
+  position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #fff;
+  pointer-events: none;
+}
+
 /* ===== SLIDESHOW ===== */
 .slideshow-container { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
 .slide {
@@ -852,28 +1095,35 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label green">CHANNELS</div>
   <div class="e-title" style="color:#1a1a1a;">채널별 <span class="green">성과</span></div>
   <div class="e-divider green"></div>
-  <div class="e-emotion c-gray">매장에서, 온라인에서, 지역 곳곳에서 이어진 만남</div>
-  <div class="challenge-grid" style="grid-template-columns:repeat(3,1fr);">
-    <div class="accent-card on-light accent-bar-green">
-      <div class="mini-tag green-dark">STORE · 112점</div>
-      <div class="challenge-num c-green">651.7<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">억</span></div>
-      <div class="challenge-title" style="color:#1a1a1a;">매장 공급고</div>
-      <div class="challenge-desc c-gray">전체의 73% · 전년 대비 <strong class="c-green">+1.5%</strong></div>
-      <div class="progress-inline"><div class="progress-fill" data-width="73" style="background:#1B5E20;"></div></div>
+  <div style="display:flex;align-items:center;gap:clamp(30px,6vw,80px);margin-top:clamp(20px,4vh,40px);flex-wrap:wrap;justify-content:center;">
+    <div class="donut-container" id="donutChart">
+      <svg viewBox="0 0 200 200" style="width:100%;height:100%;transform:rotate(-90deg);">
+        <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="24"/>
+        <circle id="donut-store" cx="100" cy="100" r="80" fill="none" stroke="#1B5E20" stroke-width="24" stroke-dasharray="0 502.65" stroke-linecap="round" style="transition:stroke-dasharray 1.5s cubic-bezier(0.16,1,0.3,1);"/>
+        <circle id="donut-online" cx="100" cy="100" r="80" fill="none" stroke="#1565C0" stroke-width="24" stroke-dasharray="0 502.65" stroke-linecap="round" style="transition:stroke-dasharray 1.5s cubic-bezier(0.16,1,0.3,1) 0.3s;"/>
+        <circle id="donut-public" cx="100" cy="100" r="80" fill="none" stroke="#E65100" stroke-width="24" stroke-dasharray="0 502.65" stroke-linecap="round" style="transition:stroke-dasharray 1.5s cubic-bezier(0.16,1,0.3,1) 0.6s;"/>
+      </svg>
+      <div class="donut-center-text">
+        <div style="font-size:clamp(28px,3.5vw,44px);font-weight:900;color:#1a1a1a;">894.7<span style="font-size:clamp(14px,1.5vw,20px);font-weight:400;">억</span></div>
+        <div style="font-size:clamp(11px,1.1vw,14px);color:#888;">총 공급고</div>
+      </div>
     </div>
-    <div class="accent-card on-light accent-bar-blue">
-      <div class="mini-tag blue-dark">ONLINE</div>
-      <div class="challenge-num" style="color:#1565C0;">159.2<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">억</span></div>
-      <div class="challenge-title" style="color:#1a1a1a;">온라인 공급고</div>
-      <div class="challenge-desc c-gray">전체의 18% · 전년 대비 <strong style="color:#1565C0;">+3.0%</strong></div>
-      <div class="progress-inline"><div class="progress-fill" data-width="18" style="background:#1565C0;"></div></div>
-    </div>
-    <div class="accent-card on-light accent-bar-orange">
-      <div class="mini-tag" style="background:rgba(230,81,0,0.1);color:#E65100;">PUBLIC</div>
-      <div class="challenge-num c-orange">78.2<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">억</span></div>
-      <div class="challenge-title" style="color:#1a1a1a;">공공사업 공급고</div>
-      <div class="challenge-desc c-gray">전체의 9% · 전년 대비 <strong class="c-orange">+5.3%</strong></div>
-      <div class="progress-inline"><div class="progress-fill" data-width="9" style="background:#E65100;"></div></div>
+    <div style="display:flex;flex-direction:column;gap:clamp(12px,2vh,20px);">
+      <div class="accent-card on-light accent-bar-green stagger-1" style="border:none;padding:clamp(14px,2vh,20px) clamp(16px,2vw,28px);">
+        <div style="font-size:clamp(28px,3vw,40px);font-weight:900;color:#1B5E20;">651.7<span style="font-size:clamp(14px,1.3vw,18px);font-weight:400;">억</span></div>
+        <div style="font-size:clamp(13px,1.3vw,16px);color:#1a1a1a;font-weight:700;">매장 · 112점 · 73%</div>
+        <div style="font-size:clamp(11px,1vw,13px);color:#888;">전년 대비 <strong style="color:#1B5E20;">+1.5%</strong></div>
+      </div>
+      <div class="accent-card on-light accent-bar-blue stagger-2" style="border:none;padding:clamp(14px,2vh,20px) clamp(16px,2vw,28px);">
+        <div style="font-size:clamp(28px,3vw,40px);font-weight:900;color:#1565C0;">159.2<span style="font-size:clamp(14px,1.3vw,18px);font-weight:400;">억</span></div>
+        <div style="font-size:clamp(13px,1.3vw,16px);color:#1a1a1a;font-weight:700;">온라인 · 18%</div>
+        <div style="font-size:clamp(11px,1vw,13px);color:#888;">전년 대비 <strong style="color:#1565C0;">+3.0%</strong></div>
+      </div>
+      <div class="accent-card on-light accent-bar-orange stagger-3" style="border:none;padding:clamp(14px,2vh,20px) clamp(16px,2vw,28px);">
+        <div style="font-size:clamp(28px,3vw,40px);font-weight:900;color:#E65100;">78.2<span style="font-size:clamp(14px,1.3vw,18px);font-weight:400;">억</span></div>
+        <div style="font-size:clamp(13px,1.3vw,16px);color:#1a1a1a;font-weight:700;">공공사업 · 9%</div>
+        <div style="font-size:clamp(11px,1vw,13px);color:#888;">전년 대비 <strong style="color:#E65100;">+5.3%</strong></div>
+      </div>
     </div>
   </div>
 </div>
@@ -893,11 +1143,11 @@ body:hover .section-indicator { opacity: 1; }
             stroke-linecap="round" stroke-dasharray="603" stroke-dashoffset="603" style="transition:stroke-dashoffset 2s ease-out;transform:rotate(-90deg);transform-origin:center;"/>
         </svg>
         <div class="ring-center">
-          <div style="font-size:clamp(28px,3.5vw,48px);font-weight:900;color:#1B5E20;">70.7%</div>
+          <div style="font-size:clamp(28px,3.5vw,48px);font-weight:900;color:#1B5E20;">90%</div>
           <div style="font-size:clamp(11px,1.1vw,14px);color:#888;letter-spacing:2px;">PI 과제 달성</div>
         </div>
       </div>
-      <div style="margin-top:12px;font-size:clamp(12px,1.3vw,16px);color:#888;">41개 중 29개 완수</div>
+      <div style="margin-top:12px;font-size:clamp(12px,1.3vw,16px);color:#888;">41개 중 29개 완수, 8개 상시진행중</div>
     </div>
     <div class="e-grid e-grid-2" style="max-width:500px;border:2px solid #1B5E20;margin-top:0;">
       <div class="e-cell e-cell-on-white" style="padding:30px 24px;">
@@ -960,37 +1210,42 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label" style="color:#1565C0;">POLICY</div>
   <div class="e-title" style="color:#1a1a1a;"><span style="color:#1565C0;">제도 개선</span>과 정책사업</div>
   <div class="e-divider" style="background:#1565C0;"></div>
-  <div class="e-emotion c-dark-gray">더 나은 내일을 위한 제도의 씨앗</div>
   <div class="challenge-grid" style="grid-template-columns:repeat(3,1fr);">
-    <div class="accent-card on-light accent-bar-blue">
-      <div class="mini-tag blue-dark">복지</div>
-      <div class="challenge-title" style="color:#1a1a1a;">농식품 바우처사업</div>
-      <div class="challenge-desc c-dark-gray">건강한 먹거리 접근성 확대</div>
+    <div class="accent-card on-light accent-bar-blue flip-card stagger-1" style="min-height:clamp(120px,16vh,180px);">
+      <div class="flip-card-inner">
+        <div class="flip-card-front"><div style="font-size:clamp(15px,1.5vw,20px);font-weight:700;color:#1a1a1a;">농식품 바우처사업</div></div>
+        <div class="flip-card-back" style="background:rgba(21,101,192,0.05);border-radius:12px;"><div style="font-size:clamp(12px,1.1vw,15px);color:#555;line-height:1.6;">건강한 먹거리<br>접근성 확대</div></div>
+      </div>
     </div>
-    <div class="accent-card on-light accent-bar-blue">
-      <div class="mini-tag blue-dark">복지</div>
-      <div class="challenge-title" style="color:#1a1a1a;">임산부 친환경농산물</div>
-      <div class="challenge-desc c-dark-gray">경기·동작구·중구 지원사업 확대</div>
+    <div class="accent-card on-light accent-bar-blue flip-card stagger-2" style="min-height:clamp(120px,16vh,180px);">
+      <div class="flip-card-inner">
+        <div class="flip-card-front"><div style="font-size:clamp(15px,1.5vw,20px);font-weight:700;color:#1a1a1a;">임산부 친환경농산물</div></div>
+        <div class="flip-card-back" style="background:rgba(21,101,192,0.05);border-radius:12px;"><div style="font-size:clamp(12px,1.1vw,15px);color:#555;line-height:1.6;">경기·동작구·중구<br>지원사업 확대</div></div>
+      </div>
     </div>
-    <div class="accent-card on-light accent-bar-green">
-      <div class="mini-tag green-dark">혜택</div>
-      <div class="challenge-title" style="color:#1a1a1a;">농축산물 할인 지원</div>
-      <div class="challenge-desc c-dark-gray">조합원 실질 혜택 강화</div>
+    <div class="accent-card on-light accent-bar-green flip-card stagger-3" style="min-height:clamp(120px,16vh,180px);">
+      <div class="flip-card-inner">
+        <div class="flip-card-front"><div style="font-size:clamp(15px,1.5vw,20px);font-weight:700;color:#1a1a1a;">농축산물 할인 지원</div></div>
+        <div class="flip-card-back" style="background:rgba(27,94,32,0.05);border-radius:12px;"><div style="font-size:clamp(12px,1.1vw,15px);color:#555;line-height:1.6;">조합원 실질<br>혜택 강화</div></div>
+      </div>
     </div>
-    <div class="accent-card on-light accent-bar-orange" style="border-left-color:rgba(230,81,0,0.08);">
-      <div class="mini-tag" style="background:rgba(230,81,0,0.08);color:#E65100;">제도</div>
-      <div class="challenge-title" style="color:#1a1a1a;">생협법 개정 연대</div>
-      <div class="challenge-desc c-dark-gray">주무부처 변경 추진</div>
+    <div class="accent-card on-light accent-bar-orange flip-card stagger-1" style="min-height:clamp(120px,16vh,180px);">
+      <div class="flip-card-inner">
+        <div class="flip-card-front"><div style="font-size:clamp(15px,1.5vw,20px);font-weight:700;color:#1a1a1a;">생협법 개정 연대</div></div>
+        <div class="flip-card-back" style="background:rgba(230,81,0,0.05);border-radius:12px;"><div style="font-size:clamp(12px,1.1vw,15px);color:#555;line-height:1.6;">주무부처<br>변경 추진</div></div>
+      </div>
     </div>
-    <div class="accent-card on-light accent-bar-green">
-      <div class="mini-tag green-dark">혜택</div>
-      <div class="challenge-title" style="color:#1a1a1a;">지역화폐 등록 확대</div>
-      <div class="challenge-desc c-dark-gray">민생회복 소비쿠폰 사용처</div>
+    <div class="accent-card on-light accent-bar-green flip-card stagger-2" style="min-height:clamp(120px,16vh,180px);">
+      <div class="flip-card-inner">
+        <div class="flip-card-front"><div style="font-size:clamp(15px,1.5vw,20px);font-weight:700;color:#1a1a1a;">지역화폐 등록 확대</div></div>
+        <div class="flip-card-back" style="background:rgba(27,94,32,0.05);border-radius:12px;"><div style="font-size:clamp(12px,1.1vw,15px);color:#555;line-height:1.6;">민생회복<br>소비쿠폰 사용처</div></div>
+      </div>
     </div>
-    <div class="accent-card on-light accent-bar-blue">
-      <div class="mini-tag blue-dark">기반</div>
-      <div class="challenge-title" style="color:#1a1a1a;">기반 안정화</div>
-      <div class="challenge-desc c-dark-gray">제도적 지속가능 성장 기반</div>
+    <div class="accent-card on-light accent-bar-blue flip-card stagger-3" style="min-height:clamp(120px,16vh,180px);">
+      <div class="flip-card-inner">
+        <div class="flip-card-front"><div style="font-size:clamp(15px,1.5vw,20px);font-weight:700;color:#1a1a1a;">기반 안정화</div></div>
+        <div class="flip-card-back" style="background:rgba(21,101,192,0.05);border-radius:12px;"><div style="font-size:clamp(12px,1.1vw,15px);color:#555;line-height:1.6;">제도적 지속가능<br>성장 기반</div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -1000,27 +1255,27 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-label green">PRODUCER</div>
   <div class="e-title" style="color:#1a1a1a;"><span class="green">생산자와 함께</span>, 소비자를 위한 생활재</div>
   <div class="e-divider green"></div>
-  <div class="e-emotion c-gray">얼굴이 보이는 관계, 신뢰로 잇는 밥상</div>
-  <div class="challenge-grid">
-    <div class="accent-card on-light accent-bar-green">
-      <div class="mini-tag green-dark">신뢰</div>
-      <div class="challenge-title" style="color:#1a1a1a;">생산자의 얼굴이 보이는 생활재</div>
-      <div class="challenge-desc c-dark-gray">생산자 브랜드를 통한 신뢰와 투명성, 직접적 연결 강화</div>
+  <div class="network-container" id="producerNetwork">
+    <div class="network-center" style="background:#1B5E20;color:#fff;">두레</div>
+    <div class="network-line" style="top:50%;left:50%;width:25%;transform-origin:left center;background:#1B5E20;" data-delay="0.3"></div>
+    <div class="network-line" style="top:50%;right:50%;width:25%;transform-origin:right center;background:#1B5E20;transform:scaleX(0) rotate(180deg);" data-delay="0.5"></div>
+    <div class="network-line" style="top:25%;left:50%;width:20%;transform-origin:left center;background:#1B5E20;transform:scaleX(0) rotate(-45deg);" data-delay="0.7"></div>
+    <div class="network-line" style="bottom:25%;left:50%;width:20%;transform-origin:left center;background:#1B5E20;transform:scaleX(0) rotate(45deg);" data-delay="0.9"></div>
+    <div class="network-node" style="top:10%;right:5%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.5">
+      <div style="font-weight:700;color:#1B5E20;font-size:clamp(13px,1.4vw,17px);">생산자 브랜드</div>
+      <div style="font-size:clamp(11px,1vw,13px);color:#555;margin-top:4px;">신뢰와 투명성 강화</div>
     </div>
-    <div class="accent-card on-light accent-bar-green">
-      <div class="mini-tag green-dark">품질</div>
-      <div class="challenge-title" style="color:#1a1a1a;">제철 농산물 산지 점검</div>
-      <div class="challenge-desc c-dark-gray">현장 품질 관리와 안전한 먹거리 공급 체계 확립</div>
+    <div class="network-node" style="bottom:10%;right:5%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.7">
+      <div style="font-weight:700;color:#1B5E20;font-size:clamp(13px,1.4vw,17px);">산지 품질 점검</div>
+      <div style="font-size:clamp(11px,1vw,13px);color:#555;margin-top:4px;">안전한 먹거리 공급</div>
     </div>
-    <div class="accent-card on-light accent-bar-green">
-      <div class="mini-tag green-dark">상생</div>
-      <div class="challenge-title" style="color:#1a1a1a;">생산자-소비자 상생</div>
-      <div class="challenge-desc c-dark-gray">공정 거래와 지속가능한 농업을 위한 신뢰 기반 협력</div>
+    <div class="network-node" style="top:10%;left:5%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.9">
+      <div style="font-weight:700;color:#1B5E20;font-size:clamp(13px,1.4vw,17px);">생산자-소비자 상생</div>
+      <div style="font-size:clamp(11px,1vw,13px);color:#555;margin-top:4px;">공정 거래 협력</div>
     </div>
-    <div class="accent-card on-light accent-bar-green">
-      <div class="mini-tag green-dark">안전</div>
-      <div class="challenge-title" style="color:#1a1a1a;">안전한 생활재 공급</div>
-      <div class="challenge-desc c-dark-gray">엄격한 품질 기준과 투명한 생산으로 건강한 식탁 지원</div>
+    <div class="network-node" style="bottom:10%;left:5%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="1.1">
+      <div style="font-weight:700;color:#1B5E20;font-size:clamp(13px,1.4vw,17px);">안전한 생활재</div>
+      <div style="font-size:clamp(11px,1vw,13px);color:#555;margin-top:4px;">엄격한 품질 기준</div>
     </div>
   </div>
 </div>
@@ -1087,16 +1342,32 @@ body:hover .section-indicator { opacity: 1; }
 <div class="section bg-indigo" id="part2-title">
   <div class="e-title" style="color:#fff;">교육, 더 넓게 모이고<br>더 깊게 채우다</div>
   <div class="e-divider white"></div>
-  <div class="challenge-grid" style="grid-template-columns:repeat(2,1fr);max-width:700px;margin-top:clamp(24px,5vh,50px);">
-    <div class="accent-card on-dark accent-bar-blue">
-      <div class="challenge-title" style="color:rgba(255,255,255,0.6);font-weight:500;">함께한 발걸음</div>
-      <div class="challenge-num" style="color:#90CAF9;"><span class="count2" data-target="601" data-format="int">0</span><span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">명</span></div>
-      <div class="challenge-desc c-white-30">전년 대비 28.4% 대폭 증가</div>
+  <div class="gauge-container" id="gaugeSection">
+    <div class="gauge-wrap">
+      <div class="gauge-ring">
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="14"/>
+          <circle id="gauge1" cx="100" cy="100" r="85" fill="none" stroke="#90CAF9" stroke-width="14" stroke-linecap="round" stroke-dasharray="0 534" style="transition:stroke-dasharray 2s cubic-bezier(0.16,1,0.3,1);transform:rotate(-90deg);transform-origin:center;"/>
+        </svg>
+        <div class="gauge-center">
+          <div class="gauge-num" style="color:#90CAF9;"><span class="count2" data-target="601" data-format="int">0</span><span style="font-size:clamp(16px,1.8vw,22px);font-weight:400;">명</span></div>
+        </div>
+      </div>
+      <div class="gauge-label" style="color:rgba(255,255,255,0.6);">함께한 발걸음</div>
+      <div style="font-size:clamp(11px,1vw,14px);color:rgba(255,255,255,0.35);margin-top:4px;">전년 대비 28.4% 대폭 증가</div>
     </div>
-    <div class="accent-card on-dark accent-bar-blue">
-      <div class="challenge-title" style="color:rgba(255,255,255,0.6);font-weight:500;">배움의 무게</div>
-      <div class="challenge-num" style="color:#90CAF9;">4.43<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">점</span></div>
-      <div class="challenge-desc c-white-30">교육 효과성 점수</div>
+    <div class="gauge-wrap">
+      <div class="gauge-ring">
+        <svg viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="14"/>
+          <circle id="gauge2" cx="100" cy="100" r="85" fill="none" stroke="#90CAF9" stroke-width="14" stroke-linecap="round" stroke-dasharray="0 534" style="transition:stroke-dasharray 2s cubic-bezier(0.16,1,0.3,1) 0.5s;transform:rotate(-90deg);transform-origin:center;"/>
+        </svg>
+        <div class="gauge-center">
+          <div class="gauge-num" style="color:#90CAF9;">4.43<span style="font-size:clamp(16px,1.8vw,22px);font-weight:400;">점</span></div>
+        </div>
+      </div>
+      <div class="gauge-label" style="color:rgba(255,255,255,0.6);">교육 효과성 점수</div>
+      <div style="font-size:clamp(11px,1vw,14px);color:rgba(255,255,255,0.35);margin-top:4px;">배움의 무게</div>
     </div>
   </div>
 </div>
@@ -1125,18 +1396,26 @@ body:hover .section-indicator { opacity: 1; }
 <div class="section bg-dark" id="fair-trade">
   <div class="e-title" style="color:#fff;font-size:clamp(26px,3.5vw,48px);">민중교역,<br>서로의 삶을 지탱하는 단단한 연대</div>
   <div class="e-divider orange"></div>
-  <div class="challenge-grid" style="grid-template-columns:repeat(3,1fr);margin-top:clamp(16px,3vh,32px);">
-    <div class="accent-card on-dark accent-bar-orange">
-      <div class="challenge-title" style="color:#fff;font-weight:700;">민중교역주간행사</div>
-      <div class="challenge-desc c-white-30">팔레스타인 생산자와 230명의 조합원이 함께 나눈<br>민중교역의 가치와 평화를 향한 연대</div>
+  <div class="timeline-steps" id="fairTradeTimeline">
+    <div class="timeline-step">
+      <div class="timeline-dot" style="background:#FFAB91;"></div>
+      <div class="timeline-line" style="background:#FFAB91;"></div>
+      <div class="timeline-num" style="color:#FFAB91;"><span class="count-ft" data-target="230">0</span><span style="font-size:clamp(14px,1.3vw,18px);font-weight:400;">명</span></div>
+      <div style="font-size:clamp(13px,1.3vw,17px);font-weight:700;color:#fff;">민중교역주간행사</div>
+      <div style="font-size:clamp(11px,1vw,13px);color:rgba(255,255,255,0.4);margin-top:4px;line-height:1.5;">팔레스타인 생산자와 조합원이<br>함께 나눈 연대</div>
     </div>
-    <div class="accent-card on-dark accent-bar-orange">
-      <div class="challenge-title" style="color:#fff;font-weight:700;">발랑곤바나나 정기구독 캠페인</div>
-      <div class="challenge-desc c-white-30">1,793명 참여</div>
+    <div class="timeline-step">
+      <div class="timeline-dot" style="background:#FFAB91;"></div>
+      <div class="timeline-line" style="background:#FFAB91;"></div>
+      <div class="timeline-num" style="color:#FFAB91;"><span class="count-ft" data-target="1793">0</span><span style="font-size:clamp(14px,1.3vw,18px);font-weight:400;">명</span></div>
+      <div style="font-size:clamp(13px,1.3vw,17px);font-weight:700;color:#fff;">발랑곤바나나 정기구독</div>
+      <div style="font-size:clamp(11px,1vw,13px);color:rgba(255,255,255,0.4);margin-top:4px;line-height:1.5;">캠페인 참여</div>
     </div>
-    <div class="accent-card on-dark accent-bar-orange">
-      <div class="challenge-title" style="color:#fff;font-weight:700;">필리핀 민중교역 생산지 방문</div>
-      <div class="challenge-desc c-white-30">바르크프로젝트 점검과 아시아민중기금 총회 참석,<br>필리핀생산지교류연수 등 총 8곳 방문</div>
+    <div class="timeline-step">
+      <div class="timeline-dot" style="background:#FFAB91;"></div>
+      <div class="timeline-num" style="color:#FFAB91;"><span class="count-ft" data-target="8">0</span><span style="font-size:clamp(14px,1.3vw,18px);font-weight:400;">곳</span></div>
+      <div style="font-size:clamp(13px,1.3vw,17px);font-weight:700;color:#fff;">필리핀 생산지 방문</div>
+      <div style="font-size:clamp(11px,1vw,13px);color:rgba(255,255,255,0.4);margin-top:4px;line-height:1.5;">바르크프로젝트 점검<br>필리핀생산지교류연수</div>
     </div>
   </div>
   <div class="photo-strip photo-strip-3" style="margin-top:clamp(12px,2vh,20px);">
@@ -1215,14 +1494,24 @@ body:hover .section-indicator { opacity: 1; }
 <div class="section bg-deep" id="solidarity-fund">
   <div class="e-title" style="color:#fff;font-size:clamp(26px,3.5vw,48px);">생산자와의 연대,<br>1004 기금 조성</div>
   <div class="e-divider red"></div>
-  <div class="challenge-grid" style="grid-template-columns:repeat(2,1fr);max-width:900px;margin-top:clamp(16px,3vh,32px);">
-    <div class="accent-card on-dark accent-bar-red">
-      <div class="challenge-title" style="color:#fff;font-weight:700;">4월 산불 피해 복구 지원</div>
-      <div class="challenge-desc c-white-30">의성군(2천만 원)<br>민속죽염(4백만 원)</div>
+  <div class="stack-total" id="stackTotal">
+    <div class="stack-total-num" style="color:#EF9A9A;"><span class="count-fund" data-target="3800">0</span><span style="font-size:clamp(20px,2.5vw,36px);font-weight:400;">만 원</span></div>
+    <div style="font-size:clamp(12px,1.2vw,16px);color:rgba(255,255,255,0.4);margin-top:8px;">총 기금 조성액</div>
+  </div>
+  <div class="stack-bar-container" id="stackBars">
+    <div class="stack-bar-segment" style="background:linear-gradient(135deg,#C62828,#EF5350);" data-width="52.6">의성군 2천만</div>
+    <div class="stack-bar-segment" style="background:linear-gradient(135deg,#E53935,#EF9A9A);" data-width="10.5">민속죽염 4백만</div>
+    <div class="stack-bar-segment" style="background:linear-gradient(135deg,#1565C0,#42A5F5);" data-width="18.4">홍성 7백만</div>
+    <div class="stack-bar-segment" style="background:linear-gradient(135deg,#1976D2,#90CAF9);" data-width="18.4">한강 7백만</div>
+  </div>
+  <div style="display:flex;justify-content:center;gap:clamp(16px,3vw,40px);margin-top:clamp(16px,3vh,30px);flex-wrap:wrap;">
+    <div style="text-align:center;">
+      <div style="font-size:clamp(10px,0.9vw,12px);color:#EF9A9A;font-weight:700;letter-spacing:1px;">4월 · 산불 피해</div>
+      <div style="font-size:clamp(12px,1.1vw,15px);color:rgba(255,255,255,0.5);margin-top:4px;">의성군(2천만 원) · 민속죽염(4백만 원)</div>
     </div>
-    <div class="accent-card on-dark accent-bar-blue">
-      <div class="challenge-title" style="color:#fff;font-weight:700;">8월 폭우 피해 복구 지원</div>
-      <div class="challenge-desc c-white-30">홍성유기농(7백만 원)<br>두레한강생산자회(7백만 원)</div>
+    <div style="text-align:center;">
+      <div style="font-size:clamp(10px,0.9vw,12px);color:#90CAF9;font-weight:700;letter-spacing:1px;">8월 · 폭우 피해</div>
+      <div style="font-size:clamp(12px,1.1vw,15px);color:rgba(255,255,255,0.5);margin-top:4px;">홍성유기농(7백만 원) · 두레한강생산자회(7백만 원)</div>
     </div>
   </div>
   <div class="photo-strip photo-strip-4" style="margin-top:clamp(12px,2vh,20px);max-width:1100px;">
@@ -1249,16 +1538,11 @@ body:hover .section-indicator { opacity: 1; }
 <div class="section bg-warm" id="sanmyeong">
   <div class="e-title" style="color:#1a1a1a;font-size:clamp(26px,3.5vw,48px);">생산자와의 연대,<br>생명나눔한마당</div>
   <div class="e-divider green"></div>
-  <div class="challenge-desc c-dark-gray" style="font-size:clamp(14px,1.4vw,18px);margin-top:clamp(12px,2vh,20px);">10월, 의성산운생태공원</div>
-  <div class="challenge-grid" style="grid-template-columns:repeat(2,1fr);max-width:700px;margin-top:clamp(16px,3vh,32px);">
-    <div class="accent-card on-light accent-bar-green">
-      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">참가자</div>
-      <div class="challenge-num c-green" style="font-size:clamp(36px,4.5vw,60px);">400<span style="font-size:clamp(16px,1.5vw,22px);font-weight:400;">여 명</span></div>
-    </div>
-    <div class="accent-card on-light accent-bar-green">
-      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">의성군비 지원</div>
-      <div class="challenge-num c-green" style="font-size:clamp(36px,4.5vw,60px);">2,500<span style="font-size:clamp(16px,1.5vw,22px);font-weight:400;">만 원</span></div>
-    </div>
+  <div style="font-size:clamp(13px,1.3vw,16px);color:#888;margin-top:clamp(8px,1.5vh,14px);">10월, 의성산운생태공원</div>
+  <div class="big-num-reveal" id="bigNumSanmyeong" style="margin-top:clamp(20px,4vh,40px);">
+    <div class="big-num-main c-green"><span class="count-san" data-target="400">0</span><span style="font-size:clamp(24px,4vw,48px);font-weight:400;">여 명</span></div>
+    <div class="big-num-sub c-green">2,500<span style="font-size:clamp(18px,3vw,36px);font-weight:400;">만 원</span></div>
+    <div style="font-size:clamp(12px,1.2vw,15px);color:#888;margin-top:clamp(8px,1.5vh,14px);">의성군비 지원</div>
   </div>
   <div class="photo-strip" style="margin-top:clamp(12px,2vh,20px);max-width:500px;grid-template-columns:1fr;">
     <div class="photo-item" data-anim="anim-fade-up">
@@ -1567,7 +1851,7 @@ function activateSection(index) {
 
 function triggerAnimations(sid) {
   const sec = document.getElementById(sid);
-  const els = sec.querySelectorAll('.e-label, .e-title, .e-divider, .e-emotion, .e-cell, .e-color-bar, .e-subtitle, .bar-chart, .ring-container, .inno-item, .accent-card, .coop-summary, .bubble-chart, .challenge-card, .challenge-divider, .hope-msg, .policy-cell, .producer-cell, .edu-cell, .ft-cell, .cl-cell, .photo-strip, .end-year, .end-msg, .end-org, .end-logo');
+  const els = sec.querySelectorAll('.e-label, .e-title, .e-divider, .e-emotion, .e-cell, .e-color-bar, .e-subtitle, .bar-chart, .ring-container, .inno-item, .accent-card, .coop-summary, .bubble-chart, .challenge-card, .challenge-divider, .hope-msg, .policy-cell, .producer-cell, .edu-cell, .ft-cell, .cl-cell, .photo-strip, .end-year, .end-msg, .end-org, .end-logo, .donut-container, .network-container, .gauge-wrap, .stack-total, .stack-bar-container, .big-num-reveal, .timeline-steps');
   els.forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 150));
 
   // Animate progress-fill bars when section activates
@@ -1587,7 +1871,7 @@ function triggerAnimations(sid) {
   if (sid === 'scene4') {
     setTimeout(() => {
       const c = document.getElementById('piProgress');
-      c.style.strokeDashoffset = 603 * (1 - 0.707);
+      c.style.strokeDashoffset = 603 * (1 - 0.90);
     }, 500);
   }
   if (sid === 'scene6') {
@@ -1595,9 +1879,72 @@ function triggerAnimations(sid) {
       document.querySelectorAll('#bubbleChart .bubble').forEach(b => b.classList.add('visible'));
     }, 500);
   }
+  if (sid === 'scene3') {
+    // Donut chart animation
+    setTimeout(() => {
+      const circ = 2 * Math.PI * 80; // ~502.65
+      document.getElementById('donut-store').style.strokeDasharray = (circ * 0.73) + ' ' + circ;
+      document.getElementById('donut-online').style.strokeDasharray = (circ * 0.18) + ' ' + circ;
+      document.getElementById('donut-public').style.strokeDasharray = (circ * 0.09) + ' ' + circ;
+    }, 600);
+  }
+  if (sid === 'scene5b') {
+    // Auto-flip cards with staggered delays
+    sec.querySelectorAll('.flip-card').forEach((card, i) => {
+      setTimeout(() => card.classList.add('flipped'), 1500 + i * 800);
+      setTimeout(() => card.classList.remove('flipped'), 4000 + i * 800);
+    });
+  }
+  if (sid === 'scene5c') {
+    // Network nodes + lines sequential reveal
+    const net = document.getElementById('producerNetwork');
+    setTimeout(() => {
+      const center = net.querySelector('.network-center');
+      if (center) center.classList.add('visible');
+    }, 500);
+    net.querySelectorAll('.network-line').forEach(line => {
+      const d = parseFloat(line.dataset.delay || 0.3);
+      setTimeout(() => line.classList.add('visible'), d * 1000 + 500);
+    });
+    net.querySelectorAll('.network-node').forEach(node => {
+      const d = parseFloat(node.dataset.delay || 0.5);
+      setTimeout(() => node.classList.add('visible'), d * 1000 + 500);
+    });
+  }
   if (sid === 'part2-title') {
     setTimeout(() => {
+      // Gauge ring animation
+      const circ2 = 2 * Math.PI * 85; // ~534
+      document.getElementById('gauge1').style.strokeDasharray = (circ2 * 0.85) + ' ' + circ2;
+      document.getElementById('gauge2').style.strokeDasharray = (circ2 * 0.886) + ' ' + circ2; // 4.43/5 = 0.886
+      // Count up
       document.querySelectorAll('#part2-title .count2').forEach(startCounter);
+    }, 600);
+  }
+  if (sid === 'fair-trade') {
+    // Timeline steps sequential reveal + counters
+    sec.querySelectorAll('.timeline-step').forEach((step, i) => {
+      setTimeout(() => step.classList.add('visible'), 400 + i * 500);
+    });
+    setTimeout(() => {
+      sec.querySelectorAll('.count-ft').forEach(startCounter);
+    }, 800);
+  }
+  if (sid === 'solidarity-fund') {
+    // Stacked bar segments width animation
+    setTimeout(() => {
+      sec.querySelectorAll('.stack-bar-segment').forEach((seg, i) => {
+        setTimeout(() => { seg.style.width = seg.dataset.width + '%'; }, i * 200);
+      });
+      sec.querySelectorAll('.count-fund').forEach(startCounter);
+    }, 600);
+  }
+  if (sid === 'sanmyeong') {
+    // Big number reveal
+    setTimeout(() => {
+      const bnr = document.getElementById('bigNumSanmyeong');
+      if (bnr) bnr.classList.add('visible');
+      sec.querySelectorAll('.count-san').forEach(startCounter);
     }, 600);
   }
 }
@@ -1639,6 +1986,15 @@ function startAutoPlay() {
       document.querySelectorAll('.progress-fill').forEach(b=>b.style.width='0');
       document.getElementById('piProgress').style.strokeDashoffset=603;
       document.querySelectorAll('.bubble').forEach(b=>b.classList.remove('visible'));
+      // Reset new effects
+      ['donut-store','donut-online','donut-public'].forEach(id=>{const e=document.getElementById(id);if(e)e.style.strokeDasharray='0 502.65';});
+      ['gauge1','gauge2'].forEach(id=>{const e=document.getElementById(id);if(e)e.style.strokeDasharray='0 534';});
+      document.querySelectorAll('.flip-card').forEach(c=>c.classList.remove('flipped'));
+      document.querySelectorAll('.network-center,.network-node,.network-line').forEach(n=>n.classList.remove('visible'));
+      document.querySelectorAll('.timeline-step').forEach(s=>s.classList.remove('visible'));
+      document.querySelectorAll('.stack-bar-segment').forEach(s=>s.style.width='0');
+      document.querySelectorAll('.big-num-reveal').forEach(b=>b.classList.remove('visible'));
+      document.querySelectorAll('.count-ft,.count-fund,.count-san,.count2').forEach(c=>c.textContent='0');
       stopSlideshow();
       activateSection(0); startAutoPlay();
     }
@@ -1658,6 +2014,15 @@ document.getElementById('btnRestart').addEventListener('click', () => {
   document.querySelectorAll('.progress-fill').forEach(b=>b.style.width='0');
   document.getElementById('piProgress').style.strokeDashoffset=603;
   document.querySelectorAll('.bubble').forEach(b=>b.classList.remove('visible'));
+  // Reset new effects
+  ['donut-store','donut-online','donut-public'].forEach(id=>{const e=document.getElementById(id);if(e)e.style.strokeDasharray='0 502.65';});
+  ['gauge1','gauge2'].forEach(id=>{const e=document.getElementById(id);if(e)e.style.strokeDasharray='0 534';});
+  document.querySelectorAll('.flip-card').forEach(c=>c.classList.remove('flipped'));
+  document.querySelectorAll('.network-center,.network-node,.network-line').forEach(n=>n.classList.remove('visible'));
+  document.querySelectorAll('.timeline-step').forEach(s=>s.classList.remove('visible'));
+  document.querySelectorAll('.stack-bar-segment').forEach(s=>s.style.width='0');
+  document.querySelectorAll('.big-num-reveal').forEach(b=>b.classList.remove('visible'));
+  document.querySelectorAll('.count-ft,.count-fund,.count-san,.count2').forEach(c=>c.textContent='0');
   activateSection(0); isPaused=false;
   document.getElementById('btnPause').textContent='⏸'; startAutoPlay();
 });
