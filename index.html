@@ -44,7 +44,7 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 
 /* ===== TYPOGRAPHY ===== */
 .e-label {
-  font-size: clamp(14px, 1.5vw, 18px); font-weight: 700; letter-spacing: clamp(3px, 0.5vw, 6px);
+  font-size: clamp(16px, 2vw, 24px); font-weight: 700; letter-spacing: clamp(3px, 0.5vw, 6px);
   text-transform: uppercase; margin-bottom: clamp(12px, 2vh, 24px);
   opacity: 0; clip-path: inset(0 100% 0 0);
 }
@@ -57,7 +57,7 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 .e-label.orange { color: #E65100; }
 
 .e-title {
-  font-size: clamp(32px, 5vw, 72px); font-weight: 900; text-align: center; line-height: 1.2;
+  font-size: clamp(40px, 6vw, 84px); font-weight: 900; text-align: center; line-height: 1.2;
   letter-spacing: clamp(-1px, -0.2vw, -3px); opacity: 0;
   transform: translateY(30px);
 }
@@ -85,7 +85,7 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 
 /* Emotional sub-message */
 .e-emotion {
-  font-size: clamp(16px, 1.8vw, 24px); font-weight: 300; font-style: italic;
+  font-size: clamp(20px, 2.2vw, 30px); font-weight: 300; font-style: italic;
   letter-spacing: clamp(1px, 0.3vw, 3px); margin-top: clamp(8px, 1.5vh, 16px);
   opacity: 0; line-height: 1.6;
 }
@@ -162,12 +162,12 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 .e-cell-on-green { border: 1px solid rgba(255,255,255,0.12); }
 
 .e-cell-num {
-  font-size: clamp(28px, 4.2vw, 60px); font-weight: 900; letter-spacing: -3px; line-height: 1;
+  font-size: clamp(36px, 5vw, 72px); font-weight: 900; letter-spacing: -3px; line-height: 1;
 }
 .e-cell-label {
-  font-size: clamp(15px, 1.6vw, 20px); font-weight: 500; letter-spacing: clamp(1px, 0.2vw, 2px); margin-top: clamp(8px, 1.2vh, 14px);
+  font-size: clamp(18px, 2vw, 26px); font-weight: 500; letter-spacing: clamp(1px, 0.2vw, 2px); margin-top: clamp(8px, 1.2vh, 14px);
 }
-.e-cell-sub { font-size: clamp(15px, 1.6vw, 20px); margin-top: clamp(4px, 0.8vh, 8px); font-weight: 700; }
+.e-cell-sub { font-size: clamp(18px, 2vw, 26px); margin-top: clamp(4px, 0.8vh, 8px); font-weight: 700; }
 
 /* ===== COLORS ===== */
 .c-green { color: #1B5E20; }
@@ -211,14 +211,14 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 }
 .bar-chart.show { animation: fade-scale 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
 .bar-col { display: flex; flex-direction: column; align-items: center; width: clamp(60px, 8vw, 110px); }
-.bar-num { font-size: clamp(20px, 2.5vw, 32px); font-weight: 900; letter-spacing: -1px; margin-bottom: clamp(4px, 1vh, 10px); }
+.bar-num { font-size: clamp(24px, 3vw, 40px); font-weight: 900; letter-spacing: -1px; margin-bottom: clamp(4px, 1vh, 10px); }
 .bar-fill {
   width: 100%; border-radius: 6px 6px 0 0;
   transition: height 1.8s cubic-bezier(0.34,1.56,0.64,1);
 }
 .bar-fill.red { background: #C62828; }
 .bar-fill.green { background: #1B5E20; box-shadow: 0 -4px 20px rgba(27,94,32,0.3); }
-.bar-year { font-size: clamp(16px, 1.8vw, 22px); margin-top: clamp(6px, 1vh, 12px); font-weight: 500; }
+.bar-year { font-size: clamp(20px, 2.2vw, 28px); margin-top: clamp(6px, 1vh, 12px); font-weight: 700; }
 
 /* ===== INNOVATION LIST ===== */
 .inno-list {
@@ -230,9 +230,9 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
   padding: clamp(20px, 3.5vw, 40px); border: 1px solid rgba(255,255,255,0.06); opacity: 0;
 }
 .inno-item.show { animation: card-rise 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
-.inno-num { font-size: clamp(28px, 3.8vw, 52px); font-weight: 900; letter-spacing: -2px; }
+.inno-num { font-size: clamp(36px, 4.5vw, 64px); font-weight: 900; letter-spacing: -2px; }
 .inno-item.show .inno-num { animation: num-pop 0.6s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
-.inno-text { font-size: clamp(13px, 1.4vw, 18px); margin-top: clamp(4px, 0.8vh, 8px); letter-spacing: 1px; }
+.inno-text { font-size: clamp(18px, 2vw, 26px); margin-top: clamp(4px, 0.8vh, 8px); letter-spacing: 1px; }
 
 /* ===== BUBBLE CHART ===== */
 .bubble-chart {
@@ -289,23 +289,23 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 .challenge-card.severity-mid::before { background: linear-gradient(180deg, #FFA726, #E65100); }
 .challenge-card:hover { background: rgba(255,255,255,0.05); transition: background 0.3s; }
 .challenge-tag {
-  display: inline-block; font-size: clamp(9px, 0.8vw, 11px); font-weight: 700;
+  display: inline-block; font-size: clamp(13px, 1.2vw, 16px); font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase;
-  padding: 3px clamp(8px, 0.8vw, 12px); border-radius: 4px;
+  padding: 4px clamp(10px, 1vw, 16px); border-radius: 4px;
   margin-bottom: clamp(8px, 1.2vh, 14px);
 }
 .challenge-tag.red { background: rgba(198,40,40,0.15); color: #EF9A9A; }
 .challenge-tag.orange { background: rgba(230,81,0,0.15); color: #FFAB91; }
 .challenge-num {
-  font-size: clamp(32px, 3.5vw, 52px); font-weight: 900; letter-spacing: -2px;
+  font-size: clamp(40px, 4.5vw, 64px); font-weight: 900; letter-spacing: -2px;
   line-height: 1; margin-bottom: clamp(4px, 0.8vh, 8px);
 }
 .challenge-title {
-  font-size: clamp(14px, 1.4vw, 18px); font-weight: 700;
+  font-size: clamp(20px, 2vw, 28px); font-weight: 700;
   margin-bottom: clamp(4px, 0.6vh, 6px);
 }
 .challenge-desc {
-  font-size: clamp(11px, 1vw, 14px); line-height: 1.5;
+  font-size: clamp(16px, 1.6vw, 22px); line-height: 1.5;
 }
 /* Divider line between challenges and hope */
 .challenge-divider {
@@ -343,9 +343,9 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 
 /* Mini tag badges */
 .mini-tag {
-  display: inline-block; font-size: clamp(8px, 0.7vw, 10px); font-weight: 700;
+  display: inline-block; font-size: clamp(13px, 1.2vw, 16px); font-weight: 700;
   letter-spacing: 1.5px; text-transform: uppercase;
-  padding: 2px clamp(6px, 0.7vw, 10px); border-radius: 3px;
+  padding: 4px clamp(8px, 1vw, 14px); border-radius: 4px;
   margin-bottom: clamp(6px, 1vh, 12px);
 }
 .mini-tag.green { background: rgba(27,94,32,0.12); color: #66BB6A; }
@@ -376,7 +376,7 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
   border-radius: 50%;
 }
 .rating-score {
-  font-size: clamp(10px, 0.9vw, 13px); font-weight: 700; margin-left: 6px;
+  font-size: clamp(14px, 1.4vw, 18px); font-weight: 700; margin-left: 6px;
 }
 
 /* ===== POLICY/PRODUCER ===== */
@@ -389,9 +389,9 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
   padding: clamp(18px, 3.5vh, 40px) clamp(14px, 2vw, 30px); border: 1px solid rgba(0,0,0,0.06); opacity: 0;
 }
 .policy-cell.show { animation: card-rise 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
-.policy-num { font-size: clamp(20px, 2.5vw, 32px); font-weight: 900; margin-bottom: clamp(4px, 0.6vh, 8px); }
-.policy-name { font-size: clamp(14px, 1.5vw, 19px); font-weight: 700; margin-bottom: clamp(4px, 0.6vh, 8px); }
-.policy-desc { font-size: clamp(12px, 1.2vw, 15px); line-height: 1.6; }
+.policy-num { font-size: clamp(28px, 3.2vw, 44px); font-weight: 900; margin-bottom: clamp(4px, 0.6vh, 8px); }
+.policy-name { font-size: clamp(20px, 2vw, 28px); font-weight: 700; margin-bottom: clamp(4px, 0.6vh, 8px); }
+.policy-desc { font-size: clamp(16px, 1.6vw, 22px); line-height: 1.6; }
 
 .producer-grid {
   display: grid; grid-template-columns: repeat(2,1fr); gap: 0;
@@ -413,9 +413,9 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
   padding: clamp(16px, 3vh, 35px) clamp(12px, 2vw, 28px); border: 1px solid rgba(0,0,0,0.05); opacity: 0;
 }
 .edu-cell.show { animation: card-rise 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
-.edu-cat { font-size: clamp(10px, 1vw, 12px); font-weight: 700; letter-spacing: clamp(1px, 0.3vw, 3px); margin-bottom: clamp(5px, 1vh, 10px); }
-.edu-name { font-size: clamp(13px, 1.4vw, 18px); font-weight: 700; margin-bottom: clamp(5px, 1vh, 10px); line-height: 1.3; }
-.edu-stat { font-size: clamp(11px, 1.1vw, 14px); display: inline-block; padding: 3px clamp(6px, 0.8vw, 10px); border-radius: 6px; margin-right: 4px; }
+.edu-cat { font-size: clamp(14px, 1.4vw, 18px); font-weight: 700; letter-spacing: clamp(1px, 0.3vw, 3px); margin-bottom: clamp(5px, 1vh, 10px); }
+.edu-name { font-size: clamp(18px, 1.8vw, 24px); font-weight: 700; margin-bottom: clamp(5px, 1vh, 10px); line-height: 1.3; }
+.edu-stat { font-size: clamp(15px, 1.5vw, 20px); display: inline-block; padding: 4px clamp(8px, 1vw, 14px); border-radius: 6px; margin-right: 4px; }
 
 /* ===== FAIRTRADE ===== */
 .ft-grid {
@@ -429,10 +429,10 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 }
 .ft-cell.show { animation: cell-up 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
 .ft-cell.show .ft-num { animation: num-pop 0.5s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
-.ft-num { font-size: clamp(28px, 3.8vw, 52px); font-weight: 900; letter-spacing: -2px; }
-.ft-unit { font-size: clamp(14px, 1.5vw, 20px); font-weight: 400; }
-.ft-name { font-size: clamp(13px, 1.4vw, 18px); font-weight: 700; margin-bottom: clamp(6px, 1vh, 12px); line-height: 1.4; }
-.ft-desc { font-size: clamp(11px, 1.1vw, 14px); line-height: 1.5; margin-top: clamp(5px, 0.8vh, 10px); }
+.ft-num { font-size: clamp(36px, 4.5vw, 64px); font-weight: 900; letter-spacing: -2px; }
+.ft-unit { font-size: clamp(18px, 2vw, 26px); font-weight: 400; }
+.ft-name { font-size: clamp(18px, 2vw, 26px); font-weight: 700; margin-bottom: clamp(6px, 1vh, 12px); line-height: 1.4; }
+.ft-desc { font-size: clamp(15px, 1.5vw, 20px); line-height: 1.5; margin-top: clamp(5px, 0.8vh, 10px); }
 
 /* ===== CLIMATE GRID ===== */
 .cl-grid {
@@ -445,9 +445,9 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 }
 .cl-cell.show { animation: cell-up 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
 .cl-cell.show .cl-num { animation: num-pop 0.5s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
-.cl-num { font-size: clamp(22px, 2.8vw, 36px); font-weight: 900; letter-spacing: -1px; }
-.cl-name { font-size: clamp(14px, 1.5vw, 19px); font-weight: 700; margin-bottom: clamp(3px, 0.5vh, 6px); }
-.cl-desc { font-size: clamp(11px, 1.1vw, 14px); line-height: 1.5; margin-top: clamp(4px, 0.6vh, 8px); }
+.cl-num { font-size: clamp(28px, 3.5vw, 48px); font-weight: 900; letter-spacing: -1px; }
+.cl-name { font-size: clamp(20px, 2vw, 28px); font-weight: 700; margin-bottom: clamp(3px, 0.5vh, 6px); }
+.cl-desc { font-size: clamp(16px, 1.6vw, 22px); line-height: 1.5; margin-top: clamp(4px, 0.6vh, 8px); }
 
 /* ===== STAGGERED CARD ENTRANCE ===== */
 .stagger-1 { animation-delay: 0s !important; }
@@ -1072,12 +1072,12 @@ body:hover .section-indicator { opacity: 1; }
   </div>
   <div class="e-grid e-grid-3" style="background:rgba(0,0,0,0.15);border-radius:12px;margin-top:40px;">
     <div class="e-cell" style="border-color:rgba(255,255,255,0.1);">
-      <div class="e-cell-num c-white">894.7<span style="font-size:22px;" class="c-white-50">억</span></div>
+      <div class="e-cell-num c-white">894.7<span style="font-size:28px;" class="c-white-50">억</span></div>
       <div class="e-cell-label c-white-50">총 공급고</div>
       <div class="e-cell-sub c-light-green">+2.1%</div>
     </div>
     <div class="e-cell" style="border-color:rgba(255,255,255,0.1);">
-      <div class="e-cell-num c-white"><span class="count" data-target="1265.1">0</span><span style="font-size:22px;" class="c-white-50">억</span></div>
+      <div class="e-cell-num c-white"><span class="count" data-target="1265.1">0</span><span style="font-size:28px;" class="c-white-50">억</span></div>
       <div class="e-cell-label c-white-50">조합원 이용액</div>
       <div class="e-cell-sub c-light-green">+2.1%</div>
     </div>
@@ -1110,18 +1110,18 @@ body:hover .section-indicator { opacity: 1; }
     <div style="display:flex;flex-direction:column;gap:clamp(12px,2vh,20px);">
       <div class="accent-card on-light accent-bar-green stagger-1" style="border:none;padding:clamp(14px,2vh,20px) clamp(16px,2vw,28px);">
         <div style="font-size:clamp(28px,3vw,40px);font-weight:900;color:#1B5E20;">651.7<span style="font-size:clamp(14px,1.3vw,18px);font-weight:400;">억</span></div>
-        <div style="font-size:clamp(16px,1.6vw,20px);color:#1a1a1a;font-weight:700;">매장 · 112점 · 73%</div>
-        <div style="font-size:clamp(14px,1.3vw,17px);color:#888;">전년 대비 <strong style="color:#1B5E20;">+1.5%</strong></div>
+        <div style="font-size:clamp(20px,2vw,26px);color:#1a1a1a;font-weight:700;">매장 · 112점 · 73%</div>
+        <div style="font-size:clamp(17px,1.7vw,22px);color:#888;">전년 대비 <strong style="color:#1B5E20;">+1.5%</strong></div>
       </div>
       <div class="accent-card on-light accent-bar-blue stagger-2" style="border:none;padding:clamp(14px,2vh,20px) clamp(16px,2vw,28px);">
         <div style="font-size:clamp(28px,3vw,40px);font-weight:900;color:#1565C0;">159.2<span style="font-size:clamp(14px,1.3vw,18px);font-weight:400;">억</span></div>
-        <div style="font-size:clamp(16px,1.6vw,20px);color:#1a1a1a;font-weight:700;">온라인 · 18%</div>
-        <div style="font-size:clamp(14px,1.3vw,17px);color:#888;">전년 대비 <strong style="color:#1565C0;">+3.0%</strong></div>
+        <div style="font-size:clamp(20px,2vw,26px);color:#1a1a1a;font-weight:700;">온라인 · 18%</div>
+        <div style="font-size:clamp(17px,1.7vw,22px);color:#888;">전년 대비 <strong style="color:#1565C0;">+3.0%</strong></div>
       </div>
       <div class="accent-card on-light accent-bar-orange stagger-3" style="border:none;padding:clamp(14px,2vh,20px) clamp(16px,2vw,28px);">
         <div style="font-size:clamp(28px,3vw,40px);font-weight:900;color:#E65100;">78.2<span style="font-size:clamp(14px,1.3vw,18px);font-weight:400;">억</span></div>
-        <div style="font-size:clamp(16px,1.6vw,20px);color:#1a1a1a;font-weight:700;">공공사업 · 9%</div>
-        <div style="font-size:clamp(14px,1.3vw,17px);color:#888;">전년 대비 <strong style="color:#E65100;">+5.3%</strong></div>
+        <div style="font-size:clamp(20px,2vw,26px);color:#1a1a1a;font-weight:700;">공공사업 · 9%</div>
+        <div style="font-size:clamp(17px,1.7vw,22px);color:#888;">전년 대비 <strong style="color:#E65100;">+5.3%</strong></div>
       </div>
     </div>
   </div>
@@ -1179,26 +1179,26 @@ body:hover .section-indicator { opacity: 1; }
     <div class="accent-card on-dark accent-bar-green">
       <div class="mini-tag green">개발 · 신규</div>
       <div class="challenge-title" style="color:#fff;font-weight:700;">신규 품목 개발</div>
-      <div class="challenge-num" style="color:#A5D6A7;">287<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">개</span></div>
+      <div class="challenge-num" style="color:#A5D6A7;">287<span style="font-size:clamp(18px,1.8vw,26px);font-weight:400;">개</span></div>
       <div class="challenge-desc c-white-30">건강한 식탁을 위한 새로운 선택지</div>
     </div>
     <div class="accent-card on-dark accent-bar-green">
       <div class="mini-tag green">히트 · 달성</div>
       <div class="challenge-title" style="color:#fff;font-weight:700;">귀리유 판매 달성</div>
-      <div class="challenge-num" style="color:#A5D6A7;">100만<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">팩</span></div>
+      <div class="challenge-num" style="color:#A5D6A7;">100만<span style="font-size:clamp(18px,1.8vw,26px);font-weight:400;">팩</span></div>
       <div class="challenge-desc c-white-30">조합원이 선택한 올해의 생활재</div>
       <div class="progress-inline"><div class="progress-fill" data-width="100" style="background:linear-gradient(90deg,#1B5E20,#A5D6A7);"></div></div>
     </div>
     <div class="accent-card on-dark accent-bar-green">
       <div class="mini-tag green">간편식 · 확대</div>
       <div class="challenge-title" style="color:#fff;font-weight:700;">두레맛찬 신선반찬</div>
-      <div class="challenge-num" style="color:#A5D6A7;">32<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">품목</span></div>
+      <div class="challenge-num" style="color:#A5D6A7;">32<span style="font-size:clamp(18px,1.8vw,26px);font-weight:400;">품목</span></div>
       <div class="challenge-desc c-white-30">바쁜 일상 속 건강한 한 끼 솔루션</div>
     </div>
     <div class="accent-card on-dark accent-bar-green">
       <div class="mini-tag green">성장 · 공정무역</div>
       <div class="challenge-title" style="color:#fff;font-weight:700;">공정무역 매출 성장</div>
-      <div class="challenge-num" style="color:#A5D6A7;">+12<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">%</span></div>
+      <div class="challenge-num" style="color:#A5D6A7;">+12<span style="font-size:clamp(18px,1.8vw,26px);font-weight:400;">%</span></div>
       <div class="challenge-desc c-white-30">윤리적 소비의 가치를 더하다</div>
     </div>
   </div>
@@ -1283,12 +1283,12 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-emotion c-white-30">각자의 자리에서, 하나의 두레로</div>
   <div style="display:flex;gap:60px;margin-top:20px;opacity:0;" class="coop-summary">
     <div style="text-align:center;">
-      <div style="font-size:14px;letter-spacing:3px;" class="c-white-50">전체 조합원</div>
-      <div style="font-size:clamp(28px,3.5vw,48px);font-weight:900;color:#fff;">237,801<span style="font-size:20px;" class="c-white-50">가구</span></div>
+      <div style="font-size:26px;letter-spacing:3px;" class="c-white-50">전체 조합원</div>
+      <div style="font-size:clamp(28px,3.5vw,48px);font-weight:900;color:#fff;">237,801<span style="font-size:26px;" class="c-white-50">가구</span></div>
     </div>
     <div style="text-align:center;">
-      <div style="font-size:14px;letter-spacing:3px;" class="c-white-50">총 이용액</div>
-      <div style="font-size:clamp(28px,3.5vw,48px);font-weight:900;color:#fff;">1,265.1<span style="font-size:20px;" class="c-white-50">억원</span></div>
+      <div style="font-size:26px;letter-spacing:3px;" class="c-white-50">총 이용액</div>
+      <div style="font-size:clamp(28px,3.5vw,48px);font-weight:900;color:#fff;">1,265.1<span style="font-size:26px;" class="c-white-50">억원</span></div>
     </div>
   </div>
   <div class="bubble-chart" id="bubbleChart">
@@ -1313,19 +1313,19 @@ body:hover .section-indicator { opacity: 1; }
     </div>
     <div class="challenge-card severity-high">
       <div class="challenge-tag red">긴급</div>
-      <div class="challenge-num c-light-red">11,598<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">가구</span></div>
+      <div class="challenge-num c-light-red">11,598<span style="font-size:clamp(18px,1.8vw,26px);font-weight:400;">가구</span></div>
       <div class="challenge-title c-white">탈퇴 조합원 급증</div>
       <div class="challenge-desc c-white-30">순증 3,401가구에 그침<br>이탈 방지 대책 시급</div>
     </div>
     <div class="challenge-card severity-mid">
       <div class="challenge-tag orange">주의</div>
-      <div class="challenge-num c-light-orange">-7.5<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">억원</span></div>
+      <div class="challenge-num c-light-orange">-7.5<span style="font-size:clamp(18px,1.8vw,26px);font-weight:400;">억원</span></div>
       <div class="challenge-title c-white">영업이익 적자</div>
       <div class="challenge-desc c-white-30">영업외수익으로 보전<br>본업 수익성 개선 필요</div>
     </div>
     <div class="challenge-card severity-mid">
       <div class="challenge-tag orange">주의</div>
-      <div class="challenge-num c-light-orange">-3<span style="font-size:clamp(14px,1.3vw,20px);font-weight:400;">개점</span></div>
+      <div class="challenge-num c-light-orange">-3<span style="font-size:clamp(18px,1.8vw,26px);font-weight:400;">개점</span></div>
       <div class="challenge-title c-white">매장 순감소</div>
       <div class="challenge-desc c-white-30">현재 112점 운영<br>지역 거점 유지 전략 필요</div>
     </div>
