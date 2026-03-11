@@ -483,17 +483,17 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
 .network-container.show { animation: fade-scale 1s cubic-bezier(0.16,1,0.3,1) forwards; }
 .network-node {
   position: absolute; border-radius: 12px;
-  padding: clamp(14px, 2vh, 24px) clamp(12px, 1.5vw, 20px);
+  padding: clamp(18px, 2.5vh, 30px) clamp(16px, 2vw, 28px);
   text-align: center; opacity: 0; transform: scale(0.8);
   transition: opacity 0.6s, transform 0.6s cubic-bezier(0.16,1,0.3,1);
-  max-width: clamp(160px, 20vw, 220px);
+  max-width: clamp(200px, 24vw, 280px);
 }
 .network-node.visible { opacity: 1; transform: scale(1); }
 .network-center {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  width: clamp(80px, 10vw, 120px); height: clamp(80px, 10vw, 120px);
+  width: clamp(100px, 12vw, 150px); height: clamp(100px, 12vw, 150px);
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-weight: 900; font-size: clamp(16px, 2vw, 24px);
+  font-weight: 900; font-size: clamp(22px, 2.5vw, 32px);
   z-index: 2; opacity: 0; transform: translate(-50%, -50%) scale(0);
   transition: opacity 0.6s, transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
 }
@@ -503,7 +503,7 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow: hidden; }
   opacity: 0; transform: scaleX(0);
   transition: opacity 0.5s, transform 0.8s cubic-bezier(0.16,1,0.3,1);
 }
-.network-line.visible { opacity: 1; transform: scaleX(1); }
+.network-line.visible { opacity: 1; transform: scaleX(1) !important; }
 
 /* ===== DONUT CHART ===== */
 .donut-container {
@@ -1258,24 +1258,24 @@ body:hover .section-indicator { opacity: 1; }
   <div class="network-container" id="producerNetwork">
     <div class="network-center" style="background:#1B5E20;color:#fff;">두레</div>
     <div class="network-line" style="top:50%;left:50%;width:25%;transform-origin:left center;background:#1B5E20;" data-delay="0.3"></div>
-    <div class="network-line" style="top:50%;right:50%;width:25%;transform-origin:right center;background:#1B5E20;transform:scaleX(0) rotate(180deg);" data-delay="0.5"></div>
-    <div class="network-line" style="top:25%;left:50%;width:20%;transform-origin:left center;background:#1B5E20;transform:scaleX(0) rotate(-45deg);" data-delay="0.7"></div>
-    <div class="network-line" style="bottom:25%;left:50%;width:20%;transform-origin:left center;background:#1B5E20;transform:scaleX(0) rotate(45deg);" data-delay="0.9"></div>
-    <div class="network-node" style="top:10%;right:5%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.5">
-      <div style="font-weight:700;color:#1B5E20;font-size:clamp(13px,1.4vw,17px);">생산자 브랜드</div>
-      <div style="font-size:clamp(11px,1vw,13px);color:#555;margin-top:4px;">신뢰와 투명성 강화</div>
+    <div class="network-line" style="top:50%;left:25%;width:25%;transform-origin:right center;background:#1B5E20;" data-delay="0.5"></div>
+    <div class="network-line" style="top:25%;left:50%;width:20%;transform-origin:left center;background:#1B5E20;transform:scaleX(0) rotate(-35deg);" data-delay="0.7"></div>
+    <div class="network-line" style="bottom:25%;left:50%;width:20%;transform-origin:left center;background:#1B5E20;transform:scaleX(0) rotate(35deg);" data-delay="0.9"></div>
+    <div class="network-node" style="top:8%;right:3%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.5">
+      <div style="font-weight:700;color:#1B5E20;font-size:clamp(18px,2vw,24px);">생산자 브랜드</div>
+      <div style="font-size:clamp(14px,1.4vw,18px);color:#555;margin-top:6px;">신뢰와 투명성 강화</div>
     </div>
-    <div class="network-node" style="bottom:10%;right:5%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.7">
-      <div style="font-weight:700;color:#1B5E20;font-size:clamp(13px,1.4vw,17px);">산지 품질 점검</div>
-      <div style="font-size:clamp(11px,1vw,13px);color:#555;margin-top:4px;">안전한 먹거리 공급</div>
+    <div class="network-node" style="bottom:8%;right:3%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.7">
+      <div style="font-weight:700;color:#1B5E20;font-size:clamp(18px,2vw,24px);">산지 품질 점검</div>
+      <div style="font-size:clamp(14px,1.4vw,18px);color:#555;margin-top:6px;">안전한 먹거리 공급</div>
     </div>
-    <div class="network-node" style="top:10%;left:5%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.9">
-      <div style="font-weight:700;color:#1B5E20;font-size:clamp(13px,1.4vw,17px);">생산자-소비자 상생</div>
-      <div style="font-size:clamp(11px,1vw,13px);color:#555;margin-top:4px;">공정 거래 협력</div>
+    <div class="network-node" style="top:8%;left:3%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="0.9">
+      <div style="font-weight:700;color:#1B5E20;font-size:clamp(18px,2vw,24px);">생산자-소비자 상생</div>
+      <div style="font-size:clamp(14px,1.4vw,18px);color:#555;margin-top:6px;">공정 거래 협력</div>
     </div>
-    <div class="network-node" style="bottom:10%;left:5%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="1.1">
-      <div style="font-weight:700;color:#1B5E20;font-size:clamp(13px,1.4vw,17px);">안전한 생활재</div>
-      <div style="font-size:clamp(11px,1vw,13px);color:#555;margin-top:4px;">엄격한 품질 기준</div>
+    <div class="network-node" style="bottom:8%;left:3%;background:rgba(27,94,32,0.08);border:2px solid rgba(27,94,32,0.2);" data-delay="1.1">
+      <div style="font-weight:700;color:#1B5E20;font-size:clamp(18px,2vw,24px);">안전한 생활재</div>
+      <div style="font-size:clamp(14px,1.4vw,18px);color:#555;margin-top:6px;">엄격한 품질 기준</div>
     </div>
   </div>
 </div>
