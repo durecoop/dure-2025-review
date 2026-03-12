@@ -1442,7 +1442,7 @@ body:hover .section-indicator { opacity: 1; }
       <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">일반팩+멸균팩 총 2,565kg 수거</div>
     </div>
     <div class="accent-card on-light accent-bar-green">
-      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">신규지역기관 26곳 발굴</div>
+      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;white-space:nowrap;">신규지역기관 26곳 발굴</div>
     </div>
     <div class="accent-card on-light accent-bar-green">
       <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">두친소 6곳 소개</div>
@@ -1470,7 +1470,7 @@ body:hover .section-indicator { opacity: 1; }
   <div class="e-divider green"></div>
   <div class="challenge-grid" style="grid-template-columns:repeat(2,1fr);max-width:900px;margin-top:clamp(16px,3vh,32px);">
     <div class="accent-card on-light accent-bar-green">
-      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">회원생협 활동제안을 위한 워크숍<br>'죽음의 바느질 클럽'</div>
+      <div class="challenge-title" style="color:#1a1a1a;font-weight:700;font-size:clamp(16px,1.6vw,22px);">회원생협 활동제안을 위한 워크숍<br>'죽음의 바느질 클럽'</div>
     </div>
     <div class="accent-card on-light accent-bar-green">
       <div class="challenge-title" style="color:#1a1a1a;font-weight:700;">927기후정의행진</div>
@@ -1499,7 +1499,7 @@ body:hover .section-indicator { opacity: 1; }
   </div>
   <div class="stack-bar-container" id="stackBars">
     <div class="stack-bar-segment" style="background:linear-gradient(135deg,#C62828,#EF5350);" data-width="52.6">의성군 2천만</div>
-    <div class="stack-bar-segment" style="background:linear-gradient(135deg,#E53935,#EF9A9A);" data-width="10.5">민속죽염 4백만</div>
+    <div class="stack-bar-segment" style="background:linear-gradient(135deg,#E53935,#EF9A9A);white-space:nowrap;" data-width="10.5">민속죽염 4백만</div>
     <div class="stack-bar-segment" style="background:linear-gradient(135deg,#1565C0,#42A5F5);" data-width="18.4">홍성 7백만</div>
     <div class="stack-bar-segment" style="background:linear-gradient(135deg,#1976D2,#90CAF9);" data-width="18.4">한강 7백만</div>
   </div>
@@ -1747,7 +1747,7 @@ function buildBubbleChart() {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
   const cw = Math.min(vw * 0.95, 1400);
-  const ch = Math.min(vh * 0.70, 700);
+  const ch = Math.min(vh * 0.78, 780);
 
   const data = coopData.map(c => {
     const amt = parseFloat(c.amount.replace('억',''));
@@ -1769,7 +1769,7 @@ function buildBubbleChart() {
     const hy = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
     allPos.push({
       x: cw / 2 + (hx / 16) * heartScaleX,
-      y: ch / 2 + (hy / 17) * heartScaleY - ch * 0.05
+      y: ch / 2 + (hy / 17) * heartScaleY - ch * 0.10
     });
   }
 
